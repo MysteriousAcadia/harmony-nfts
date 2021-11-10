@@ -1,0 +1,24 @@
+{
+    "module": "es6",
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "allowSyntheticDefaultImports": true,
+        "module": "es6",
+        "target": "es6",
+        "jsx": "react-jsx",
+        "paths": {
+            "*": [
+                "./src/*"
+            ],
+            "assets": [
+                "../public/assets"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "src/**/*"
+    ]
+}

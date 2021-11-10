@@ -1,0 +1,5 @@
+.base-background {
+  background: #033545;
+  backdrop-filter: blur(4px);
+  background-image: url("assets/bg_light.png");
+}
