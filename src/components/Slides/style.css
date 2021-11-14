@@ -1,0 +1,18 @@
+.arrow-bg {
+  position: absolute;
+  top: 50%;
+  width: 51px;
+  height: 55px;
+  border-radius: 8px;
+  transform: translate(0, -50%);
+  background-color: rgba(255, 255, 255, 0.59);
+  object-fit: contain;
+  padding: 16px;
+}
+.left {
+  left: -25px;
+}
+.right {
+  right: -25px;
+  transform: translate(0, -50%) scaleX(-1);
+}

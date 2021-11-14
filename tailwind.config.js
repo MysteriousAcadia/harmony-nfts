@@ -10,6 +10,9 @@ module.exports = {
         black: {
           default: "#150F2B",
           secondary: "#474357",
+        },
+        main: {
+          default: "#115C70",
         }
       },
       height: {

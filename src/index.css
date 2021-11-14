@@ -14,14 +14,26 @@ code {
 .blue-gradient {
   background: linear-gradient(173.02deg, #01e8da -70.92%, #01aee5 82.27%);
 }
+.blue-text {
+  background: linear-gradient(173.02deg, #01e8da -70.92%, #01aee5 82.27%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .blur-glass {
   background: rgba(175, 255, 250, 0.17);
   background: rgba(255, 255, 255, 0.58);
   box-shadow: 0px 4px 25px rgba(35, 35, 35, 0.29);
   backdrop-filter: blur(15px);
+  border-radius: 12px;
   /* backdrop-filter: blur(118px);
   filter: blur(118px);
   -webkit-filter: blur(118px); */
+}
+.glass-2 {
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: 0px 4px 25px rgba(35, 35, 35, 0.29);
+  border-radius: 7px;
 }
 
 @tailwind base;
