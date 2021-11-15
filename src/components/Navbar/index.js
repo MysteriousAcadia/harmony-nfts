@@ -16,8 +16,8 @@ const Navbar = () => {
     useEffect(() => {
         window.addEventListener("scroll", changeBackground)
     })
-    return (<nav
-        class={`flex sticky top-0 z-50 items-center justify-between py-8 flex-wrap ${navbar ? "navbar-background" : "bg-transparent"}  lg:px-12`}>
+    return (<div className={`sticky top-0 z-50 ${navbar ? "navbar-background" : "bg-transparent"}`}><nav
+        class={`flex items-center justify-between py-8 flex-wrap   container px-4 mx-auto`}>
         <div class="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
             <div class="flex items-center flex-shrink-0 text-gray-800 mr-16">
                 <img src={fullLogo} />
@@ -68,6 +68,7 @@ const Navbar = () => {
             </div>
         </div>
 
-    </nav >);
+    </nav >
+    </div>);
 }
 export default Navbar;

@@ -1,8 +1,8 @@
 import logoFull from "assets/logo_full.svg";
 const navigation = {
     solutions: [
-        { name: 'Marketing', href: '#' },
-        { name: 'Analytics', href: '#' },
+        { name: 'Collection', href: '#' },
+        { name: 'Stats', href: '#' },
         { name: 'Commerce', href: '#' },
         { name: 'Insights', href: '#' },
     ],
@@ -129,12 +129,12 @@ export default function Footer() {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="mt-12 md:mt-0">
-                                <h3 className="font-bold italic">Support</h3>
+                            <div>
+                                <h3 className=" font-bold italic">Solutions</h3>
                                 <ul role="list" className="mt-4 space-y-4">
-                                    {navigation.support.map((item) => (
+                                    {navigation.solutions.map((item) => (
                                         <li key={item.name}>
-                                            <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                                            <a href={item.href} className="text-sm italic hover:text-gray-900">
                                                 {item.name}
                                             </a>
                                         </li>
@@ -144,23 +144,23 @@ export default function Footer() {
                         </div>
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                                <h3 className=" font-bold italic">Solutions</h3>
                                 <ul role="list" className="mt-4 space-y-4">
-                                    {navigation.company.map((item) => (
+                                    {navigation.solutions.map((item) => (
                                         <li key={item.name}>
-                                            <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                                            <a href={item.href} className="text-sm italic hover:text-gray-900">
                                                 {item.name}
                                             </a>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
-                            <div className="mt-12 md:mt-0">
-                                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
+                            <div>
+                                <h3 className=" font-bold italic">Solutions</h3>
                                 <ul role="list" className="mt-4 space-y-4">
-                                    {navigation.legal.map((item) => (
+                                    {navigation.solutions.map((item) => (
                                         <li key={item.name}>
-                                            <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                                            <a href={item.href} className="text-sm italic hover:text-gray-900">
                                                 {item.name}
                                             </a>
                                         </li>
