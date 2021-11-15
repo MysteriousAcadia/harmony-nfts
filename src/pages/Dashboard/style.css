@@ -2,7 +2,12 @@
   background: #033545;
   backdrop-filter: blur(4px);
   background-image: url("assets/bg_light.png");
+  background-size: cover;
 }
-.glass-background {
-  background: rgba(255, 255, 255, 0.04);
+
+.discover-text {
+  background: linear-gradient(#91fee4, #50a2de, #4492d3, #3c87cc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

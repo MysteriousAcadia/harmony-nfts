@@ -10,12 +10,14 @@ module.exports = {
         black: {
           default: "#150F2B",
           secondary: "#474357",
+
         },
         main: {
           default: "#115C70",
         }
       },
       height: {
+        "50": "12.5rem",
         "10v": "10vh",
         "20v": "20vh",
         "30v": "30vh",
@@ -31,6 +33,7 @@ module.exports = {
         "10v": "10vw",
         "20v": "20vw",
         "30v": "30vw",
+        "35v": "35vw",
         "40v": "40vw",
         "50v": "50vw",
         "60v": "60vw",
@@ -38,11 +41,15 @@ module.exports = {
         "80v": "80vw",
         "90v": "90vw",
         "100v": "100vw",
+        "50": "12.5rem",
       },
     }
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+
+  ],
 }

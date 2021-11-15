@@ -4,8 +4,8 @@ import Slides from "components/Slides/index";
 import Heading from "components/Texts/Heading";
 const FeaturedCollections = () => {
 
-    return (<div className="w-full my-16 py-16 glass-background">
-        <div className="container mx-auto px-6">
+    return (<div className="w-full my-16 py-16 ">
+        <div className="container mx-auto px-12">
             <div className="flex justify-between text-white items-center mb-16">
                 <Heading> Featured Collections</Heading>
                 <div className="font-normal text-xl">View All ----</div>

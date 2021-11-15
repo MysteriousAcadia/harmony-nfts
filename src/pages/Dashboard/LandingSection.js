@@ -4,12 +4,15 @@ import SecondaryButton from "components/Buttons/Secondary";
 const Stats = () => {
     const stats = [{ value: "10k+", title: "Artworks" }, { value: "3k+", title: "Artists" }, { value: "10k+", title: "Artworks" },];
     return (<>
-        <div className="grid grid-cols-3 divide-x divide-green-500">
-            {stats.map((stat) => {
-                return (<div className="flex flex-col justify-between">
-                    <div>{stat.value}</div>
-                    <div>{stat.title}</div>
+        <div className="mt-6 flex items-center">
+            {stats.map((stat, index) => {
+                return (<><div className={`${index === 0 ? "pr-8" : "px-8"} py-2 flex flex-col my-8 items-center justify-between`}>
+                    <div className="font-bold text-2xl">{stat.value}</div>
+                    <div className=" mt-4 text-base">{stat.title}</div>
                 </div>
+                    {index < (stats.length - 1) && <div className="h-6 border-l border-white" />}
+
+                </>
                 )
             })}
         </div>
@@ -17,11 +20,13 @@ const Stats = () => {
 }
 const MainCard = () => {
     return (<div className="relative h-60v w-40v p-2  rounded-lg">
-        <div className=" absolute blur-glass w-20v h-40v blur-glass" />
+        <div className=" absolute blur-glass w-20v h-40v blur-glass left-1/2" style={{ transform: "translate(-50%,0)" }} />
 
-        <div className="blur-glass absolute w-30v mt-4 h-40v blur-glass" />
-        <img className="absolute bg-gray-200 h-60v mt-8 w-40v rounded-md" />
-        <div className="absolute text-black-default blur-glass -left-4 top-8 backdrop-blur-3xl p-4 rounded-md w-48 h-24">
+        <div className="blur-glass absolute w-30v mt-4 h-40v blur-glass left-1/2" style={{ transform: "translate(-50%,0)" }} />
+        <div className="absolute p-4 blur-glass h-60v mt-8 w-35v  left-1/2" style={{ transform: "translate(-50%,0)" }} >
+            <img className="w-full bg-gray-200 rounded-md h-full" />
+        </div>
+        <div className="absolute text-black-default blur-glass -left-4 top-20 backdrop-blur-3xl p-4 rounded-md w-48 h-24">
             <div className="font-bold text-base"> Harmoonie #032</div>
             <div className="font-normal text-sm">@Harmoonies</div>
         </div>
@@ -54,23 +59,23 @@ const BidCard = () => {
                 </div>
             </div>
         </div>
-        <div className="absolute flex -bottom-10 -left-10"><PrimaryButton> Place a Bid</PrimaryButton> <SecondaryButton>View Details</SecondaryButton></div>
+        <div className="absolute flex -bottom-10 -left-10"><PrimaryButton className="mr-4"> Place a Bid</PrimaryButton> <SecondaryButton>View Details</SecondaryButton></div>
     </div>);
 }
 const LandingSection = () => {
     return (<>
-        <div className="flex container px-4 text-white items-center pt-24">
-            <div className="flex flex-col items-start flex-1">
+        <div className="flex container px-4 mx-auto text-white items-start justify-between pt-8 pb-16">
+            <div className="flex flex-col items-start mr-32">
                 <img src={logoLight} alt="Logo" />
-                <div className="inline-block font-bold text-6xl  drop-shadow-pm">
-                    <span className="drop-shadow-sm"> Discover</span><span> the amazing world of NFT's</span>
+                <div className="inline-block font-bold text-6xl" style={{ "textShadow": "0px 4px 4px #00000040" }}>
+                    <span className="discover-text2"> Discover</span><span> the amazing world of NFT's</span>
                 </div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                <PrimaryButton> Explore Marketplace</PrimaryButton>
+                <div className="text-lg my-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                <PrimaryButton className="my-4"> Explore Marketplace</PrimaryButton>
                 <Stats />
 
             </div>
-            <div className="flex-1">
+            <div className="">
 
                 <MainCard />
 
