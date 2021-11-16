@@ -3,6 +3,7 @@ import "./style.css";
 import fullLogo from "assets/logo_full.svg";
 import wallet from "assets/HomePage/wallet.svg"
 import PrimaryButton from "components/Buttons/Primary";
+import { Link } from "react-router-dom";
 const Navbar = () => {
     const [navbar, setNavbar] = useState(false);
     const changeBackground = () => {
@@ -19,9 +20,9 @@ const Navbar = () => {
     return (<div className={`sticky top-0 z-50 ${navbar ? "navbar-background" : "bg-transparent"}`}><nav
         class={`flex items-center justify-between py-8 flex-wrap   container px-4 mx-auto`}>
         <div class="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
-            <div class="flex items-center flex-shrink-0 text-gray-800 mr-16">
+            <Link to="/" class="flex items-center flex-shrink-0 text-gray-800 mr-16">
                 <img src={fullLogo} />
-            </div>
+            </Link>
             <div class="block lg:hidden ">
                 <button
                     id="nav"
@@ -49,18 +50,18 @@ const Navbar = () => {
 
         <div class="menu w-full lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
             <div class="text-md  text-white  ">
-                <a href="#responsive-header"
+                <Link to="/collections"
                     class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded  mr-2">
                     Collections
-                </a>
-                <a href="#responsive-header"
+                </Link>
+                <Link to="/stats"
                     class=" block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
                     Stats
-                </a>
-                <a href="#responsive-header"
+                </Link>
+                <Link to="/faq"
                     class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
                     FAQ
-                </a>
+                </Link>
             </div>
 
             <div class="flex text-white">

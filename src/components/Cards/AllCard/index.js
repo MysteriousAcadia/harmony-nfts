@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const AllCard = ({ }) => {
     return (<>
-        <div className="glass-2 text-white">
+        <Link to="harmoonies" className="glass-2 text-white">
             <div className="relative h-64 m-4 rounded-md bg-gray-400">
                 <div className="absolute top-4 right-4 h-8 w-8 bg-gray-300 mx-auto">+</div>
             </div>
@@ -15,6 +17,6 @@ const AllCard = ({ }) => {
 
             </div>
 
-        </div></>);
+        </Link></>);
 }
 export default AllCard
