@@ -13,6 +13,7 @@ module.exports = {
 
         },
         main: {
+          light: "#CFDEE1",
           default: "#115C70",
         }
       },
@@ -28,6 +29,7 @@ module.exports = {
         "80v": "80vh",
         "90v": "90vh",
         "100v": "100vh",
+        "68": "17rem",
       },
       width: {
         "10v": "10vw",
@@ -42,6 +44,7 @@ module.exports = {
         "90v": "90vw",
         "100v": "100vw",
         "50": "12.5rem",
+        "68": "17rem",
       },
     }
   },

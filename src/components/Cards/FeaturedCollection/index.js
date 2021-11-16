@@ -1,4 +1,5 @@
 import PrimaryButton from "components/Buttons/Primary";
+import PrimaryBlue from "components/Buttons/PrimaryBlue";
 import SecondaryButton from "components/Buttons/Secondary";
 
 const FeaturedCollection = () => {
@@ -7,7 +8,7 @@ const FeaturedCollection = () => {
         <div className="flex flex-col items-center relative bg-white w-full h-60 rounded-b-lg">
             <img className="absolute rounded-full w-32 h-32 bg-gray-400 -mt-16 left-1/2 shadow-lg" style={{ transform: "translate(-50%,0)" }} />
             <div className="text-lg w-full truncate text-center px-2 text-main-default font-bold pt-24"> Harmoonies</div>
-            <PrimaryButton className="mx-auto mt-4">See Details</PrimaryButton>
+            <PrimaryBlue className="mx-auto mt-4">See Details</PrimaryBlue>
 
         </div>
 
