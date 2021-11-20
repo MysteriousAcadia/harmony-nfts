@@ -1,6 +1,7 @@
 import logoLight from "assets/logo_light.png";
 import PrimaryButton from "components/Buttons/Primary";
 import SecondaryButton from "components/Buttons/Secondary";
+import HeartIcon from "assets/heart_icon.svg";
 const Stats = () => {
     const stats = [{ value: "10k+", title: "Artworks" }, { value: "3k+", title: "Artists" }, { value: "10k+", title: "Artworks" },];
     return (<>
@@ -23,6 +24,9 @@ const MainCard = () => {
 
         <div className=" p-4 blur-glass h-60v mt-8 w-35v" >
             <img className="w-full bg-gray-200 rounded-md h-full" />
+            <div className="absolute bg-white right-8 top-8 rounded-md">
+                <div className="flex text-main-default p-4"><img src={HeartIcon} className=" h-6 w-6 mr-2" />16</div>
+            </div>
         </div>
 
     </div>)
@@ -36,7 +40,7 @@ const Banner = () => {
                 <div className="inline-block font-bold text-5xl" >
                     Harmoonie #234
                 </div>
-                <div>Owned by <b>@harmoonies</b></div>
+                <div>Owned by <u><b>@harmoonies</b></u></div>
                 <b className="mt-8">Description</b>
                 <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                 <b className="mt-8">Sale Ends on Nov 20th 2021 at 15:31 CET</b>
@@ -54,8 +58,8 @@ const Banner = () => {
                         <div className=" text-sm">Seconds</div>
                     </div>
                 </div>
-                <div className="font-bold mt-8">Current bid</div>
-                <div className="flex items-center "><div className="font-bold text-2xl mb-2 mr-4">8500 ONE</div>
+                <div className="font-bold text-sm mt-8 mb-4">Current bid</div>
+                <div className="flex items-center "><div className="font-bold text-4xl mb-2 mr-4">8500 ONE</div>
                     <div className=" text-sm">$1,446.15</div></div>
                 <div className="flex">
                     <PrimaryButton className="my-4 mr-4"> Buy Now</PrimaryButton>

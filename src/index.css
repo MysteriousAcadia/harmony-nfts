@@ -6,7 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+div {
+  animation-fill-mode: forwards;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -33,6 +35,13 @@ code {
 .glass-2 {
   background: rgba(255, 255, 255, 0.13);
   box-shadow: 0px 4px 25px rgba(35, 35, 35, 0.29);
+  border-radius: 7px;
+}
+.glass-3 {
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow: 0px 0px 23px 22px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(40px);
+
   border-radius: 7px;
 }
 .glass-background {
