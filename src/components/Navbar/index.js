@@ -8,7 +8,7 @@ import ConnectWallet from "components/Modals/ConnectWallet";
 import { useEthers, useEtherBalance } from "@usedapp/core";
 
 const Navbar = () => {
-    const { activateBrowserWallet, account } = useEthers();
+    const { activateBrowserWallet, account, ...pp } = useEthers();
     const etherBalance = useEtherBalance(account);
 
     const [navbar, setNavbar] = useState(false);
@@ -25,6 +25,7 @@ const Navbar = () => {
         window.addEventListener("scroll", changeBackground)
     })
     const ConnectToWalletButton = () => {
+        console.log(pp);
         if (!account) {
             return (<div class="flex text-white">
                 <PrimaryButton

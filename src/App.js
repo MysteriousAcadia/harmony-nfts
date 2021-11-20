@@ -10,13 +10,22 @@ import Navbar from 'components/Navbar/index';
 import Footer from 'components/Footer/index';
 import CollectionView from "pages/CollectionView/index";
 import CollectionDetail from "pages/CollectionDetail/index";
-import { DAppProvider } from "@usedapp/core";
+import { DAppProvider, ChainId } from "@usedapp/core";
 
 
 const config = {
-  readOnlyChainId: 1666700000
+  readOnlyChainId: 1666700000,
+  readOnlyUrls: {
+    [1666700000]: "https://api.s0.b.hmny.io"
+  },
+  supportedChains: [
+    1666700000
+  ],
+  multicallAddresses: {
+    [1666700000]: '0xd078799c53396616844e2fa97f0dd2b4c145a685'
+  }
 }
-
+console.log(ChainId);
 function App() {
   return (<>
     <DAppProvider config={config}>

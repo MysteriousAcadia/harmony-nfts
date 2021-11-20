@@ -7,8 +7,13 @@ import { useEthers, useEtherBalance } from "@usedapp/core";
 
 export default function ConnectWallet({ open = false, setOpen = () => { } }) {
     const { activateBrowserWallet, account } = useEthers();
+    const { ethereum } = window;
     const etherBalance = useEtherBalance(account);
     // const [open, setOpen] = useState(false);
+    const onClickMetamask = async () => {
+        activateBrowserWallet();
+        // await ethereum.request({ method: 'eth_requestAccounts' })
+    }
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -43,7 +48,7 @@ export default function ConnectWallet({ open = false, setOpen = () => { } }) {
                             <div className="text-4xl font-bold mb-8"> Connect your wallet</div>
                             <div className="mb-8">Connect to one of our available wallet providers:</div>
                             <button
-                                onClick={() => activateBrowserWallet()}
+                                onClick={() => onClickMetamask()}
                                 className="wallet-button text-3xl py-4 w-full"> Metamask</button>
 
                         </div>
