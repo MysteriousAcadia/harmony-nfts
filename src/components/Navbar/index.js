@@ -35,7 +35,7 @@ const Navbar = () => {
         }
         else {
             return (<div className="text-white">
-                {etherBalance && JSON.stringify(etherBalance)} ETH
+                {etherBalance && JSON.stringify(etherBalance)} ONE
             </div>)
         }
     }
