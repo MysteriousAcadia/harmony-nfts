@@ -45,9 +45,22 @@ const CollectionView = () => {
   nfts(where:{market:"0x3c8a8a7b7d0fea5078fb37c69e42b85d8fc6a063"}){
   token
     id
-    currentAuction{
+     currentAuction{
       highestBid
       endsAt
+      seller{
+        id
+        address
+      }
+    }
+    currentSellOrder{
+      id
+      seller {
+        id
+        address
+      }
+      price
+
     }
   }
 }
