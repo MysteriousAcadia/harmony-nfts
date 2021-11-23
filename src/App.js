@@ -16,6 +16,7 @@ import {
 import MakeOffer from "components/Modals/MakeOffer/index";
 import LineTab from "components/Tabs/LineTab/index";
 import Profile from "pages/Profile/index";
+import AboutUs from "pages/AboutUs/index";
 
 const config = {
 	readOnlyChainId: 1666700000,
@@ -62,6 +63,7 @@ function App() {
 									element={<CollectionDetail />}
 								/>
 								<Route path="/profile" element={<Profile />} />
+								<Route path="/about" element={<AboutUs />} />
 							</Routes>
 							<Footer />
 						</div>
