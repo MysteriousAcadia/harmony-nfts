@@ -1,13 +1,9 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-import './App.css';
-import Dashboard from 'pages/Dashboard/index';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Dashboard from "pages/Dashboard/index";
 import AllCollections from "pages/AllCollections/index";
-import Navbar from 'components/Navbar/index';
-import Footer from 'components/Footer/index';
+import Navbar from "components/Navbar/index";
+import Footer from "components/Footer/index";
 import CollectionView from "pages/CollectionView/index";
 import CollectionDetail from "pages/CollectionDetail/index";
 import { DAppProvider, ChainId } from "@usedapp/core";
@@ -15,61 +11,79 @@ import {
   ApolloProvider,
   ApolloClient,
   createHttpLink,
-  InMemoryCache
-} from '@apollo/client';
+  InMemoryCache,
+} from "@apollo/client";
+import { Web3ReactProvider } from "@web3-react/core";
 import MakeOffer from "components/Modals/MakeOffer/index";
+import { Web3Provider } from "@ethersproject/providers";
+import { Harmony } from "@harmony-js/core";
 
+function getLibrary(provider) {
+  var library;
+
+  if (provider?.chainType === "hmy") {
+    library = provider.blockchain;
+  } else {
+    library = new Web3Provider(provider);
+    library.pollingInterval = 12000;
+  }
+
+  return library;
+}
 
 const config = {
   readOnlyChainId: 1666700000,
   readOnlyUrls: {
-    [1666700000]: "https://api.s0.b.hmny.io"
+    [1666700000]: "https://api.s0.b.hmny.io",
   },
-  supportedChains: [
-    1666700000
-  ],
+  supportedChains: [1666700000],
   multicallAddresses: {
-    [1666700000]: '0xd078799c53396616844e2fa97f0dd2b4c145a685'
-  }
-}
+    [1666700000]: "0xd078799c53396616844e2fa97f0dd2b4c145a685",
+  },
+};
 // 1
-
 
 // 2
 const httpLink = createHttpLink({
-  uri: 'http://marketplace-api.freyala.com:8080'
+  uri: "http://marketplace-api.freyala.com:8080",
 });
 
 // 3
 const client = new ApolloClient({
   link: httpLink,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 console.log(ChainId);
 function App() {
-  return (<>
-    <ApolloProvider client={client}>
-      <MakeOffer />
+  return (
+    <>
+      <ApolloProvider client={client}>
+        {/* <MakeOffer /> */}
 
-      <DAppProvider config={config}>
-
-        <Router>
-          <div className="base-background">
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/collections" element={<AllCollections />} />
-              <Route path="/collections/harmoonies" element={<CollectionView />} />
-              <Route path="/collections/harmoonies/1" element={<CollectionDetail />} />
-            </Routes>
-            <Footer />
-
-          </div>
-        </Router>
-      </DAppProvider>
-    </ApolloProvider>,
-
-  </>);
+        <Web3ReactProvider getLibrary={getLibrary}>
+          <Router>
+            <div className="base-background">
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/collections" element={<AllCollections />} />
+                <Route
+                  path="/collections/harmoonies"
+                  element={<CollectionView />}
+                />
+                <Route
+                  path="/collections/harmoonies/1"
+                  element={<CollectionDetail />}
+                />
+              </Routes>
+              <Footer />
+            </div>
+          </Router>
+        </Web3ReactProvider>
+      </ApolloProvider>
+      ,
+    </>
+  );
 }
 
 export default App;
