@@ -42,7 +42,7 @@ const Featured = () => {
         <div className="container mx-auto px-12">
             <div className="flex justify-between text-white items-center mb-16">
                 <Heading> Featured Artworks</Heading>
-                <div className="font-normal text-xl">View All ----</div>
+                <div className="font-normal text-xl">View All -></div>
             </div>
             <Slides
             // settings={{ slidesToShow: Math.min(3, nfts?.length) }}

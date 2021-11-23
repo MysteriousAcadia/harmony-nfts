@@ -31,7 +31,7 @@ const FeaturedCollections = () => {
         <div className="container mx-auto px-12">
             <div className="flex justify-between text-white items-center mb-16">
                 <Heading> Featured Collections</Heading>
-                <div className="font-normal text-xl">View All ----</div>
+                <div className="font-normal text-xl">View All -></div>
             </div>
             <Slides settings={{ slidesToShow: 4, }}>
                 <FeaturedCollection />
