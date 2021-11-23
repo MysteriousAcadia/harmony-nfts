@@ -8,7 +8,7 @@ import { daysLeft } from "utils/date";
 
 const AllCard = ({ data = {} }) => {
     const [like, setLike] = useState(false);
-    const { currentAuction = {}, currentSellOrder = {}, image } = data;
+    const { currentAuction = {}, currentSellOrder = {}, image, tokenId, id } = data;
     const { highestBid, endsAt, sellerA } = (currentAuction || {});
     const { seller: sellerS, price } = (currentSellOrder || {})
     return (<>
@@ -20,7 +20,7 @@ const AllCard = ({ data = {} }) => {
                     <img src={like ? HeartFilled : HeartEmpty} />
                 </div>
             </div>
-            <Link to="harmoonies" >
+            <Link to={`${id}`} >
                 <div className=" w-full truncate  mx-4  font-bold"> Harmoonie #234</div>
                 <div className=" truncate  px-4 text-sm mb-4">@{sellerA?.address || sellerS?.address || "Unknown"}</div>
                 {(price && sellerS) &&

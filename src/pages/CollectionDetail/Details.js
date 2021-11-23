@@ -16,7 +16,8 @@ const AttrCard = ({ data = {} }) => {
     </>);
 }
 const Details = ({ nftDetail = {} }) => {
-    const { attributes = [] } = (nftDetail || {});
+    const { attributes = [], tokenId, market = {}, id } = (nftDetail || {});
+    const { id: marketId } = market;
 
     return (<>
         <div className="container px-4 mx-auto">
@@ -34,9 +35,13 @@ const Details = ({ nftDetail = {} }) => {
                                     </Disclosure.Button>
                                 </div>
                                 <Disclosure.Panel as="div" className="mt-2 p-6 border-t border-gray-400 pr-12">
-                                    <p className="inline-block ">
-                                        <b>Token ID: </b> Contract address: 0x495f947276749Ce646f68AC8c24842c..
+                                    <p className="truncate mb-2">
+                                        <b>Token ID: </b> {id} <br />
                                     </p>
+                                    <p className="truncate mb-2">
+                                        <b>Contract Address: </b> {marketId} <br />
+                                    </p>
+
                                 </Disclosure.Panel>
                             </>
                         )}

@@ -27,7 +27,7 @@ const Banner = ({ nftDetail = {} }) => {
         return (<div className=" h-60v w-40v p-2  rounded-lg">
 
             <div className=" p-4 blur-glass h-60v mt-8 w-35v" >
-                <img src={image} className="w-full bg-gray-200 rounded-md h-full" />
+                <img src={image} className="w-full bg-gray-200 rounded-md h-full bg-cover" />
                 <div className="absolute bg-white right-8 top-8 rounded-md">
                     <div className="flex text-main-default p-4"><img src={HeartIcon} className=" h-6 w-6 mr-2" />16</div>
                 </div>

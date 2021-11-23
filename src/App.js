@@ -6,6 +6,8 @@ import Navbar from "components/Navbar/index";
 import Footer from "components/Footer/index";
 import CollectionView from "pages/CollectionView/index";
 import CollectionDetail from "pages/CollectionDetail/index";
+import ReactNotification from 'react-notifications-component'
+
 import { DAppProvider, ChainId } from "@usedapp/core";
 import {
   ApolloProvider,
@@ -57,6 +59,8 @@ const client = new ApolloClient({
 console.log(ChainId);
 function App() {
   return (<>
+    <ReactNotification />
+
     <Web3ReactProvider getLibrary={getLibrary}>
       <ApolloProvider client={client}>
         {/* <MakeOffer /> */}
@@ -72,6 +76,7 @@ function App() {
                 <Route path="/collections" element={<AllCollections />} />
                 <Route path="/collections/:marketId" element={<CollectionView />} />
                 <Route path="/collections/:marketId/:id" element={<CollectionDetail />} />
+                <Route path="/nfts/:id" element={<CollectionDetail />} />
                 <Route path="/profile" element={<Profile />} />
               </Routes>
               <Footer />
