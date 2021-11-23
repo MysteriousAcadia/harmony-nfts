@@ -1,11 +1,18 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import "./style.css"
+import "../style.css"
 import { useEthers, useEtherBalance } from "@usedapp/core";
+import ONEInput from 'components/Inputs/ONEInput/index';
+import IncludedFees from './IncludedFees';
+import OfferExpiration from './OfferExpiration';
+import PrimaryWhite from 'components/Buttons/PrimaryWhite';
+import Checkbox from 'components/Inputs/Checkbox';
+import CheckoutItem from './CheckoutItem';
+import Total from './Total';
 
 
-export default function ConnectWallet({ open = false, setOpen = () => { } }) {
+export default function MakeOffer({ open = true, setOpen = () => { } }) {
     const { activateBrowserWallet, account } = useEthers();
     const { ethereum } = window;
     const etherBalance = useEtherBalance(account);
@@ -44,12 +51,20 @@ export default function ConnectWallet({ open = false, setOpen = () => { } }) {
                         leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                         leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     >
-                        <div className="inline-block align-bottom glass-3  px-16 pt-8 pb-8 text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle max-w-2xl">
-                            <div className="text-4xl font-bold mb-8"> Connect your wallet</div>
-                            <div className="mb-8">Connect to one of our available wallet providers:</div>
-                            <button
-                                onClick={() => onClickMetamask()}
-                                className="wallet-button text-3xl py-4 w-full"> Metamask</button>
+                        <div className="inline-block align-bottom glass-3 mx-8 px-32 pt-16 pb-8 w-80v text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle ">
+                            <div className="text-2xl font-bold mb-8"> Make an Offer</div>
+                            <ONEInput />
+                            <CheckoutItem />
+                            <div className="mt-8 text-lg">Your Balance is: <b>888 ONE</b></div>
+                            <IncludedFees />
+                            <Total />
+
+                            <OfferExpiration />
+                            <div className="flex justify-around w-full">
+                                <Checkbox>            <div>I agree with Armoonia's <u><b>Terms and Conditions</b></u>*</div>
+                                </Checkbox></div>
+
+                            <PrimaryWhite className="mt-16">Make Offer</PrimaryWhite>
 
                         </div>
                     </Transition.Child>

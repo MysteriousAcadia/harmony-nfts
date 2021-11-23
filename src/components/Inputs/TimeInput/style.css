@@ -1,0 +1,13 @@
+.time_ip {
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(41px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 7px;
+}
+.outer {
+  border: 1px solid rgba(17, 92, 112, 0.8);
+  box-sizing: border-box;
+  border-radius: 7px;
+}

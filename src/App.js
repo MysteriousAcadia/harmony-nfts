@@ -11,6 +11,13 @@ import Footer from 'components/Footer/index';
 import CollectionView from "pages/CollectionView/index";
 import CollectionDetail from "pages/CollectionDetail/index";
 import { DAppProvider, ChainId } from "@usedapp/core";
+import {
+  ApolloProvider,
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache
+} from '@apollo/client';
+import MakeOffer from "components/Modals/MakeOffer/index";
 
 
 const config = {
@@ -25,25 +32,43 @@ const config = {
     [1666700000]: '0xd078799c53396616844e2fa97f0dd2b4c145a685'
   }
 }
+// 1
+
+
+// 2
+const httpLink = createHttpLink({
+  uri: 'http://marketplace-api.freyala.com:8080'
+});
+
+// 3
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache()
+});
 console.log(ChainId);
 function App() {
   return (<>
-    <DAppProvider config={config}>
+    <ApolloProvider client={client}>
+      <MakeOffer />
 
-      <Router>
-        <div className="base-background">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/collections" element={<AllCollections />} />
-            <Route path="/collections/harmoonies" element={<CollectionView />} />
-            <Route path="/collections/harmoonies/1" element={<CollectionDetail />} />
-          </Routes>
-          <Footer />
+      <DAppProvider config={config}>
 
-        </div>
-      </Router>
-    </DAppProvider>
+        <Router>
+          <div className="base-background">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/collections" element={<AllCollections />} />
+              <Route path="/collections/harmoonies" element={<CollectionView />} />
+              <Route path="/collections/harmoonies/1" element={<CollectionDetail />} />
+            </Routes>
+            <Footer />
+
+          </div>
+        </Router>
+      </DAppProvider>
+    </ApolloProvider>,
+
   </>);
 }
 
