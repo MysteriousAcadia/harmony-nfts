@@ -5,16 +5,18 @@ import WebIcon from "assets/web_icon.svg"
 import StatsIcon from "assets/stats_icon.svg"
 import TwitterIcon from "assets/twitter_icon.svg"
 
-const AttrCard = () => {
+const AttrCard = ({ data = {} }) => {
+    const { key, value } = data;
     return (<>
         <div className="glass-2 p-4 text-center">
-            <div className="text-sm uppercase font-bold mb-2">Background</div>
-            <div className=" font-extrabold mb-2">Cornflowerblue</div>
+            <div className="text-sm uppercase font-bold mb-2">{key}</div>
+            <div className=" font-extrabold mb-2">{value}</div>
             <div className=" font-normal mb-2">12% have this trait</div>
         </div>
     </>);
 }
-const Details = ({ }) => {
+const Details = ({ nftDetail = {} }) => {
+    const { attributes = [] } = nftDetail;
 
     return (<>
         <div className="container px-4 mx-auto">
@@ -79,15 +81,14 @@ const Details = ({ }) => {
                                 </div>
                                 <Disclosure.Panel as="div" className="mt-2 p-6 border-t border-gray-400 ">
                                     <div className="grid grid-cols-3 gap-4">
-                                        <AttrCard />
-                                        <AttrCard />
-                                        <AttrCard />
-                                        <AttrCard />
-                                        <AttrCard />
-                                        <AttrCard />
-                                        <AttrCard />
-                                        <AttrCard />
-                                        <AttrCard />
+                                        {attributes.map((e) => {
+                                            console.log(e);
+                                            return (
+                                                <AttrCard
+                                                    data={e} />
+                                            );
+                                        })}
+
 
                                     </div>
                                 </Disclosure.Panel>

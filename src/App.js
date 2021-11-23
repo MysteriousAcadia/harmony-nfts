@@ -62,8 +62,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/collections" element={<AllCollections />} />
-              <Route path="/collections/harmoonies" element={<CollectionView />} />
-              <Route path="/collections/harmoonies/1" element={<CollectionDetail />} />
+              <Route path="/collections/:marketId" element={<CollectionView />} />
+              <Route path="/collections/:marketId/:id" element={<CollectionDetail />} />
               <Route path="/profile" element={<Profile />} />
             </Routes>
             <Footer />

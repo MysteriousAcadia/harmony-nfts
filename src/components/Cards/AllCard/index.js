@@ -4,6 +4,7 @@ import HeartFilled from "assets/heart_filled.svg"
 import "./style.css"
 import { useState } from "react";
 
+
 const AllCard = ({ }) => {
     const [like, setLike] = useState(false);
     return (<>
