@@ -19,20 +19,22 @@ const Stats = () => {
         </div>
     </>);
 }
-const MainCard = () => {
-    return (<div className=" h-60v w-40v p-2  rounded-lg">
 
-        <div className=" p-4 blur-glass h-60v mt-8 w-35v" >
-            <img className="w-full bg-gray-200 rounded-md h-full" />
-            <div className="absolute bg-white right-8 top-8 rounded-md">
-                <div className="flex text-main-default p-4"><img src={HeartIcon} className=" h-6 w-6 mr-2" />16</div>
+
+const Banner = ({ nftDetail = {} }) => {
+    const { image } = nftDetail;
+    const MainCard = () => {
+        return (<div className=" h-60v w-40v p-2  rounded-lg">
+
+            <div className=" p-4 blur-glass h-60v mt-8 w-35v" >
+                <img src={image} className="w-full bg-gray-200 rounded-md h-full" />
+                <div className="absolute bg-white right-8 top-8 rounded-md">
+                    <div className="flex text-main-default p-4"><img src={HeartIcon} className=" h-6 w-6 mr-2" />16</div>
+                </div>
             </div>
-        </div>
 
-    </div>)
-}
-
-const Banner = () => {
+        </div>)
+    }
     return (<>
         <div className="flex container px-4 mx-auto text-white items-start justify-between pt-8 pb-16">
             <MainCard />

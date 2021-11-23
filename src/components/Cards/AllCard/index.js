@@ -8,12 +8,12 @@ import { daysLeft } from "utils/date";
 
 const AllCard = ({ data = {} }) => {
     const [like, setLike] = useState(false);
-    const { currentAuction = {}, currentSellOrder = {} } = data;
+    const { currentAuction = {}, currentSellOrder = {}, image } = data;
     const { highestBid, endsAt, sellerA } = (currentAuction || {});
     const { seller: sellerS, price } = (currentSellOrder || {})
     return (<>
         <div className="glass-2 text-white">
-            <div className="relative h-64 m-4 rounded-md bg-gray-400">
+            <div className="relative h-64 m-4 rounded-md bg-gray-400" style={{ backgroundImage: `url("${image}")`, backgroundSize: "cover" }}>
                 <div
                     onClick={() => setLike(!like)}
                     className=" cursor-pointer absolute top-4 right-4 rounded-md h-14 w-14 heart-bg mx-auto flex justify-around items-center">
