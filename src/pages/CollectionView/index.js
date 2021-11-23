@@ -11,6 +11,7 @@ const CollectionView = () => {
     const { marketId } = useParams();
     const [collectionDetail, setCollectionDetail] = useState();
     const [nfts, setNfts] = useState();
+    const [filters, setFilters] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,6 +28,11 @@ const CollectionView = () => {
     totalSellOrders
     totalSales
     totalNfts
+    currencyStats{
+      floor
+      volume
+      fees
+    }
     attributes{
       key
       values

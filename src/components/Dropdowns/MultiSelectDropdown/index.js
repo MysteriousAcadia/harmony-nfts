@@ -8,7 +8,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function LightDropdown({ options, onChange = (newOption) => { }, initialValue }) {
+export default function MultiSelectDropdown({ options = [], title, onChange = (newOption) => { }, initialValue }) {
     const [currOptions, setCurrOptions] = useState(["Select..."]);
     const [selectedOption, setSelectedOption] = useState(options[0]);
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function LightDropdown({ options, onChange = (newOption) => { }, 
         <Menu as="div" className="relative inline-block text-left">
             <div>
                 <Menu.Button className="inline-flex justify-between items-center w-full  px-4 py-2 text-white  text-sm  main-option ">
-                    <div className="mr-2">{selectedOption}</div>
+                    <div className="mr-2">{title}({options.length})</div>
                     <img src={DownIcon} />
                 </Menu.Button>
             </div>
@@ -43,7 +43,7 @@ export default function LightDropdown({ options, onChange = (newOption) => { }, 
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-                <Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white menu-background">
+                <Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white menu-background">
                     <div className="py-1">
                         {options.map((option => {
                             return (
