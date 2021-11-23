@@ -9,6 +9,8 @@ import graphQlInstance from "config/axios";
 const CollectionDetail = ({}) => {
 	const { id } = useParams();
 	const [nftDetail, setNftDetail] = useState({});
+	const [bids, setBids] = useState([]);
+	const [orderHistory, setOrderHistory] = useState([]);
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await graphQlInstance.post("/graphql", {
@@ -17,6 +19,9 @@ const CollectionDetail = ({}) => {
     id
     token
     image
+    market{
+      id
+    }
     currencyStats {
       id
       nft {
@@ -41,6 +46,43 @@ const CollectionDetail = ({}) => {
 			console.log(result.data);
 			setNftDetail(result.data?.data?.nft);
 		};
+		fetchData();
+
+		const fetchOrderHistory = async () => {
+			const result = await graphQlInstance.post("/graphql", {
+				query: `{
+  nft(id:"${id}") {
+    id
+    token
+    image
+    market{
+      id
+    }
+    currencyStats {
+      id
+      nft {
+        id
+      }
+      currency {
+        id
+      }
+      volume
+      fees
+      reflectionFees
+    }
+    attributes {
+      key
+      value
+    }
+  }
+}
+
+`,
+			});
+			console.log(result.data);
+			setNftDetail(result.data?.data?.nft);
+		};
+		fetchOrderHistory();
 		fetchData();
 	}, [id]);
 	return (

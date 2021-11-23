@@ -4,7 +4,11 @@ import { Menu, Transition } from '@headlessui/react'
 import DownIcon from "assets/down_icon.svg";
 import ProfileIcon from "assets/profile_icon.svg";
 import "./style.css"
+import { useEthers, useEtherBalance } from "@usedapp/core";
 import { useWeb3React } from "@web3-react/core";
+import { toBech32 } from "@harmony-js/crypto";
+import { formatEther } from "@ethersproject/units";
+import { useNavigate } from "react-router-dom";
 
 
 function classNames(...classes) {
@@ -19,7 +23,8 @@ const options = [
 ]
 export default function ProfileDropdown() {
     const { account, library, chainId } = useWeb3React();
-
+    const [balance, setBalance] = useState("0")
+    const isHmyLibrary = library?.messenger?.chainType === "hmy";
     const [currOptions, setCurrOptions] = useState(["Select..."]);
     const [selectedOption, setSelectedOption] = useState(options[0]);
     useEffect(() => {
@@ -54,16 +59,16 @@ export default function ProfileDropdown() {
 
     const changeOption = (newOption) => {
         setSelectedOption(newOption);
-        onChange(newOption);
     }
 
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <Menu.Button className="inline-flexP justify-between items-center w-full  px-4 py-2 text-white  text-sm  main-option ">
+                <Menu.Button className="inline-flex justify-between items-center w-full  px-6 py-4 text-white  text-sm  glass-2 ">
                     <img src={ProfileIcon} />
 
-                    <div className="mr-2">{selectedOption}</div>
+                    <div className="mx-2 w-24 truncate">{account}</div>
+                    <div className="mr-2 font-bold">{formatEther(balance)} ONE</div>
                     <img src={DownIcon} />
                 </Menu.Button>
             </div>
@@ -90,7 +95,7 @@ export default function ProfileDropdown() {
                                             )}
                                             onClick={() => changeOption(option)}
                                         >
-                                            {option}
+                                            {option.title}
                                         </div>
                                     )}
                                 </Menu.Item>
