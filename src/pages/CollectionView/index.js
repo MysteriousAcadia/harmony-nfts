@@ -5,18 +5,18 @@ import { useParams } from "react-router";
 import Cards from "./Cards";
 import Cover from "./Cover";
 import Filters from "./Filters";
-
+import SaleHistory from "./SaleHistory";
 
 const CollectionView = () => {
-  const { marketId } = useParams();
-  const [collectionDetail, setCollectionDetail] = useState();
-  const [nfts, setNfts] = useState();
-  const [filters, setFilters] = useState([]);
+	const { marketId } = useParams();
+	const [collectionDetail, setCollectionDetail] = useState();
+	const [nfts, setNfts] = useState();
+	const [filters, setFilters] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await graphQlInstance.post("/graphql", {
-        query: `{
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await graphQlInstance.post("/graphql", {
+				query: `{
   market(id:"${marketId}"){
     active
     name
@@ -40,14 +40,15 @@ const CollectionView = () => {
   }
 }
 
-`});
-      console.log(result.data);
-      setCollectionDetail(result.data?.data?.market);
-    }
+`,
+			});
+			console.log(result.data);
+			setCollectionDetail(result.data?.data?.market);
+		};
 
-    const fetchNFTs = async () => {
-      const result = await graphQlInstance.post("/graphql", {
-        query: `{
+		const fetchNFTs = async () => {
+			const result = await graphQlInstance.post("/graphql", {
+				query: `{
   nfts(where:{market:"0x3c8a8a7b7d0fea5078fb37c69e42b85d8fc6a063"}){
   token
     id
@@ -73,19 +74,23 @@ const CollectionView = () => {
   }
 }
 
-`});
-      console.log(result.data);
-      setNfts(result.data?.data?.nfts);
-    }
-    fetchNFTs();
-    fetchData();
-  }, [marketId])
-  return (<>
-    <div className="container px-4 mx-auto">
-      <Cover collectionDetail={collectionDetail} />
-      <Filters collectionDetail={collectionDetail} />
-      <Cards nfts={nfts} />
-    </div>
-  </>);
-}
+`,
+			});
+			console.log(result.data);
+			setNfts(result.data?.data?.nfts);
+		};
+		fetchNFTs();
+		fetchData();
+	}, [marketId]);
+	return (
+		<>
+			<div className="container px-4 mx-auto">
+				<SaleHistory />
+				<Cover collectionDetail={collectionDetail} />
+				<Filters collectionDetail={collectionDetail} />
+				<Cards nfts={nfts} />
+			</div>
+		</>
+	);
+};
 export default CollectionView;

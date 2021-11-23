@@ -6,15 +6,15 @@ import ExploreMore from "./ExploreMore";
 import Offers from "./Offers";
 import graphQlInstance from "config/axios";
 
-const CollectionDetail = ({ }) => {
-  const { id } = useParams();
-  const [nftDetail, setNftDetail] = useState({});
-  const [bids, setBids] = useState([]);
-  const [orderHistory, setOrderHistory] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await graphQlInstance.post("/graphql", {
-        query: `{
+const CollectionDetail = ({}) => {
+	const { id } = useParams();
+	const [nftDetail, setNftDetail] = useState({});
+	const [bids, setBids] = useState([]);
+	const [orderHistory, setOrderHistory] = useState([]);
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await graphQlInstance.post("/graphql", {
+				query: `{
   nft(id:"${id}") {
     id
     token
@@ -41,15 +41,16 @@ const CollectionDetail = ({ }) => {
   }
 }
 
-`});
-      console.log(result.data);
-      setNftDetail(result.data?.data?.nft);
-    }
-    fetchData();
+`,
+			});
+			console.log(result.data);
+			setNftDetail(result.data?.data?.nft);
+		};
+		fetchData();
 
-    const fetchOrderHistory = async () => {
-      const result = await graphQlInstance.post("/graphql", {
-        query: `{
+		const fetchOrderHistory = async () => {
+			const result = await graphQlInstance.post("/graphql", {
+				query: `{
   nft(id:"${id}") {
     id
     token
@@ -76,18 +77,21 @@ const CollectionDetail = ({ }) => {
   }
 }
 
-`});
-      console.log(result.data);
-      setNftDetail(result.data?.data?.nft);
-    }
-    fetchOrderHistory();
-    fetchData();
-  }, [id])
-  return (<>
-    <Banner nftDetail={nftDetail} />
-    <Details nftDetail={nftDetail} />
-    <Offers />
-    <ExploreMore />
-  </>);
-}
-export default CollectionDetail
+`,
+			});
+			console.log(result.data);
+			setNftDetail(result.data?.data?.nft);
+		};
+		fetchOrderHistory();
+		fetchData();
+	}, [id]);
+	return (
+		<>
+			<Banner nftDetail={nftDetail} />
+			<Details nftDetail={nftDetail} />
+			<Offers />
+			<ExploreMore />
+		</>
+	);
+};
+export default CollectionDetail;
