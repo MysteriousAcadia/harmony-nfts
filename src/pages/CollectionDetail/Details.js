@@ -16,7 +16,7 @@ const AttrCard = ({ data = {} }) => {
     </>);
 }
 const Details = ({ nftDetail = {} }) => {
-    const { attributes = [] } = nftDetail;
+    const { attributes = [] } = (nftDetail || {});
 
     return (<>
         <div className="container px-4 mx-auto">

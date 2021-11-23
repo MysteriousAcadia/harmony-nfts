@@ -22,7 +22,7 @@ const Stats = () => {
 
 
 const Banner = ({ nftDetail = {} }) => {
-    const { image } = nftDetail;
+    const { image } = (nftDetail || {});
     const MainCard = () => {
         return (<div className=" h-60v w-40v p-2  rounded-lg">
 
