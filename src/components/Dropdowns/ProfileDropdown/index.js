@@ -22,6 +22,7 @@ const options = [
     { title: "Harmoonie Rewards", link: "/profile/4" },
 ]
 export default function ProfileDropdown() {
+    const navigate = useNavigate();
     const { account, library, chainId } = useWeb3React();
     const [balance, setBalance] = useState("0")
     const isHmyLibrary = library?.messenger?.chainType === "hmy";
@@ -44,13 +45,13 @@ export default function ProfileDropdown() {
                 })
                 .catch(() => {
                     if (!stale) {
-                        setBalance(null);
+                        // setBalance(null);
                     }
                 });
 
             return () => {
                 stale = true;
-                setBalance(undefined);
+                // setBalance(undefined);
             };
         }
     }, [account, library, chainId]);
@@ -68,8 +69,8 @@ export default function ProfileDropdown() {
                     <img src={ProfileIcon} />
 
                     <div className="mx-2 w-24 truncate">{account}</div>
-                    <div className="mr-2 font-bold">{formatEther(balance)} ONE</div>
-                    <img src={DownIcon} />
+                    <div className=" font-bold w-24 truncate">{formatEther(balance)} </div><b>ONE</b>
+                    <img className="ml-2" src={DownIcon} />
                 </Menu.Button>
             </div>
 
@@ -93,7 +94,7 @@ export default function ProfileDropdown() {
                                                 active ? 'selected-option ' : 'bg-transparent hover:selected-option',
                                                 'block px-4 py-2 text-sm text-white font-bold cursor-pointer'
                                             )}
-                                            onClick={() => changeOption(option)}
+                                            onClick={() => navigate(option.link)}
                                         >
                                             {option.title}
                                         </div>

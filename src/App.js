@@ -79,6 +79,7 @@ function App() {
                 <Route path="/collections/:marketId/:id" element={<CollectionDetail />} />
                 <Route path="/nfts/:id" element={<CollectionDetail />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/:tab" element={<Profile />} />
                 <Route path="/about" element={<AboutUs />} />
 
               </Routes>

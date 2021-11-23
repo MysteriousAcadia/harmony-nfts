@@ -3,7 +3,7 @@ import PrimaryBlue from "components/Buttons/PrimaryBlue";
 import SecondaryButton from "components/Buttons/Secondary";
 import { useNavigate } from "react-router-dom";
 
-const AllCollection = ({ data }) => {
+const AllCollection = ({ data = {} }) => {
     const navigate = useNavigate();
     const { name = "", id } = data
     return (<div className="relative blur-glass overflow-visible my-8 h-96 mx-8 p-2">
