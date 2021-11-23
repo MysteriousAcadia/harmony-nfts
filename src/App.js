@@ -20,6 +20,7 @@ import MakeOffer from "components/Modals/MakeOffer/index";
 import { Web3Provider } from "@ethersproject/providers";
 import { Harmony } from "@harmony-js/core";
 import Profile from "pages/Profile/index";
+import AboutUs from "./pages/AboutUs/index";
 
 function getLibrary(provider) {
   var library;
@@ -78,6 +79,8 @@ function App() {
                 <Route path="/collections/:marketId/:id" element={<CollectionDetail />} />
                 <Route path="/nfts/:id" element={<CollectionDetail />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/about" element={<AboutUs />} />
+
               </Routes>
               <Footer />
 
