@@ -1,0 +1,17 @@
+
+.box-tab-head{
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.41);
+
+}
+.box-nav-item{
+    padding: 16px;
+    
+}
+.box-nav-selected{
+    padding: 16px;
+border: 1px solid rgba(255, 255, 255, 0.41);
+border-bottom: 0px;
+border-top-left-radius: 7px;
+border-top-right-radius: 7px;
+}

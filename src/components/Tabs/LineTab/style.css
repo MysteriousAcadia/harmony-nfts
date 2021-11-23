@@ -1,6 +1,6 @@
 .nav-item{
     padding: 16px;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.41);
 }
 .nav-selected{
     padding: 16px;
