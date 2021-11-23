@@ -18,6 +18,8 @@ import {
   InMemoryCache
 } from '@apollo/client';
 import MakeOffer from "components/Modals/MakeOffer/index";
+import LineTab from "components/Tabs/LineTab/index";
+import Profile from "pages/Profile/index";
 
 
 const config = {
@@ -49,18 +51,20 @@ console.log(ChainId);
 function App() {
   return (<>
     <ApolloProvider client={client}>
-      <MakeOffer />
+      {/* <MakeOffer /> */}
 
       <DAppProvider config={config}>
 
         <Router>
           <div className="base-background">
+
             <Navbar />
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/collections" element={<AllCollections />} />
               <Route path="/collections/harmoonies" element={<CollectionView />} />
               <Route path="/collections/harmoonies/1" element={<CollectionDetail />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
             <Footer />
 

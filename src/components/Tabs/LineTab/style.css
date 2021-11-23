@@ -1,0 +1,8 @@
+.nav-item{
+    padding: 16px;
+    border-bottom: 1px solid #fff;
+}
+.nav-selected{
+    padding: 16px;
+    border-bottom: 4px solid #fff;
+}
