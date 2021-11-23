@@ -16,7 +16,7 @@ const TableRow = () => {
 				</div>
 			</td>
 			<td className="items-center truncate">
-				<div className="flex m-4 justify-around  items-center">
+				<div className="flex m-4 justify-around items-center">
 					<div className="w-32 truncate underline font-semibold text-lg">
 						Arielle563
 					</div>
@@ -35,7 +35,7 @@ const TableRow = () => {
 					<div className="font-medium">$30.33</div>
 				</div>
 			</td>
-			<td className="items-center  truncate">
+			<td className="items-center truncate">
 				<div className="m-4 flex flex-col">
 					<div className="font-normal">11/7/2021</div>
 					<div className="font-normal">10:06am</div>
@@ -99,19 +99,19 @@ const SaleHistory = () => {
 						leaveFrom="opacity-100 translate-y-0 sm:scale-100"
 						leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
 						<div className="inline-block align-bottom glass-3 mx-8 px-32 pt-16 pb-8 w-80v text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle ">
-							<div className="text-2xl font-bold mb-">
+							<div className="text-2xl font-bold mb-16">
 								Harmoonies Sale History
 							</div>
 
-							<div className="flex flex-row space-x-4">
+							<div className="flex flex-row space-x-8 text-lg">
 								<DarkDropdown options={historyOptions} className="w-32" />
 
-								<div className="flex flex-col justify-start">
+								<div className="flex flex-col text-left">
 									<div>14 Day Average Price</div>
 									<div className="font-semibold">800 ONE</div>
 								</div>
 
-								<div className="flex flex-col justify-start">
+								<div className="flex flex-col text-left">
 									<div>14 Day Volume</div>
 									<div className="font-semibold">47382 ONE</div>
 								</div>
@@ -119,7 +119,7 @@ const SaleHistory = () => {
 
 							<div className="my-8 rounded-md border-2 border-gray-300 py-4">
 								<table className="table-auto w-full">
-									<thead className="font-bold text-center">
+									<thead className="font-bold text-center border-b-2 border-gray-300">
 										<tr>
 											<th>Item</th>
 											<th>From</th>
