@@ -5,11 +5,13 @@ import "./style.css";
 import { injected, onewallet } from "./connectors";
 import { useWeb3React } from "@web3-react/core";
 import { connectContracts } from "web3Integration";
+import { store } from "react-notifications-component";
+import Metamask from "assets/metamask_icon.svg";
+import Harmony from "assets/harmony_icon.svg";
 
 export default function ConnectWallet({ open = false, setOpen = () => {} }) {
   const { activate, account, library } = useWeb3React();
   const { ethereum } = window;
-  // const [open, setOpen] = useState(false);
   const onClickMetamask = async (connector) => {
     activate(connector, async (err) => {
       console.log(err);
@@ -64,6 +66,23 @@ export default function ConnectWallet({ open = false, setOpen = () => {} }) {
     }
   };
 
+  const walletConnectNotification = (error) => {
+    store.addNotification({
+      title: "Error",
+      message: error,
+      type: "success",
+      insert: "top",
+      width: 1024,
+      container: "top-center",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 600,
+        showIcon: true,
+      },
+    });
+  };
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -103,7 +122,7 @@ export default function ConnectWallet({ open = false, setOpen = () => {} }) {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom glass-3  px-16 pt-8 pb-8 text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle max-w-2xl">
+            <div className="inline-block align-bottom glass-3  px-36  pt-16 pb-16 text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle max-w-4xl">
               <div className="text-4xl font-bold mb-8">
                 {" "}
                 Connect your wallet
@@ -113,15 +132,18 @@ export default function ConnectWallet({ open = false, setOpen = () => {} }) {
               </div>
               <button
                 onClick={() => onClickMetamask(injected)}
-                className="wallet-button text-3xl py-4 w-full mb-4"
+                className="wallet-button text-3xl py-4 pl-4 w-full mb-4 flex"
               >
-                Metamask
+                <img className="w-8 mr-2" src={Metamask} />
+                <div>Metamask</div>
               </button>
               <button
                 onClick={() => onClickMetamask(onewallet)}
-                className="wallet-button text-3xl py-4 w-full"
+                className="wallet-button text-3xl py-4 items-center pl-4 w-full flex items-center"
               >
-                Harmony wallet
+                <img className="w-8 mr-2" src={Harmony} />
+
+                <div>Harmony wallet</div>
               </button>
             </div>
           </Transition.Child>

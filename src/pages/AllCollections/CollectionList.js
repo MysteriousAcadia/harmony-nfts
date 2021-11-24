@@ -12,7 +12,7 @@ const filterOptions = [
     "Total Volume (High to Low)",
 ]
 
-const CollectionList = () => {
+const CollectionList = ({ collections }) => {
     return (<>
         <div className="container md:px-4 mx-auto">
             <div className="flex justify-end pr-2 mr-8 mb-8">
@@ -21,13 +21,8 @@ const CollectionList = () => {
                 />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                <AllCollection />
-                <AllCollection />
-                <AllCollection />
-                <AllCollection />
-                <AllCollection />
-                <AllCollection />
-                <AllCollection />
+                {collections.map(e => <AllCollection data={e} />)}
+
             </div>
         </div>
     </>);

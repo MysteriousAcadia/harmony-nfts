@@ -8,6 +8,9 @@ import ConnectWallet from "components/Modals/ConnectWallet";
 import { useWeb3React } from "@web3-react/core";
 import { toBech32 } from "@harmony-js/crypto";
 import { formatEther } from "@ethersproject/units";
+import ProfileDropdown from "components/Dropdowns/ProfileDropdown/index";
+import { store } from 'react-notifications-component';
+
 
 const Navbar = () => {
   const { account, library, chainId } = useWeb3React();
@@ -17,7 +20,6 @@ const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const [open, setOpen] = useState(false);
   const changeBackground = () => {
-    console.log(window.scrollY);
     if (window.scrollY >= 4) {
       setNavbar(true);
     } else {
@@ -42,13 +44,13 @@ const Navbar = () => {
         })
         .catch(() => {
           if (!stale) {
-            setBalance(null);
+            // setBalance(null);
           }
         });
 
       return () => {
         stale = true;
-        setBalance(undefined);
+        // setBalance(undefined);
       };
     }
   }, [account, library, chainId]);
@@ -56,6 +58,28 @@ const Navbar = () => {
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
   }, []);
+  useEffect(() => {
+    if (account) {
+      walletConnectNotification();
+      setOpen(false);
+    }
+  }, [account, library, chainId]);
+  const walletConnectNotification = () => {
+    store.addNotification({
+      title: "Success",
+      message: "Wallet Connected Successfully@",
+      type: "success",
+      insert: "top",
+      width: 1024,
+      container: "top-center",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 600,
+        showIcon: true
+      }
+    });
+  }
 
   const ConnectToWalletButton = () => {
     if (!account) {
@@ -70,26 +94,15 @@ const Navbar = () => {
       );
     } else {
       return (
-        <div className="text-white">
-          {balance === null
-            ? "Error"
-            : balance
-            ? isHmyLibrary
-              ? formatEther(balance)
-              : `Ξ${formatEther(balance)}`
-            : ""}{" "}
-          ONE
-        </div>
-      );
+        <ProfileDropdown />)
     }
   };
   return (
     <>
       <ConnectWallet open={open} setOpen={setOpen} />
       <div
-        className={`sticky top-0 z-50 ${
-          navbar ? "navbar-background" : "bg-transparent"
-        }`}
+        className={`sticky top-0 z-50 ${navbar ? "navbar-background" : "bg-transparent"
+          }`}
       >
         <nav
           className={`flex items-center justify-between py-8 flex-wrap   container px-4 mx-auto`}

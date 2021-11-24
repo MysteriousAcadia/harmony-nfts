@@ -10,7 +10,7 @@ const OfferExpiration = ({ }) => {
                 <DarkDropdown options={["3 days", "7 days", "1 Month", "Custom"]} />
                 <TimeInput />
             </div>
-            <div className="text-lg text-center py-6 text-left pt-6 font-bold w-full">Once an offer is placed, it cannot be withdrawn</div>
+            <div className="text-lg text-center py-6 pt-6 font-bold w-full">Once an offer is placed, it cannot be withdrawn</div>
 
 
         </div>

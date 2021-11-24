@@ -5,14 +5,15 @@ import graphQlInstance from "config/axios";
 import { useState } from "react";
 import { useEffect } from "react";
 const Featured = () => {
-    const [nfts, setNfts] = useState();
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await graphQlInstance.post("/graphql", {
-                query: `{
+  const [nfts, setNfts] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await graphQlInstance.post("/graphql", {
+        query: `{
   nfts(first:5) {
     id
     token
+    image
     currencyStats {
       id
       nft {
@@ -32,24 +33,24 @@ const Featured = () => {
   }
 }
 `});
-            console.log(result.data);
-            setNfts(result.data?.data?.nfts);
-        }
-        fetchData();
-    }, [])
+      console.log(result.data);
+      setNfts(result.data?.data?.nfts);
+    }
+    fetchData();
+  }, [])
 
-    return (<div className="w-full my-16 py-16 glass-background">
-        <div className="container mx-auto px-12">
-            <div className="flex justify-between text-white items-center mb-16">
-                <Heading> Featured Artworks</Heading>
-                <div className="font-normal text-xl">View All ----</div>
-            </div>
-            <Slides
-            // settings={{ slidesToShow: Math.min(3, nfts?.length) }}
-            >
-                {nfts?.map(e => <FeatureCard {...e} />)}
-            </Slides>
-        </div>
-    </div >)
+  return (<div className="w-full my-16 py-16 glass-background">
+    <div className="container mx-auto px-12">
+      <div className="flex justify-between text-white items-center mb-16">
+        <Heading> Featured Artworks</Heading>
+        <div className="font-normal text-xl">View All -></div>
+      </div>
+      <Slides
+      // settings={{ slidesToShow: Math.min(3, nfts?.length) }}
+      >
+        {nfts?.map(e => <FeatureCard {...e} />)}
+      </Slides>
+    </div>
+  </div >)
 }
 export default Featured;

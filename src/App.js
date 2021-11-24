@@ -6,6 +6,9 @@ import Navbar from "components/Navbar/index";
 import Footer from "components/Footer/index";
 import CollectionView from "pages/CollectionView/index";
 import CollectionDetail from "pages/CollectionDetail/index";
+import ReactNotification from "react-notifications-component";
+
+import { DAppProvider, ChainId } from "@usedapp/core";
 import {
   ApolloProvider,
   ApolloClient,
@@ -16,6 +19,9 @@ import { Web3ReactProvider } from "@web3-react/core";
 import MakeOffer from "components/Modals/MakeOffer/index";
 import { Web3Provider } from "@ethersproject/providers";
 import { Harmony } from "@harmony-js/core";
+import Profile from "pages/Profile/index";
+import AboutUs from "pages/AboutUs/index";
+import ListForSale from "pages/ListForSale/index";
 
 function getLibrary(provider) {
   var library;
@@ -55,31 +61,39 @@ const client = new ApolloClient({
 function App() {
   return (
     <>
-      <ApolloProvider client={client}>
-        {/* <MakeOffer /> */}
+      <ReactNotification />
 
-        <Web3ReactProvider getLibrary={getLibrary}>
-          <Router>
-            <div className="base-background">
-              <Navbar />
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/collections" element={<AllCollections />} />
-                <Route
-                  path="/collections/harmoonies"
-                  element={<CollectionView />}
-                />
-                <Route
-                  path="/collections/harmoonies/1"
-                  element={<CollectionDetail />}
-                />
-              </Routes>
-              <Footer />
-            </div>
-          </Router>
-        </Web3ReactProvider>
-      </ApolloProvider>
-      ,
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <ApolloProvider client={client}>
+          {/* <MakeOffer /> */}
+
+          <Web3ReactProvider getLibrary={getLibrary}>
+            <Router>
+              <div className="base-background">
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/collections" element={<AllCollections />} />
+                  <Route
+                    path="/collections/:marketId"
+                    element={<CollectionView />}
+                  />
+                  <Route
+                    path="/collections/:marketId/:id"
+                    element={<CollectionDetail />}
+                  />
+                  <Route path="/nfts/:id" element={<CollectionDetail />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/about" element={<AboutUs />} />
+
+                  <Route path="/test" element={<ListForSale />} />
+                </Routes>
+                <Footer />
+              </div>
+            </Router>
+          </Web3ReactProvider>
+        </ApolloProvider>
+      </Web3ReactProvider>
     </>
   );
 }
