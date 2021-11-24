@@ -123,8 +123,7 @@ const data = [
 	},
 ];
 
-const SaleHistory = () => {
-	const [open, setOpen] = useState(true);
+const SaleHistory = ({ historyOpen, setHistoryOpen }) => {
 	const [saleData, setSaleData] = useState();
 	const [selectedTime, setSelectedTime] = useState(0);
 	useEffect(() => {
@@ -168,11 +167,11 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 	];
 
 	return (
-		<Transition.Root show={open} as={Fragment}>
+		<Transition.Root show={historyOpen} as={Fragment}>
 			<Dialog
 				as="div"
 				className="text-main-default fixed z-10 inset-0 overflow-y-auto"
-				onClose={setOpen}>
+				onClose={() => setHistoryOpen(false)}>
 				<div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 					<Transition.Child
 						as={Fragment}
@@ -209,7 +208,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 									Harmoonies Sale History
 								</div>
 								<div>
-									<button onClick={() => setOpen(!open)}>
+									<button onClick={() => setHistoryOpen(false)}>
 										<img src={CloseIcon} />
 									</button>
 								</div>

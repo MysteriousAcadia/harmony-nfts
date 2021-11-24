@@ -90,7 +90,12 @@ const CollectionView = () => {
 	return (
 		<>
 			<div className="container px-4 mx-auto">
-				{historyOpen && <SaleHistory />}
+				{historyOpen && (
+					<SaleHistory
+						historyOpen={historyOpen}
+						setHistoryOpen={setHistoryOpen}
+					/>
+				)}
 				<Cover collectionDetail={collectionDetail} openHistory={openHistory} />
 				<Filters collectionDetail={collectionDetail} />
 				<Cards nfts={nfts} />
