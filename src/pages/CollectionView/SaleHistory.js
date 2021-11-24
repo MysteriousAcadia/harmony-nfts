@@ -4,6 +4,7 @@ import DarkDropdownWithIcon from "components/Dropdowns/DarkDropdown/icon";
 import SaleIcon from "assets/sale_icon.svg";
 import LinkIconDark from "assets/copy_link_icon.svg";
 import SalePic from "assets/sale_pic.svg";
+import CloseIcon from "assets/close_icon.svg";
 
 const TableRow = () => {
 	return (
@@ -98,9 +99,17 @@ const SaleHistory = () => {
 						leave="ease-in duration-200"
 						leaveFrom="opacity-100 translate-y-0 sm:scale-100"
 						leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-						<div className="inline-block align-bottom glass-3 mx-8 px-32 pt-16 pb-8 w-80v text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle ">
-							<div className="text-2xl font-bold mb-16">
-								Harmoonies Sale History
+						<div className="inline-block align-bottom glass-3 mx-8 px-32 pt-16 pb-8 w-80v text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle">
+							<div className="flex flex-row justify-between">
+								<div></div>
+								<div className="text-2xl font-bold mb-16">
+									Harmoonies Sale History
+								</div>
+								<div>
+									<button onClick={() => setOpen(!open)}>
+										<img src={CloseIcon} />
+									</button>
+								</div>
 							</div>
 
 							<div className="flex flex-row space-x-8 text-lg">
