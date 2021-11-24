@@ -1,9 +1,20 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import DarkDropdown from "components/Dropdowns/DarkDropdown/index";
+import {
+	LineChart,
+	Line,
+	XAxis,
+	YAxis,
+	CartesianGrid,
+	Tooltip,
+	Legend,
+	ResponsiveContainer,
+} from "recharts";
+import DarkDropdownWithIcon from "components/Dropdowns/DarkDropdown/icon";
 import SaleIcon from "assets/sale_icon.svg";
 import LinkIconDark from "assets/copy_link_icon.svg";
 import SalePic from "assets/sale_pic.svg";
+import CloseIcon from "assets/close_icon.svg";
 
 const TableRow = () => {
 	return (
@@ -50,6 +61,51 @@ const TableRow = () => {
 		</tr>
 	);
 };
+
+const data = [
+	{
+		name: "Page A",
+		uv: 4000,
+		pv: 2400,
+		amt: 2400,
+	},
+	{
+		name: "Page B",
+		uv: 3000,
+		pv: 1398,
+		amt: 2210,
+	},
+	{
+		name: "Page C",
+		uv: 2000,
+		pv: 9800,
+		amt: 2290,
+	},
+	{
+		name: "Page D",
+		uv: 2780,
+		pv: 3908,
+		amt: 2000,
+	},
+	{
+		name: "Page E",
+		uv: 1890,
+		pv: 4800,
+		amt: 2181,
+	},
+	{
+		name: "Page F",
+		uv: 2390,
+		pv: 3800,
+		amt: 2500,
+	},
+	{
+		name: "Page G",
+		uv: 3490,
+		pv: 4300,
+		amt: 2100,
+	},
+];
 
 const SaleHistory = () => {
 	const [open, setOpen] = useState(true);
@@ -98,13 +154,24 @@ const SaleHistory = () => {
 						leave="ease-in duration-200"
 						leaveFrom="opacity-100 translate-y-0 sm:scale-100"
 						leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-						<div className="inline-block align-bottom glass-3 mx-8 px-32 pt-16 pb-8 w-80v text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle ">
-							<div className="text-2xl font-bold mb-16">
-								Harmoonies Sale History
+						<div className="inline-block align-bottom glass-3 mx-8 px-32 pt-16 pb-8 w-80v text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle">
+							<div className="flex flex-row justify-between">
+								<div></div>
+								<div className="text-2xl font-bold mb-16">
+									Harmoonies Sale History
+								</div>
+								<div>
+									<button onClick={() => setOpen(!open)}>
+										<img src={CloseIcon} />
+									</button>
+								</div>
 							</div>
 
 							<div className="flex flex-row space-x-8 text-lg">
-								<DarkDropdown options={historyOptions} className="w-32" />
+								<DarkDropdownWithIcon
+									options={historyOptions}
+									className="w-32"
+								/>
 
 								<div className="flex flex-col text-left">
 									<div>14 Day Average Price</div>
@@ -117,16 +184,46 @@ const SaleHistory = () => {
 								</div>
 							</div>
 
-							<div className="my-8 rounded-md border-2 border-gray-300 py-4">
-								<table className="table-auto w-full">
-									<thead className="font-bold text-center border-b-2 border-gray-300">
+							{/* <div>
+								<ResponsiveContainer width="1000px" height="1000px">
+									<LineChart
+										width={500}
+										height={300}
+										data={data}
+										margin={{
+											top: 5,
+											right: 30,
+											left: 20,
+											bottom: 5,
+										}}>
+										<CartesianGrid strokeDasharray="3 3" />
+										<XAxis dataKey="name" stroke="#0096c7" />
+										<YAxis />
+										<Tooltip />
+										<Legend />
+										<Line
+											type="monotone"
+											dataKey="pv"
+											stroke="#8884d8"
+											activeDot={{ r: 8 }}
+										/>
+										<Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+									</LineChart>
+								</ResponsiveContainer>
+							</div> */}
+
+							<div className="my-8 rounded-md py-4">
+								<table className="table-auto w-full border-collapse border border-gray-300">
+									<thead className="font-bold text-center h-16">
 										<tr>
-											<th>Item</th>
-											<th>From</th>
-											<th>To</th>
-											<th>Price</th>
-											<th>Timestamp</th>
-											<th>Transaction</th>
+											<th className="border-b-2 border-gray-300">Item</th>
+											<th className="border-b-2 border-gray-300">From</th>
+											<th className="border-b-2 border-gray-300">To</th>
+											<th className="border-b-2 border-gray-300">Price</th>
+											<th className="border-b-2 border-gray-300">Timestamp</th>
+											<th className="border-b-2 border-gray-300">
+												Transaction
+											</th>
 										</tr>
 									</thead>
 									<tbody className="text-center divide-y gap-4 gap-y-4">

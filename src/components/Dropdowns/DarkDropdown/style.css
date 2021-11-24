@@ -1,16 +1,16 @@
 .menu-background {
-  background: rgba(17, 92, 112, 0.7);
-  backdrop-filter: blur(11px);
-  /* Note: backdrop-filter has minimal browser support */
-
-  border-radius: 7px;
+	background: rgba(17, 92, 112, 0.7);
+	backdrop-filter: blur(11px);
+	/* Note: backdrop-filter has minimal browser support */
+	border-radius: 7px;
 }
+
 .selected-option {
-  background: rgba(17, 92, 112, 0.64);
+	background: rgba(17, 92, 112, 0.64);
 }
 
 .main-option {
-  border: 1px solid rgba(17, 92, 112, 0.8);
-  box-sizing: border-box;
-  border-radius: 7px;
+	border: 1px solid rgba(17, 92, 112, 0.8);
+	box-sizing: border-box;
+	border-radius: 7px;
 }

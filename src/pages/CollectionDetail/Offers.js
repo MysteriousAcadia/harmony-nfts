@@ -7,7 +7,8 @@ import "./style.css";
 import LineTab from "components/Tabs/LineTab/index";
 import DiscloseTab from "components/Tabs/DiscloseTab/index";
 import { utils } from "ethers";
-import { oneToUSD } from "utils/currency";
+import { floorDifference, oneToUSD } from "utils/currency";
+import { formatDate } from "utils/date";
 
 const TableRow = () => {
 	return (
@@ -55,9 +56,12 @@ const TableRow = () => {
 };
 
 const Offers = ({ nftDetail, auctionData, orderHistory }) => {
+	const { market = {} } = nftDetail || {};
+	const floor = utils.formatEther(market?.currencyStats?.floor || "1");
 	const AuctionRow = ({ data = {} }) => {
-		const price = parseFloat(utils.formatEther(data?.price || "0"))
-
+		const price = parseFloat(utils.formatEther(data?.value || "0"))
+		const { bidder = {}, timestamp, } = data;
+		const { id: bidderId } = bidder;
 		return (
 			<tr>
 				<td className=" items-center truncate">
@@ -73,23 +77,18 @@ const Offers = ({ nftDetail, auctionData, orderHistory }) => {
 				<td className=" items-center truncate">
 					<div className="flex m-4 justify-around items-center">
 						{" "}
-						<div className="w-32 truncate">
-							a;lsdfasdfasdfasdfasdfasdfjkals;kfjas;ldfjka;lsdfjka;lsdfj
-						</div>
-						<img src={CopyIcon} className="ml-2" />
+						{floorDifference(floor, price)}
 					</div>
 				</td>
-				<td className=" items-center font-bold truncate">
-					<div className="m-4"> 100 ONE</div>
-				</td>
+
 				<td className=" items-center  truncate">
-					<div className="m-4">10/31/2021</div>
+					<div className="m-4">{formatDate(timestamp)}</div>
 				</td>
 				<td className=" items-center truncate">
 					<div className="flex m-4 justify-around items-center">
 						{" "}
 						<div className="w-32 truncate">
-							a;lsdfasdfasdfasdfasdfasdfjkals;kfjas;ldfjka;lsdfjka;lsdfj
+							{bidderId}
 						</div>
 						<img src={LinkIcon} className="ml-2" />
 					</div>

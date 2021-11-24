@@ -3,12 +3,13 @@ import { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import "./style.css";
 import DownIcon from "assets/down_icon.svg";
+import OptionsIcon from "assets/options_icon.svg";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 
-export default function DarkDropdown({
+export default function DarkDropdownWithIcon({
 	options,
 	onChange = newOption => {},
 	initialValue,
@@ -31,7 +32,8 @@ export default function DarkDropdown({
 	return (
 		<Menu as="div" className="relative inline-block text-left">
 			<div>
-				<Menu.Button className="flex items-center justify-between w-full px-3 py-3 text-main-default text-sm main-option">
+				<Menu.Button className="flex items-center justify-between w-40 px-3 py-3 text-main-default text-sm main-option">
+					<img src={OptionsIcon} className="pr-4" />
 					<div className="pr-4">{selectedOption}</div>
 					<img src={DownIcon} />
 				</Menu.Button>

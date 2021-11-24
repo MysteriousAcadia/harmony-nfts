@@ -18,10 +18,14 @@ const CollectionDetail = ({ }) => {
         query: `{
   nft(id:"${id}") {
     id
+    tokenId
     token
     image
     market{
       id
+      currencyStats{
+        floor
+      }
     }
     currencyStats {
       id
