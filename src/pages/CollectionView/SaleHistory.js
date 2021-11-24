@@ -26,17 +26,19 @@ const SaleRow = ({ data = {} }) => {
 	const { nft = {}, price = 0, timestamp = 0, buyer = {}, seller = {} } = data;
 	const { tokenId, image } = nft;
 	const value = utils.formatEther(price);
-	const { address: buyerAddress } = buyer
-	const { address: sellerAddress } = seller
+	const { address: buyerAddress } = buyer;
+	const { address: sellerAddress } = seller;
 	return (
 		<tr>
 			<td className="items-center">
 				<img src={SaleIcon} className="ml-4" />
-
 			</td>
 			<td className="items-center ">
 				<div className="flex m-4 items-center">
-					<img src={image} className="glass-2-no-shadow p-1 w-14 h-14 object-cover mr-3" />
+					<img
+						src={image}
+						className="glass-2-no-shadow p-1 w-14 h-14 object-cover mr-3"
+					/>
 					<div className="font-bold text-md">Harmoonie #{tokenId}</div>
 				</div>
 			</td>
@@ -154,8 +156,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 			setSaleData(result.data?.data?.sales);
 		};
 		fetchData();
-	}, [selectedTime])
-
+	}, [selectedTime]);
 
 	const historyOptions = [
 		"Last 7 days",
@@ -171,8 +172,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 			<Dialog
 				as="div"
 				className="text-main-default fixed z-10 inset-0 overflow-y-auto"
-				onClose={setOpen}
-			>
+				onClose={setOpen}>
 				<div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 					<Transition.Child
 						as={Fragment}
@@ -181,8 +181,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 						enterTo="opacity-100"
 						leave="ease-in duration-200"
 						leaveFrom="opacity-100"
-						leaveTo="opacity-0"
-					>
+						leaveTo="opacity-0">
 						<Dialog.Overlay
 							className="fixed inset-0"
 							style={{ background: "rgba(0, 0, 0, 0.7)" }}
@@ -220,33 +219,33 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 								<DarkDropdownWithIcon
 									options={historyOptions}
 									className="w-48"
-									onChange={(newOption) => {
+									onChange={newOption => {
 										console.log(newOption);
 										const time = parseInt(Date.now() / 1000);
 										const day = 60 * 60 * 24;
 
 										switch (newOption) {
 											case historyOptions[0]:
-												setSelectedTime(time - (7 * day))
+												setSelectedTime(time - 7 * day);
 												break;
 											case historyOptions[1]:
-												setSelectedTime(time - (14 * day))
-												break
+												setSelectedTime(time - 14 * day);
+												break;
 											case historyOptions[2]:
-												setSelectedTime(time - (30 * day))
+												setSelectedTime(time - 30 * day);
 												break;
 											case historyOptions[3]:
-												setSelectedTime(time - (90 * day))
-												break
+												setSelectedTime(time - 90 * day);
+												break;
 											case historyOptions[4]:
-												setSelectedTime(time - (365 * day))
+												setSelectedTime(time - 365 * day);
 												break;
 
 											default:
-												console.log(newOption)
-												console.log("ew")
-												setSelectedTime(0)
-												break
+												console.log(newOption);
+												console.log("ew");
+												setSelectedTime(0);
+												break;
 										}
 										return;
 									}}
@@ -307,8 +306,9 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 										</tr>
 									</thead>
 									<tbody className="text-center px-8 overflow-y-scroll divide-y gap-4 gap-y-4">
-										{saleData ? saleData.map(e => <SaleRow data={e} />) : "No Data to show."}
-
+										{saleData
+											? saleData.map(e => <SaleRow data={e} />)
+											: "No Data to show."}
 									</tbody>
 								</table>
 							</div>

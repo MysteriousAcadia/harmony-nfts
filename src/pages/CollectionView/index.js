@@ -82,11 +82,16 @@ const CollectionView = () => {
 		fetchNFTs();
 		fetchData();
 	}, [marketId]);
+
+	const [historyOpen, setHistoryOpen] = useState(false);
+
+	const openHistory = () => setHistoryOpen(true);
+
 	return (
 		<>
 			<div className="container px-4 mx-auto">
-				<SaleHistory />
-				<Cover collectionDetail={collectionDetail} />
+				{historyOpen && <SaleHistory />}
+				<Cover collectionDetail={collectionDetail} openHistory={openHistory} />
 				<Filters collectionDetail={collectionDetail} />
 				<Cards nfts={nfts} />
 			</div>

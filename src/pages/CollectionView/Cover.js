@@ -16,7 +16,7 @@ const StatsCard = ({ value, title }) => {
 	);
 };
 
-const Cover = ({ collectionDetail = {} }) => {
+const Cover = ({ collectionDetail = {}, openHistory }) => {
 	console.log(collectionDetail);
 	const { name, totalNfts, currencyStats = [{}] } = collectionDetail;
 	const { floor = "0", volume = "0", fees = "0" } = currencyStats[0];
@@ -50,7 +50,9 @@ const Cover = ({ collectionDetail = {} }) => {
 				<Heading className="mt-24">{name}</Heading>
 				<div className=" mt-4 mb-4 flex justify-between">
 					<img src={WebIcon} className="m-2" />
-					<img src={StatsIcon} className="m-2" />
+					<button onClick={openHistory}>
+						<img src={StatsIcon} className="m-2" />
+					</button>
 					<img src={DiscordIcon} className="m-2" />
 					<img src={TwitterIcon} className="m-2" />
 				</div>

@@ -45,8 +45,8 @@ code {
 }
 
 .glass-2-no-shadow {
-  background: rgba(255, 255, 255, 0.13);
-  border-radius: 7px;
+	background: rgba(255, 255, 255, 0.13);
+	border-radius: 7px;
 }
 
 .glass-3 {
