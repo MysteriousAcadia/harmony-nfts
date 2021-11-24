@@ -1,64 +1,65 @@
 {
-	"name": "harmony-nft-frontend",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"@apollo/client": "^3.4.17",
-		"@craco/craco": "^6.4.0",
-		"@ethersproject/providers": "^5.5.0",
-		"@ethersproject/units": "^5.5.0",
-		"@fontsource/plus-jakarta-sans": "^4.5.0",
-		"@harmony-js/core": "^0.1.57",
-		"@harmony-js/crypto": "^0.1.56",
-		"@harmony-react/onewallet-connector": "^1.0.2",
-		"@headlessui/react": "^1.4.2",
-		"@tailwindcss/forms": "^0.3.4",
-		"@testing-library/jest-dom": "^5.11.4",
-		"@testing-library/react": "^11.1.0",
-		"@testing-library/user-event": "^12.1.10",
-		"@usedapp/core": "^0.6.3",
-		"@web3-react/core": "^6.1.9",
-		"@web3-react/injected-connector": "^6.0.7",
-		"axios": "^0.24.0",
-		"ethers": "^5.5.1",
-		"graphql": "^16.0.1",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"react-notifications-component": "^3.1.0",
-		"react-router-dom": "^6.0.2",
-		"react-scripts": "4.0.3",
-		"react-slick": "^0.28.1",
-		"recharts": "^2.1.6",
-		"slick-carousel": "^1.8.1",
-		"web-vitals": "^1.0.1"
-	},
-	"scripts": {
-		"start": "craco start",
-		"build": "craco build",
-		"test": "craco test",
-		"eject": "react-scripts eject"
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"devDependencies": {
-		"autoprefixer": "^9.8.8",
-		"postcss": "^7.0.39",
-		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
-	}
+  "name": "harmony-nft-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.4.17",
+    "@craco/craco": "^6.4.0",
+    "@ethersproject/contracts": "^5.5.0",
+    "@ethersproject/providers": "^5.5.0",
+    "@ethersproject/units": "^5.5.0",
+    "@fontsource/plus-jakarta-sans": "^4.5.0",
+    "@harmony-js/core": "^0.1.57",
+    "@harmony-js/crypto": "^0.1.56",
+    "@harmony-react/onewallet-connector": "^1.0.2",
+    "@headlessui/react": "^1.4.2",
+    "@tailwindcss/forms": "^0.3.4",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@usedapp/core": "^0.6.3",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/injected-connector": "^6.0.7",
+    "axios": "^0.24.0",
+    "ethers": "^5.5.1",
+    "graphql": "^16.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-notifications-component": "^3.1.0",
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "4.0.3",
+    "react-slick": "^0.28.1",
+    "recharts": "^2.1.6",
+    "slick-carousel": "^1.8.1",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.8",
+    "postcss": "^7.0.39",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+  }
 }

@@ -171,7 +171,8 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 			<Dialog
 				as="div"
 				className="text-main-default fixed z-10 inset-0 overflow-y-auto"
-				onClose={setOpen}>
+				onClose={setOpen}
+			>
 				<div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 					<Transition.Child
 						as={Fragment}
@@ -180,7 +181,8 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 						enterTo="opacity-100"
 						leave="ease-in duration-200"
 						leaveFrom="opacity-100"
-						leaveTo="opacity-0">
+						leaveTo="opacity-0"
+					>
 						<Dialog.Overlay
 							className="fixed inset-0"
 							style={{ background: "rgba(0, 0, 0, 0.7)" }}

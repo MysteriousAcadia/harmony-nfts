@@ -5,7 +5,6 @@ import wallet from "assets/HomePage/wallet.svg";
 import PrimaryButton from "components/Buttons/Primary";
 import { Link } from "react-router-dom";
 import ConnectWallet from "components/Modals/ConnectWallet";
-import { useEthers, useEtherBalance } from "@usedapp/core";
 import { useWeb3React } from "@web3-react/core";
 import { toBech32 } from "@harmony-js/crypto";
 import { formatEther } from "@ethersproject/units";
@@ -16,7 +15,6 @@ import { store } from 'react-notifications-component';
 const Navbar = () => {
   const { account, library, chainId } = useWeb3React();
   const isHmyLibrary = library?.messenger?.chainType === "hmy";
-  const etherBalance = useEtherBalance(account);
   const [balance, setBalance] = useState();
 
   const [navbar, setNavbar] = useState(false);
