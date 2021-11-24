@@ -1,0 +1,24 @@
+.disclose-nav-item {
+    padding: 20px;
+}
+
+.disclose-nav-selected {
+    padding: 20px;
+    border-bottom: 4px solid #fff;
+}
+
+.nav-container {
+    border: 1px solid rgba(255, 255, 255, 0.41);
+    box-sizing: border-box;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.disclose-outlet {
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.41);
+    box-sizing: border-box;
+    border-top: 0px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
