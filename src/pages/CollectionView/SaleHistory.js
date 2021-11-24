@@ -32,7 +32,7 @@ const SaleRow = ({ data = {} }) => {
 			<td className="items-center">
 				<img src={SaleIcon} className="ml-4" />
 			</td>
-			<td className="items-center ">
+			<td className="items-center">
 				<div className="flex m-4 items-center">
 					<img
 						src={image}
@@ -203,7 +203,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 						<div className="inline-block align-bottom glass-3 mx-8 px-24 pt-16 pb-8 w-80v text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle">
 							<div className="flex flex-row justify-between">
 								<div></div>
-								<div className="text-2xl font-bold mb-16">
+								<div className="md:text-xl lg:text-2xl font-bold mb-16">
 									Harmoonies Sale History
 								</div>
 								<div>
@@ -288,11 +288,11 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 								</ResponsiveContainer>
 							</div> */}
 
-							<div className="my-8 rounded-md fixed-header py-4">
+							<div className="my-8 rounded-md fixed-header py-4 overflow-auto">
 								<table className="table-auto w-full border-collapse border rounded-md border-gray-300">
 									<thead className="font-bold text-center h-16 px-4">
 										<tr>
-											<th className="border-b-2  border-gray-300"></th>
+											<th className="border-b-2 border-gray-300"></th>
 											<th className="border-b-2 border-gray-300">Item</th>
 											<th className="border-b-2 border-gray-300">From</th>
 											<th className="border-b-2 border-gray-300">To</th>
