@@ -10,7 +10,7 @@ function classNames(...classes) {
 
 export default function DarkDropdown({
 	options,
-	onChange = newOption => {},
+	onChange = newOption => { },
 	initialValue,
 }) {
 	const [currOptions, setCurrOptions] = useState(["Select..."]);
@@ -31,7 +31,7 @@ export default function DarkDropdown({
 	return (
 		<Menu as="div" className="relative inline-block text-left">
 			<div>
-				<Menu.Button className="flex items-center justify-between w-full px-3 py-3 text-main-default text-sm main-option">
+				<Menu.Button className="flex items-center justify-between w-full px-3 py-3 text-main-default text-sm dark-main-option">
 					<div className="pr-4">{selectedOption}</div>
 					<img src={DownIcon} />
 				</Menu.Button>
@@ -45,7 +45,7 @@ export default function DarkDropdown({
 				leave="transition ease-in duration-75"
 				leaveFrom="transform opacity-100 scale-100"
 				leaveTo="transform opacity-0 scale-95">
-				<Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 rounded-md shadow-lg bg-white menu-background">
+				<Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 rounded-md shadow-lg bg-white dark-menu-background">
 					<div className="py-1">
 						{options.map(option => {
 							return (
@@ -54,8 +54,8 @@ export default function DarkDropdown({
 										<div
 											className={classNames(
 												active
-													? "selected-option "
-													: "bg-transparent hover:selected-option",
+													? "dark-selected-option "
+													: "bg-transparent hover:dark-selected-option",
 												"block pl-4 pr-16 py-2 text-sm text-white cursor-pointer"
 											)}
 											onClick={() => changeOption(option)}>

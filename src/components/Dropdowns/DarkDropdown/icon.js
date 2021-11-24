@@ -11,19 +11,21 @@ function classNames(...classes) {
 
 export default function DarkDropdownWithIcon({
 	options,
-	onChange = newOption => {},
+	onChange = newOption => { },
 	initialValue,
 }) {
 	const [currOptions, setCurrOptions] = useState(["Select..."]);
-	const [selectedOption, setSelectedOption] = useState(options[0]);
+	const [selectedOption, setSelectedOption] = useState();
 	useEffect(() => {
+		console.log(initialValue);
+		console.log(options)
 		setCurrOptions(options);
 		if (initialValue) {
 			setSelectedOption(initialValue);
 		} else if (options && options?.length && options.length > 0) {
 			setSelectedOption(options[0]);
 		}
-	}, [options, initialValue]);
+	}, []);
 	const changeOption = newOption => {
 		setSelectedOption(newOption);
 		onChange(newOption);
@@ -47,7 +49,7 @@ export default function DarkDropdownWithIcon({
 				leave="transition ease-in duration-75"
 				leaveFrom="transform opacity-100 scale-100"
 				leaveTo="transform opacity-0 scale-95">
-				<Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 rounded-md shadow-lg bg-white menu-background">
+				<Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 rounded-md shadow-lg bg-white dark-menu-background">
 					<div className="py-1">
 						{options.map(option => {
 							return (
@@ -56,8 +58,8 @@ export default function DarkDropdownWithIcon({
 										<div
 											className={classNames(
 												active
-													? "selected-option "
-													: "bg-transparent hover:selected-option",
+													? "dark-selected-option "
+													: "bg-transparent hover:dark-selected-option",
 												"block pl-4 pr-16 py-2 text-sm text-white cursor-pointer"
 											)}
 											onClick={() => changeOption(option)}>

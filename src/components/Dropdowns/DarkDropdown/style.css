@@ -1,15 +1,15 @@
-.menu-background {
+.dark-menu-background {
 	background: rgba(17, 92, 112, 0.7);
 	backdrop-filter: blur(11px);
 	/* Note: backdrop-filter has minimal browser support */
 	border-radius: 7px;
 }
 
-.selected-option {
+.dark-selected-option {
 	background: rgba(17, 92, 112, 0.64);
 }
 
-.main-option {
+.dark-main-option {
 	border: 1px solid rgba(17, 92, 112, 0.8);
 	box-sizing: border-box;
 	border-radius: 7px;

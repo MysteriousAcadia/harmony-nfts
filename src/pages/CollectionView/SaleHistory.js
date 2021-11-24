@@ -1,194 +1,269 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
+	LineChart,
+	Line,
+	XAxis,
+	YAxis,
+	CartesianGrid,
+	Tooltip,
+	Legend,
+	ResponsiveContainer,
 } from "recharts";
 import DarkDropdownWithIcon from "components/Dropdowns/DarkDropdown/icon";
 import SaleIcon from "assets/sale_icon.svg";
 import LinkIconDark from "assets/copy_link_icon.svg";
 import SalePic from "assets/sale_pic.svg";
 import CloseIcon from "assets/close_icon.svg";
+import graphQlInstance from "config/axios";
+import { useEffect } from "react";
+import { utils } from "ethers";
+import { oneToUSD } from "utils/currency";
+import { formatDate, formatTime } from "utils/date";
+import "./style.css";
 
-const TableRow = () => {
-  return (
-    <tr>
-      <td className="items-center truncate">
-        <div className="flex m-4 items-center">
-          <img src={SaleIcon} className="mr-9" />
-          <img src={SalePic} className="mr-3" />
-          <div className="font-bold text-lg">Harmoonie#129</div>
-        </div>
-      </td>
-      <td className="items-center truncate">
-        <div className="flex m-4 justify-around items-center">
-          <div className="w-32 truncate underline font-semibold text-lg">
-            Arielle563
-          </div>
-        </div>
-      </td>
-      <td className="items-center truncate">
-        <div className="flex m-4 justify-around items-center">
-          <div className="w-32 truncate underline font-semibold text-lg">
-            Vulto
-          </div>
-        </div>
-      </td>
-      <td className="items-center font-bold truncate">
-        <div className="m-4 flex flex-col">
-          <div>500 ONE</div>
-          <div className="font-medium">$30.33</div>
-        </div>
-      </td>
-      <td className="items-center truncate">
-        <div className="m-4 flex flex-col">
-          <div className="font-normal">11/7/2021</div>
-          <div className="font-normal">10:06am</div>
-        </div>
-      </td>
-      <td className="items-center truncate">
-        <div className="flex flex-row">
-          <div className="truncate underline mr-1">71ghWq3xK...</div>
-          <img src={LinkIconDark} />
-        </div>
-      </td>
-    </tr>
-  );
+const SaleRow = ({ data = {} }) => {
+	const { nft = {}, price = 0, timestamp = 0, buyer = {}, seller = {} } = data;
+	const { tokenId, image } = nft;
+	const value = utils.formatEther(price);
+	const { address: buyerAddress } = buyer
+	const { address: sellerAddress } = seller
+	return (
+		<tr>
+			<td className="items-center">
+				<img src={SaleIcon} className="ml-4" />
+
+			</td>
+			<td className="items-center ">
+				<div className="flex m-4 items-center">
+					<img src={image} className="glass-2-no-shadow p-1 w-14 h-14 object-cover mr-3" />
+					<div className="font-bold text-md">Harmoonie #{tokenId}</div>
+				</div>
+			</td>
+			<td className="items-center truncate">
+				<div className="flex m-4 justify-around items-center">
+					<div className="w-32 truncate underline font-semibold text-lg">
+						{sellerAddress}
+					</div>
+				</div>
+			</td>
+			<td className="items-center truncate">
+				<div className="flex m-4 justify-around items-center">
+					<div className="w-32 truncate underline font-semibold text-lg">
+						{buyerAddress}
+					</div>
+				</div>
+			</td>
+			<td className="items-center font-bold truncate">
+				<div className="m-4 flex flex-col">
+					<div>{parseFloat(value).toFixed(3)} ONE</div>
+					<div className="font-medium">${oneToUSD(value)}</div>
+				</div>
+			</td>
+			<td className="items-center truncate">
+				<div className="m-4 flex flex-col">
+					<div className="font-normal">{formatDate(timestamp)}</div>
+					<div className="font-normal">{formatTime(timestamp)}</div>
+				</div>
+			</td>
+			<td className="items-center truncate">
+				<div className="flex flex-row mr-4">
+					<div className="truncate underline mr-1">Not Available</div>
+					<img src={LinkIconDark} />
+				</div>
+			</td>
+		</tr>
+	);
 };
 
 const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
+	{
+		name: "Page A",
+		uv: 4000,
+		pv: 2400,
+		amt: 2400,
+	},
+	{
+		name: "Page B",
+		uv: 3000,
+		pv: 1398,
+		amt: 2210,
+	},
+	{
+		name: "Page C",
+		uv: 2000,
+		pv: 9800,
+		amt: 2290,
+	},
+	{
+		name: "Page D",
+		uv: 2780,
+		pv: 3908,
+		amt: 2000,
+	},
+	{
+		name: "Page E",
+		uv: 1890,
+		pv: 4800,
+		amt: 2181,
+	},
+	{
+		name: "Page F",
+		uv: 2390,
+		pv: 3800,
+		amt: 2500,
+	},
+	{
+		name: "Page G",
+		uv: 3490,
+		pv: 4300,
+		amt: 2100,
+	},
 ];
 
 const SaleHistory = () => {
-  const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(true);
+	const [saleData, setSaleData] = useState();
+	const [selectedTime, setSelectedTime] = useState(0);
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await graphQlInstance.post("/graphql", {
+				query: `{
+sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:desc){
+  nft{
+    id
+    image
+    tokenId
+  }
+  seller{
+    id
+    address
+  }
+  buyer{
+    id
+    address
+  }
+  price
+  timestamp
+}
+}
 
-  const historyOptions = [
-    "Last 7 days",
-    "Last 14 days",
-    "Last 30 days",
-    "Last 90 days",
-    "Last year",
-    "All time",
-  ];
+`,
+			});
+			console.log(result.data);
+			setSaleData(result.data?.data?.sales);
+		};
+		fetchData();
+	}, [selectedTime])
 
-  return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="text-main-default fixed z-10 inset-0 overflow-y-auto"
-        onClose={setOpen}
-      >
-        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Dialog.Overlay
-              className="fixed inset-0"
-              style={{ background: "rgba(0, 0, 0, 0.7)" }}
-            />
-          </Transition.Child>
 
-          {/* This element is to trick the browser into centering the modal contents. */}
-          <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
-            aria-hidden="true"
-          >
-            &#8203;
-          </span>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            enterTo="opacity-100 translate-y-0 sm:scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          >
-            <div className="inline-block align-bottom glass-3 mx-8 px-32 pt-16 pb-8 w-80v text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle">
-              <div className="flex flex-row justify-between">
-                <div></div>
-                <div className="text-2xl font-bold mb-16">
-                  Harmoonies Sale History
-                </div>
-                <div>
-                  <button onClick={() => setOpen(!open)}>
-                    <img src={CloseIcon} />
-                  </button>
-                </div>
-              </div>
+	const historyOptions = [
+		"Last 7 days",
+		"Last 14 days",
+		"Last 30 days",
+		"Last 90 days",
+		"Last year",
+		"All time",
+	];
 
-              <div className="flex flex-row space-x-8 text-lg">
-                <DarkDropdownWithIcon
-                  options={historyOptions}
-                  className="w-32"
-                />
+	return (
+		<Transition.Root show={open} as={Fragment}>
+			<Dialog
+				as="div"
+				className="text-main-default fixed z-10 inset-0 overflow-y-auto"
+				onClose={setOpen}
+			>
+				<div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+					<Transition.Child
+						as={Fragment}
+						enter="ease-out duration-300"
+						enterFrom="opacity-0"
+						enterTo="opacity-100"
+						leave="ease-in duration-200"
+						leaveFrom="opacity-100"
+						leaveTo="opacity-0"
+					>
+						<Dialog.Overlay
+							className="fixed inset-0"
+							style={{ background: "rgba(0, 0, 0, 0.7)" }}
+						/>
+					</Transition.Child>
 
-                <div className="flex flex-col text-left">
-                  <div>14 Day Average Price</div>
-                  <div className="font-semibold">800 ONE</div>
-                </div>
+					{/* This element is to trick the browser into centering the modal contents. */}
+					<span
+						className="hidden sm:inline-block sm:align-middle sm:h-screen"
+						aria-hidden="true">
+						&#8203;
+					</span>
+					<Transition.Child
+						as={Fragment}
+						enter="ease-out duration-300"
+						enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+						enterTo="opacity-100 translate-y-0 sm:scale-100"
+						leave="ease-in duration-200"
+						leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+						leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+						<div className="inline-block align-bottom glass-3 mx-8 px-24 pt-16 pb-8 w-80v text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle">
+							<div className="flex flex-row justify-between">
+								<div></div>
+								<div className="text-2xl font-bold mb-16">
+									Harmoonies Sale History
+								</div>
+								<div>
+									<button onClick={() => setOpen(!open)}>
+										<img src={CloseIcon} />
+									</button>
+								</div>
+							</div>
 
-                <div className="flex flex-col text-left">
-                  <div>14 Day Volume</div>
-                  <div className="font-semibold">47382 ONE</div>
-                </div>
-              </div>
+							<div className="flex flex-row space-x-8 text-lg">
+								<DarkDropdownWithIcon
+									options={historyOptions}
+									className="w-48"
+									onChange={(newOption) => {
+										console.log(newOption);
+										const time = parseInt(Date.now() / 1000);
+										const day = 60 * 60 * 24;
 
-              {/* <div>
+										switch (newOption) {
+											case historyOptions[0]:
+												setSelectedTime(time - (7 * day))
+												break;
+											case historyOptions[1]:
+												setSelectedTime(time - (14 * day))
+												break
+											case historyOptions[2]:
+												setSelectedTime(time - (30 * day))
+												break;
+											case historyOptions[3]:
+												setSelectedTime(time - (90 * day))
+												break
+											case historyOptions[4]:
+												setSelectedTime(time - (365 * day))
+												break;
+
+											default:
+												console.log(newOption)
+												console.log("ew")
+												setSelectedTime(0)
+												break
+										}
+										return;
+									}}
+								/>
+
+								<div className="flex flex-col text-left">
+									<div>14 Day Average Price</div>
+									<div className="font-semibold">800 ONE</div>
+								</div>
+
+								<div className="flex flex-col text-left">
+									<div>14 Day Volume</div>
+									<div className="font-semibold">47382 ONE</div>
+								</div>
+							</div>
+
+							{/* <div>
 								<ResponsiveContainer width="1000px" height="1000px">
 									<LineChart
 										width={500}
@@ -216,37 +291,33 @@ const SaleHistory = () => {
 								</ResponsiveContainer>
 							</div> */}
 
-              <div className="my-8 rounded-md py-4">
-                <table className="table-auto w-full border-collapse border border-gray-300">
-                  <thead className="font-bold text-center h-16">
-                    <tr>
-                      <th className="border-b-2 border-gray-300">Item</th>
-                      <th className="border-b-2 border-gray-300">From</th>
-                      <th className="border-b-2 border-gray-300">To</th>
-                      <th className="border-b-2 border-gray-300">Price</th>
-                      <th className="border-b-2 border-gray-300">Timestamp</th>
-                      <th className="border-b-2 border-gray-300">
-                        Transaction
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-center divide-y gap-4 gap-y-4">
-                    <TableRow />
-                    <TableRow />
-                    <TableRow />
-                    <TableRow />
-                    <TableRow />
-                    <TableRow />
-                    <TableRow />
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </Transition.Child>
-        </div>
-      </Dialog>
-    </Transition.Root>
-  );
+							<div className="my-8 rounded-md fixed-header  py-4 ">
+								<table className="table-auto w-full border-collapse border rounded-md border-gray-300">
+									<thead className="font-bold text-center h-16 px-4">
+										<tr>
+											<th className="border-b-2  border-gray-300"></th>
+											<th className="border-b-2 border-gray-300">Item</th>
+											<th className="border-b-2 border-gray-300">From</th>
+											<th className="border-b-2 border-gray-300">To</th>
+											<th className="border-b-2 border-gray-300">Price</th>
+											<th className="border-b-2 border-gray-300">Timestamp</th>
+											<th className="border-b-2 border-gray-300">
+												Transaction
+											</th>
+										</tr>
+									</thead>
+									<tbody className="text-center px-8 overflow-y-scroll divide-y gap-4 gap-y-4">
+										{saleData ? saleData.map(e => <SaleRow data={e} />) : "No Data to show."}
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</Transition.Child>
+				</div>
+			</Dialog>
+		</Transition.Root>
+	);
 };
 
 export default SaleHistory;
