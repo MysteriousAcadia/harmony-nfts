@@ -67,31 +67,29 @@ function App() {
         <ApolloProvider client={client}>
           {/* <MakeOffer /> */}
 
-          <Web3ReactProvider getLibrary={getLibrary}>
-            <Router>
-              <div className="base-background">
-                <Navbar />
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/collections" element={<AllCollections />} />
-                  <Route
-                    path="/collections/:marketId"
-                    element={<CollectionView />}
-                  />
-                  <Route
-                    path="/collections/:marketId/:id"
-                    element={<CollectionDetail />}
-                  />
-                  <Route path="/nfts/:id" element={<CollectionDetail />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/about" element={<AboutUs />} />
+          <Router>
+            <div className="base-background">
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/collections" element={<AllCollections />} />
+                <Route
+                  path="/collections/:marketId"
+                  element={<CollectionView />}
+                />
+                <Route
+                  path="/collections/:marketId/:id"
+                  element={<CollectionDetail />}
+                />
+                <Route path="/nfts/:id" element={<CollectionDetail />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/about" element={<AboutUs />} />
 
-                  <Route path="/test" element={<ListForSale />} />
-                </Routes>
-                <Footer />
-              </div>
-            </Router>
-          </Web3ReactProvider>
+                <Route path="/test" element={<ListForSale />} />
+              </Routes>
+              <Footer />
+            </div>
+          </Router>
         </ApolloProvider>
       </Web3ReactProvider>
     </>
