@@ -3,11 +3,12 @@ import twitterIcon from "assets/twitter_icon.svg";
 import discordIcon from "assets/discord_icon.svg";
 import roadmap from "assets/roadmap.svg";
 
-const AboutUs = ({}) => {
+const AboutUs = ({ }) => {
 	const team = [
 		{
 			name: "Leochii",
 			title: "Lead Artist and Illustrator",
+			image: "assets/people/"
 		},
 		{
 			name: "Kaija",

@@ -7,6 +7,8 @@ export const daysLeft = (time) => {
         return (`Ended ${diffDays} day${diffDays == 1 ? "" : "s"} ago`)
     }
     return (`${diffDays} day${diffDays == 1 ? "" : "s"} left`)
-
-
+}
+export const formatDate = (time) => {
+    const givenDate = new Date(time * 1000);
+    return (`${givenDate.getDate()}/${givenDate.getMonth() + 1}/${givenDate.getFullYear()}`);
 }

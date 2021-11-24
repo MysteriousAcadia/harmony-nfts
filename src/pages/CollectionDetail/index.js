@@ -6,21 +6,26 @@ import ExploreMore from "./ExploreMore";
 import Offers from "./Offers";
 import graphQlInstance from "config/axios";
 
-const CollectionDetail = ({}) => {
-	const { id } = useParams();
-	const [nftDetail, setNftDetail] = useState({});
-	const [bids, setBids] = useState([]);
-	const [orderHistory, setOrderHistory] = useState([]);
-	useEffect(() => {
-		const fetchData = async () => {
-			const result = await graphQlInstance.post("/graphql", {
-				query: `{
+const CollectionDetail = ({ }) => {
+  const { id } = useParams();
+  const [nftDetail, setNftDetail] = useState({});
+  const [bids, setBids] = useState([]);
+  const [orderHistory, setOrderHistory] = useState([]);
+  const [auctionData, setAuctionData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await graphQlInstance.post("/graphql", {
+        query: `{
   nft(id:"${id}") {
     id
+    tokenId
     token
     image
     market{
       id
+      currencyStats{
+        floor
+      }
     }
     currencyStats {
       id
@@ -42,56 +47,73 @@ const CollectionDetail = ({}) => {
 }
 
 `,
-			});
-			console.log(result.data);
-			setNftDetail(result.data?.data?.nft);
-		};
-		fetchData();
+      });
+      console.log(result.data);
+      setNftDetail(result.data?.data?.nft);
+    };
+    fetchData();
 
-		const fetchOrderHistory = async () => {
-			const result = await graphQlInstance.post("/graphql", {
-				query: `{
+    const fetchAutcionData = async () => {
+      const result = await graphQlInstance.post("/graphql", {
+        query: `{
   nft(id:"${id}") {
-    id
-    token
-    image
-    market{
+    currentAuction{
       id
-    }
-    currencyStats {
-      id
-      nft {
+      bids{
         id
+        timestamp
+        value
+        bidder{
+          id
+        }
       }
-      currency {
-        id
-      }
-      volume
-      fees
-      reflectionFees
-    }
-    attributes {
-      key
-      value
     }
   }
 }
 
+
+
 `,
-			});
-			console.log(result.data);
-			setNftDetail(result.data?.data?.nft);
-		};
-		fetchOrderHistory();
-		fetchData();
-	}, [id]);
-	return (
-		<>
-			<Banner nftDetail={nftDetail} />
-			<Details nftDetail={nftDetail} />
-			<Offers />
-			<ExploreMore />
-		</>
-	);
+      });
+      console.log(result.data);
+      setAuctionData(result.data?.data?.nft?.currentAuction?.bids);
+    };
+    const fetchOrderHistoryData = async () => {
+      const result = await graphQlInstance.post("/graphql", {
+        query: `{
+  nft(id:"${id}") {
+    sales{
+      id
+      buyer{
+        id
+      }
+      seller{
+        id
+      }
+      price
+      timestamp
+      __typename
+    }
+  }
+}
+
+
+`,
+      });
+      console.log(result.data);
+      setOrderHistory(result.data?.data?.nft?.sales);
+    };
+    fetchAutcionData();
+    fetchOrderHistoryData();
+    fetchData();
+  }, [id]);
+  return (
+    <>
+      <Banner nftDetail={nftDetail} />
+      <Details nftDetail={nftDetail} />
+      <Offers nftDetail={nftDetail} auctionData={auctionData} orderHistory={orderHistory} />
+      <ExploreMore />
+    </>
+  );
 };
 export default CollectionDetail;
