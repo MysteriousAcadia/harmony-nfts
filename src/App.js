@@ -6,7 +6,6 @@ import Navbar from "components/Navbar/index";
 import Footer from "components/Footer/index";
 import CollectionView from "pages/CollectionView/index";
 import CollectionDetail from "pages/CollectionDetail/index";
-import { DAppProvider, ChainId } from "@usedapp/core";
 import {
   ApolloProvider,
   ApolloClient,
@@ -53,7 +52,6 @@ const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
 });
-console.log(ChainId);
 function App() {
   return (
     <>

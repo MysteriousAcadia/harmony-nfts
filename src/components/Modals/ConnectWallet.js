@@ -2,14 +2,13 @@
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import "./style.css";
-import { useEthers, useEtherBalance } from "@usedapp/core";
 import { injected, onewallet } from "./connectors";
 import { useWeb3React } from "@web3-react/core";
+import { connectContracts } from "web3Integration";
 
 export default function ConnectWallet({ open = false, setOpen = () => {} }) {
-  const { activate, account } = useWeb3React();
+  const { activate, account, library } = useWeb3React();
   const { ethereum } = window;
-  const etherBalance = useEtherBalance(account);
   // const [open, setOpen] = useState(false);
   const onClickMetamask = async (connector) => {
     activate(connector, async (err) => {
@@ -22,6 +21,15 @@ export default function ConnectWallet({ open = false, setOpen = () => {} }) {
     });
     // await ethereum.request({ method: 'eth_requestAccounts' })
   };
+
+  useEffect(async () => {
+    if (!library) return;
+    const data =
+      library?.messenger?.chainType === "hmy"
+        ? library.provider
+        : await library.getSigner(account);
+    await connectContracts(data);
+  }, [library]);
 
   const setupNetwork = async (chainId, rpcUrl) => {
     const provider = window.ethereum;
