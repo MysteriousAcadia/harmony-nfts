@@ -42,3 +42,49 @@ export const buy = async (token, tokenId, currency, value) => {
     console.log(error);
   }
 };
+
+export const createAuction = async (
+  token,
+  tokenId,
+  currency,
+  initialBid,
+  duration
+) => {
+  try {
+    const transaction = await marketContract.createAuction(
+      token,
+      tokenId,
+      currency,
+      initialBid,
+      duration
+    );
+    const receipt = await transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createMarket = async (token, name, fee, reflectionFee) => {
+  try {
+    const transaction = await marketContract.createMarket(
+      token,
+      name,
+      fee,
+      reflectionFee
+    );
+    const receipt = await transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getNftOwner = (token, tokenId) => {
+  try {
+    const owner = marketContract.getNftOwner(token, tokenId);
+    console.log(owner);
+  } catch (error) {
+    console.log(error);
+  }
+};
