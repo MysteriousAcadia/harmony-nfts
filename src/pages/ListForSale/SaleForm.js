@@ -117,7 +117,7 @@ const SaleForm = () => {
 						<div>3.00%</div>
 					</div>
 				</div>
-				<div className="flex flex-row justify-center align-middle pt-16">
+				<div className="flex flex-row justify-center align-middle py-16">
 					<PrimaryWhite>Complete Listing</PrimaryWhite>
 				</div>
 			</div>
