@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import DarkDropdown from "components/Dropdowns/DarkDropdown/index";
+import DarkDropdownWithIcon from "components/Dropdowns/DarkDropdown/icon";
 import SaleIcon from "assets/sale_icon.svg";
 import LinkIconDark from "assets/copy_link_icon.svg";
 import SalePic from "assets/sale_pic.svg";
@@ -104,7 +104,10 @@ const SaleHistory = () => {
 							</div>
 
 							<div className="flex flex-row space-x-8 text-lg">
-								<DarkDropdown options={historyOptions} className="w-32" />
+								<DarkDropdownWithIcon
+									options={historyOptions}
+									className="w-32"
+								/>
 
 								<div className="flex flex-col text-left">
 									<div>14 Day Average Price</div>
