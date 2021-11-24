@@ -10,5 +10,5 @@ export const daysLeft = (time) => {
 }
 export const formatDate = (time) => {
     const givenDate = new Date(time * 1000);
-    return (`${givenDate.getDate()}`);
+    return (`${givenDate.getDate()}/${givenDate.getMonth() + 1}/${givenDate.getFullYear()}`);
 }

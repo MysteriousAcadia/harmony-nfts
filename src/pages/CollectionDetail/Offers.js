@@ -10,54 +10,11 @@ import { utils } from "ethers";
 import { floorDifference, oneToUSD } from "utils/currency";
 import { formatDate } from "utils/date";
 
-const TableRow = () => {
-	return (
-		<tr>
-			<td className=" items-center truncate">
-				<div className="flex m-4 items-center">
-					<img src={TransferIcon} className="mr-2" /> Transfer
-				</div>
-			</td>
-			<td className=" items-center truncate">
-				<div className="flex m-4 justify-around  items-center">
-					{" "}
-					<div className="w-32 truncate">
-						a;lsdfasdfasdfasdfasdfasdfjkals;kfjas;ldfjka;lsdfjka;lsdfj
-					</div>
-					<img src={CopyIcon} className="ml-2" />
-				</div>
-			</td>
-			<td className=" items-center truncate">
-				<div className="flex m-4 justify-around items-center">
-					{" "}
-					<div className="w-32 truncate">
-						a;lsdfasdfasdfasdfasdfasdfjkals;kfjas;ldfjka;lsdfjka;lsdfj
-					</div>
-					<img src={CopyIcon} className="ml-2" />
-				</div>
-			</td>
-			<td className=" items-center font-bold truncate">
-				<div className="m-4"> 100 ONE</div>
-			</td>
-			<td className=" items-center  truncate">
-				<div className="m-4">10/31/2021</div>
-			</td>
-			<td className=" items-center truncate">
-				<div className="flex m-4 justify-around items-center">
-					{" "}
-					<div className="w-32 truncate">
-						a;lsdfasdfasdfasdfasdfasdfjkals;kfjas;ldfjka;lsdfjka;lsdfj
-					</div>
-					<img src={LinkIcon} className="ml-2" />
-				</div>
-			</td>
-		</tr>
-	);
-};
+
 
 const Offers = ({ nftDetail, auctionData, orderHistory }) => {
 	const { market = {} } = nftDetail || {};
-	const floor = utils.formatEther(market?.currencyStats?.floor || "1");
+	const floor = utils.formatEther((market?.currencyStats || [{ floor: 0 }])[0]?.floor || "1");
 	const AuctionRow = ({ data = {} }) => {
 		const price = parseFloat(utils.formatEther(data?.value || "0"))
 		const { bidder = {}, timestamp, } = data;
@@ -65,13 +22,13 @@ const Offers = ({ nftDetail, auctionData, orderHistory }) => {
 		return (
 			<tr>
 				<td className=" items-center truncate">
-					<div className="flex m-4 items-center font-bold">
-						{price.toFixed(3) || "Not Available"}
+					<div className="flex m-4 justify-around items-center font-bold">
+						{price.toFixed(3) + " ONE" || "Not Available"}
 					</div>
 				</td>
 				<td className=" items-center truncate">
-					<div className="flex m-4 justify-around  items-center">
-						{oneToUSD(price || 0)}
+					<div className="flex m-4 justify-around font-normal  items-center">
+						{`$${oneToUSD(price || 0)}`}
 					</div>
 				</td>
 				<td className=" items-center truncate">
@@ -86,9 +43,59 @@ const Offers = ({ nftDetail, auctionData, orderHistory }) => {
 				</td>
 				<td className=" items-center truncate">
 					<div className="flex m-4 justify-around items-center">
+						<div className="flex items-center">
+							<div className="w-48 truncate">
+								{bidderId}
+							</div>
+							<img src={LinkIcon} className="ml-2" />
+						</div>
+					</div>
+				</td>
+			</tr>
+		);
+	};
+
+	const SaleRow = ({ data }) => {
+		const price = parseFloat(utils.formatEther(data?.price || "0"))
+		const { buyer = {}, seller = {}, timestamp } = data;
+		const { id: buyerId } = buyer;
+		const { id: sellerId } = seller;
+		return (
+			<tr>
+				<td className=" items-center truncate">
+					<div className="flex m-4 items-center">
+						<img src={TransferIcon} className="mr-2" /> Transfer
+					</div>
+				</td>
+				<td className=" items-center truncate">
+					<div className="flex m-4 justify-around  items-center">
 						{" "}
 						<div className="w-32 truncate">
-							{bidderId}
+							{buyerId}
+						</div>
+						<img src={CopyIcon} className="ml-2" />
+					</div>
+				</td>
+				<td className=" items-center truncate">
+					<div className="flex m-4 justify-around items-center">
+						{" "}
+						<div className="w-32 truncate">
+							{sellerId}
+						</div>
+						<img src={CopyIcon} className="ml-2" />
+					</div>
+				</td>
+				<td className=" items-center font-bold truncate">
+					<div className="m-4"> {price} ONE</div>
+				</td>
+				<td className=" items-center  truncate">
+					<div className="m-4">{formatDate(timestamp)}</div>
+				</td>
+				<td className=" items-center truncate">
+					<div className="flex m-4 justify-around items-center">
+						{" "}
+						<div className="w-32 truncate">
+							"Not Avaliable"
 						</div>
 						<img src={LinkIcon} className="ml-2" />
 					</div>
@@ -117,37 +124,30 @@ const Offers = ({ nftDetail, auctionData, orderHistory }) => {
 									{auctionData.map(e => {
 										return (<AuctionRow data={e} />)
 									})}
-									<TableRow />
-									<TableRow />
-									<TableRow />
-									<TableRow />
-									<TableRow />
-									<TableRow />
-									<TableRow />
+
 								</tbody>
 							</table>
 						}
-						<table className="table-auto w-full">
-							<thead className="font-bold text-center">
-								<tr>
-									<th>Event</th>
-									<th>From</th>
-									<th>To</th>
-									<th>Price</th>
-									<th>Timestamp</th>
-									<th>Transaction</th>
-								</tr>
-							</thead>
-							<tbody className="text-center divide-y gap-4 gap-y-4">
-								<TableRow />
-								<TableRow />
-								<TableRow />
-								<TableRow />
-								<TableRow />
-								<TableRow />
-								<TableRow />
-							</tbody>
-						</table>
+						{!orderHistory ? "Nothing to show." :
+							<table className="table-auto w-full">
+								<thead className="font-bold text-center">
+									<tr>
+										<th>Event</th>
+										<th>From</th>
+										<th>To</th>
+										<th>Price</th>
+										<th>Timestamp</th>
+										<th>Transaction</th>
+									</tr>
+								</thead>
+								<tbody className="text-center divide-y gap-4 gap-y-4">
+									{orderHistory.map(e => {
+										return (<SaleRow data={e} />)
+									})}
+
+								</tbody>
+							</table>
+						}
 
 					</DiscloseTab>
 					{/* <Disclosure

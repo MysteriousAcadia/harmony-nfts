@@ -5,11 +5,17 @@ export const oneToUSD = (one) => {
 
 }
 export const floorDifference = (floor, original) => {
+    console.log(floor);
+    console.log(original);
     const diff = original - floor;
     const percent = (Math.abs(diff) / floor) * 100
+    if (diff > 10000 || diff < 10000) {
+        return ("Not avalilable")
+    }
     if (diff > 0) {
         return (`${percent.toFixed(0)} above`)
     }
     return (`${percent.toFixed(0)} below`)
+
 
 }

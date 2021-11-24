@@ -56,14 +56,13 @@ const CollectionDetail = ({ }) => {
     const fetchAutcionData = async () => {
       const result = await graphQlInstance.post("/graphql", {
         query: `{
-  {
-	nft(id:${id}){
-    currentAuction {
+  nft(id:"${id}") {
+    currentAuction{
       id
-      bids(orderBy:value, orderDirection:desc){
-        value
-        timestamp
+      bids{
         id
+        timestamp
+        value
         bidder{
           id
         }
@@ -73,26 +72,27 @@ const CollectionDetail = ({ }) => {
 }
 
 
+
 `,
       });
       console.log(result.data);
-      setAuctionData(result.data?.data?.nft?.currentAuction);
+      setAuctionData(result.data?.data?.nft?.currentAuction?.bids);
     };
     const fetchOrderHistoryData = async () => {
       const result = await graphQlInstance.post("/graphql", {
         query: `{
-  {
-	nft(id:${id}){
-    currentAuction {
+  nft(id:"${id}") {
+    sales{
       id
-      bids(orderBy:value, orderDirection:desc){
-        value
-        timestamp
+      buyer{
         id
-        bidder{
-          id
-        }
       }
+      seller{
+        id
+      }
+      price
+      timestamp
+      __typename
     }
   }
 }
@@ -104,6 +104,7 @@ const CollectionDetail = ({ }) => {
       setOrderHistory(result.data?.data?.nft?.sales);
     };
     fetchAutcionData();
+    fetchOrderHistoryData();
     fetchData();
   }, [id]);
   return (
