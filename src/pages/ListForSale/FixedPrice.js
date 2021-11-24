@@ -19,7 +19,7 @@ const FixedPrice = () => {
 						<ONEInput />
 					</div>
 
-					<div className="mb-10 text-white">
+					<div className="mb-10 text-white flex flex-col flex-grow">
 						<div className="mb-4 font-semibold text-xl">Duration</div>
 						<LightDropdown options={durationOptions} className="w-32" />
 					</div>

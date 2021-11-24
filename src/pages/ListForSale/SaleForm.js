@@ -46,9 +46,9 @@ const SaleForm = () => {
 						</div>
 					</div>
 
-					<div className="mb-10 text-white">
+					<div className="mb-10 text-white flex flex-col flex-grow">
 						<div className="mb-4 font-semibold text-xl">Duration</div>
-						<LightDropdown options={durationOptions} className="w-32" />
+						<LightDropdown options={durationOptions} className="w-max" />
 					</div>
 
 					<div className="mb-10">
