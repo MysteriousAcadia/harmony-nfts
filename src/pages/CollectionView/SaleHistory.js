@@ -13,7 +13,6 @@ import {
 import DarkDropdownWithIcon from "components/Dropdowns/DarkDropdown/icon";
 import SaleIcon from "assets/sale_icon.svg";
 import LinkIconDark from "assets/copy_link_icon.svg";
-import SalePic from "assets/sale_pic.svg";
 import CloseIcon from "assets/close_icon.svg";
 import graphQlInstance from "config/axios";
 import { useEffect } from "react";
@@ -37,7 +36,7 @@ const SaleRow = ({ data = {} }) => {
 				<div className="flex m-4 items-center">
 					<img
 						src={image}
-						className="glass-2-no-shadow p-1 w-14 h-14 object-cover mr-3"
+						className="glass-2-no-shadow w-14 h-14 object-cover mr-3 rounded-md border-2 border-gray-100"
 					/>
 					<div className="font-bold text-md">Harmoonie #{tokenId}</div>
 				</div>
@@ -289,7 +288,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 								</ResponsiveContainer>
 							</div> */}
 
-							<div className="my-8 rounded-md fixed-header  py-4 ">
+							<div className="my-8 rounded-md fixed-header py-4">
 								<table className="table-auto w-full border-collapse border rounded-md border-gray-300">
 									<thead className="font-bold text-center h-16 px-4">
 										<tr>
