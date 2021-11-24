@@ -7,8 +7,6 @@ import FixedPrice from "./FixedPrice";
 import { useState } from "react";
 
 const SaleForm = () => {
-	const durationOptions = ["7 days", "14 days", "30 days", "90 days", "A year"];
-
 	const [type, setType] = useState(1);
 
 	return (
