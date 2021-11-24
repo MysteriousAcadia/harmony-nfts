@@ -116,17 +116,18 @@ const SaleHistory = () => {
 									<div className="font-semibold">47382 ONE</div>
 								</div>
 							</div>
-
-							<div className="my-8 rounded-md border-2 border-gray-300 py-4">
-								<table className="table-auto w-full">
-									<thead className="font-bold text-center border-b-2 border-gray-300">
+							<div className="my-8 rounded-md py-4">
+								<table className="table-auto w-full border-collapse border border-gray-300">
+									<thead className="font-bold text-center h-16">
 										<tr>
-											<th>Item</th>
-											<th>From</th>
-											<th>To</th>
-											<th>Price</th>
-											<th>Timestamp</th>
-											<th>Transaction</th>
+											<th className="border-b-2 border-gray-300">Item</th>
+											<th className="border-b-2 border-gray-300">From</th>
+											<th className="border-b-2 border-gray-300">To</th>
+											<th className="border-b-2 border-gray-300">Price</th>
+											<th className="border-b-2 border-gray-300">Timestamp</th>
+											<th className="border-b-2 border-gray-300">
+												Transaction
+											</th>
 										</tr>
 									</thead>
 									<tbody className="text-center divide-y gap-4 gap-y-4">
