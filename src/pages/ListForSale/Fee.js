@@ -23,7 +23,7 @@ const Fee = () => {
 						/>
 					</div>
 				</div>
-				<div className="flex flex-col flex-grow justify-between py-4 px-2 text-gray-300 font-light">
+				<div className="flex flex-col flex-grow justify-between py-4 px-2 text-gray-400 font-normal">
 					<div className="flex flex-row justify-between">
 						<div>Service Fee</div>
 						<div>4.00%</div>
@@ -38,7 +38,7 @@ const Fee = () => {
 					</div>
 				</div>
 				<div className="flex flex-row justify-center align-middle py-16">
-					<PrimaryWhite>Complete Listing</PrimaryWhite>
+					<PrimaryWhite className="px-8">Complete Listing</PrimaryWhite>
 				</div>
 			</div>
 		</div>
