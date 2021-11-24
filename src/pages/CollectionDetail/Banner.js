@@ -91,7 +91,7 @@ const Banner = ({ nftDetail = {} }) => {
 						<div className=" text-sm">$1,446.15</div>
 					</div>
 					<div className="flex">
-						<PrimaryButton className="my-4 mr-4"> Buy Now</PrimaryButton>
+						<PrimaryButton className="my-4 mr-4">Buy Now</PrimaryButton>
 						<SecondaryButton className="my-4">Make Offer</SecondaryButton>
 					</div>
 				</div>

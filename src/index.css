@@ -1,59 +1,59 @@
 body {
-  margin: 0;
-  font-family: "Plus Jakarta Sans"-apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: "Plus Jakarta Sans"-apple-system, BlinkMacSystemFont, "Segoe UI",
+		"Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+		"Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 div {
-  animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 .blue-gradient {
-  background: linear-gradient(173.02deg, #01e8da -70.92%, #01aee5 82.27%);
+	background: linear-gradient(173.02deg, #01e8da -70.92%, #01aee5 82.27%);
 }
 
 .blue-text {
-  background: linear-gradient(173.02deg, #01e8da -70.92%, #01aee5 82.27%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+	background: linear-gradient(173.02deg, #01e8da -70.92%, #01aee5 82.27%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .blur-glass {
-  background: rgba(175, 255, 250, 0.17);
-  background: rgba(255, 255, 255, 0.58);
-  box-shadow: 0px 4px 25px rgba(35, 35, 35, 0.29);
-  backdrop-filter: blur(15px);
-  border-radius: 12px;
-  /* backdrop-filter: blur(118px);
+	background: rgba(175, 255, 250, 0.17);
+	background: rgba(255, 255, 255, 0.58);
+	box-shadow: 0px 4px 25px rgba(35, 35, 35, 0.29);
+	backdrop-filter: blur(15px);
+	border-radius: 12px;
+	/* backdrop-filter: blur(118px);
   filter: blur(118px);
   -webkit-filter: blur(118px); */
 }
 
 .glass-2 {
-  background: rgba(255, 255, 255, 0.13);
-  box-shadow: 0px 4px 25px rgba(35, 35, 35, 0.29);
-  border-radius: 7px;
+	background: rgba(255, 255, 255, 0.13);
+	box-shadow: 0px 4px 25px rgba(35, 35, 35, 0.29);
+	border-radius: 7px;
 }
 
 .glass-3 {
-  background: rgba(255, 255, 255, 0.66);
-  box-shadow: 0px 0px 23px 22px rgba(0, 0, 0, 0.13);
-  backdrop-filter: blur(40px);
+	background: rgba(255, 255, 255, 0.66);
+	box-shadow: 0px 0px 23px 22px rgba(0, 0, 0, 0.13);
+	backdrop-filter: blur(40px);
 
-  border-radius: 7px;
+	border-radius: 7px;
 }
 
 .glass-background {
-  background: rgba(255, 255, 255, 0.04);
+	background: rgba(255, 255, 255, 0.04);
 }
 
 /* Notification Stuff */
@@ -66,320 +66,322 @@ code {
 .notification-container--top-full,
 .notification-container--top-left,
 .notification-container--top-right {
-  min-width: 700px;
-  position: absolute;
-  pointer-events: all
+	min-width: 700px;
+	position: absolute;
+	pointer-events: all;
 }
 
 .notification-container--bottom-center,
 .notification-container--center,
 .notification-container--top-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  left: calc(50% - 350px);
-  max-width: 800px
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	left: calc(50% - 350px);
+	max-width: 800px;
 }
 
 .notification-container--center {
-  top: 20px;
-  height: 100%;
-  pointer-events: none
+	top: 20px;
+	height: 100%;
+	pointer-events: none;
 }
 
 .notification-container--bottom-full,
 .notification-container--top-full {
-  width: 100%;
-  min-width: 100%
+	width: 100%;
+	min-width: 100%;
 }
 
 .notification-container--bottom-full {
-  bottom: 0
+	bottom: 0;
 }
 
 .flex-center {
-  min-width: 325px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  pointer-events: all
+	min-width: 325px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	pointer-events: all;
 }
 
 .notification-container--top-center {
-  top: 20px
+	top: 20px;
 }
 
 .notification-container--bottom-center {
-  bottom: 20px
+	bottom: 20px;
 }
 
 .notification-container--top-left {
-  left: 20px;
-  top: 20px
+	left: 20px;
+	top: 20px;
 }
 
 .notification-container--top-right {
-  right: 20px;
-  top: 20px
+	right: 20px;
+	top: 20px;
 }
 
 .notification-container--bottom-left {
-  left: 20px;
-  bottom: 20px
+	left: 20px;
+	bottom: 20px;
 }
 
 .notification-container--bottom-right {
-  bottom: 20px;
-  right: 20px
+	bottom: 20px;
+	right: 20px;
 }
 
 .notification-container--mobile-bottom,
 .notification-container--mobile-top {
-  pointer-events: all;
-  position: absolute
+	pointer-events: all;
+	position: absolute;
 }
 
 .notification-container--mobile-top {
-  right: 20px;
-  left: 20px;
-  top: 20px
+	right: 20px;
+	left: 20px;
+	top: 20px;
 }
 
 .notification-container--mobile-bottom {
-  right: 20px;
-  left: 20px;
-  bottom: 20px;
-  margin-bottom: -15px
+	right: 20px;
+	left: 20px;
+	bottom: 20px;
+	margin-bottom: -15px;
 }
 
 .notification__item--default {
-  background-color: #007bff;
-  border-left: 8px solid #0562c7
+	background-color: #007bff;
+	border-left: 8px solid #0562c7;
 }
 
 .notification__item--default .notification__timer {
-  background-color: #007bff
+	background-color: #007bff;
 }
 
 .notification__item--default .notification__timer-filler {
-  background-color: #fff
+	background-color: #fff;
 }
 
 .notification__item--default .notification__close {
-  background-color: #007bff
+	background-color: #007bff;
 }
 
-.notification__item--success {}
+.notification__item--success {
+}
 
-.notification__item--success .notification__timer {}
+.notification__item--success .notification__timer {
+}
 
-.notification__item--success .notification__timer-filler {}
+.notification__item--success .notification__timer-filler {
+}
 
-.notification__item--success .notification__close {}
+.notification__item--success .notification__close {
+}
 
 .notification__item--danger {
-  background-color: #dc3545;
-  border-left: 8px solid #bd1120
+	background-color: #dc3545;
+	border-left: 8px solid #bd1120;
 }
 
 .notification__item--danger .notification__timer {
-  background-color: #dc3545
+	background-color: #dc3545;
 }
 
 .notification__item--danger .notification__timer-filler {
-  background-color: #fff
+	background-color: #fff;
 }
 
 .notification__item--danger .notification__close {
-  background-color: #dc3545
+	background-color: #dc3545;
 }
 
 .notification__item--info {
-  background-color: #17a2b8;
-  border-left: 8px solid #138b9e
+	background-color: #17a2b8;
+	border-left: 8px solid #138b9e;
 }
 
 .notification__item--info .notification__timer {
-  display: hidden;
-  background-color: #17a2b8
+	display: hidden;
+	background-color: #17a2b8;
 }
 
 .notification__item--info .notification__timer-filler {
-  background-color: #fff
+	background-color: #fff;
 }
 
 .notification__item--info .notification__close {
-  background-color: #17a2b8
+	background-color: #17a2b8;
 }
 
 .notification__item--warning {
-  background-color: #eab000;
-  border-left: 8px solid #ce9c09
+	background-color: #eab000;
+	border-left: 8px solid #ce9c09;
 }
 
 .notification__item--warning .notification__timer {
-  background-color: #eab000
+	background-color: #eab000;
 }
 
 .notification__item--warning .notification__timer-filler {
-  background-color: #fff
+	background-color: #fff;
 }
 
 .notification__item--warning .notification__close {
-  background-color: #eab000
+	background-color: #eab000;
 }
 
 .notification__item--awesome {
-  background-color: #685dc3;
-  border-left: 8px solid #4c3fb1
+	background-color: #685dc3;
+	border-left: 8px solid #4c3fb1;
 }
 
 .notification__item--awesome .notification__timer {
-  background-color: #685dc3
+	background-color: #685dc3;
 }
 
 .notification__item--awesome .notification__timer-filler {
-  background-color: #fff
+	background-color: #fff;
 }
 
 .notification__item--awesome .notification__close {
-  background-color: #685dc3
+	background-color: #685dc3;
 }
 
 @keyframes timer {
-  0% {
-    width: 100%
-  }
+	0% {
+		width: 100%;
+	}
 
-  to {
-    width: 0
-  }
+	to {
+		width: 0;
+	}
 }
 
 .notifications-component {
-  position: fixed;
-  z-index: 9000;
-  pointer-events: none;
-  width: 100%;
-  height: 100%
+	position: fixed;
+	z-index: 9000;
+	pointer-events: none;
+	width: 100%;
+	height: 100%;
 }
 
 .notification__item {
-  background: rgba(255, 255, 255, 0.66);
-  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.13);
-  backdrop-filter: blur(40px);
-  display: flex;
-  /* Note: backdrop-filter has minimal browser support */
+	background: rgba(255, 255, 255, 0.66);
+	box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.13);
+	backdrop-filter: blur(40px);
+	display: flex;
+	/* Note: backdrop-filter has minimal browser support */
 
-  border-radius: 7px;
-  display: flex;
-  position: relative;
-  border-radius: 3px;
-  margin-bottom: 15px;
-  cursor: pointer
+	border-radius: 7px;
+	display: flex;
+	position: relative;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	cursor: pointer;
 }
 
 .notification-container--bottom-full .notification__item,
 .notification-container--top-full .notification__item {
-  margin-bottom: 0;
-  border-radius: 0
+	margin-bottom: 0;
+	border-radius: 0;
 }
 
 .notification__timer {
-  display: none;
-  width: 100%;
-  margin-top: 10px
+	display: none;
+	width: 100%;
+	margin-top: 10px;
 }
 
 .notification__timer,
 .notification__timer-filler {
-  height: 3px;
-  border-radius: 5px
+	height: 3px;
+	border-radius: 5px;
 }
 
 .notification__title {
-  background: rgba(189, 81, 81, 0.66);
-  color: #fff;
-  font: bold;
-  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.13);
-  backdrop-filter: blur(40px);
-  /* Note: backdrop-filter has minimal browser support */
+	background: rgba(189, 81, 81, 0.66);
+	color: #fff;
+	font: bold;
+	box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.13);
+	backdrop-filter: blur(40px);
+	/* Note: backdrop-filter has minimal browser support */
 
-  border-radius: 7px;
-  font-weight: 700;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 8px;
-  margin-right: 16px;
-  padding-right: 8px;
+	border-radius: 7px;
+	font-weight: 700;
+	font-size: 14px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 8px;
+	margin-right: 16px;
+	padding-right: 8px;
 }
 
 .notification__message {
-  font-weight: bold;
-  color: #115C70;
-  max-width: calc(100% - 15px);
-  font-size: 14px;
-  line-height: 150%;
-  word-wrap: break-word;
-  margin-bottom: 0;
-  margin-top: 0
+	font-weight: bold;
+	color: #115c70;
+	max-width: calc(100% - 15px);
+	font-size: 14px;
+	line-height: 150%;
+	word-wrap: break-word;
+	margin-bottom: 0;
+	margin-top: 0;
 }
 
 .notification__content {
-  padding: 8px 15px;
-  display: flex;
-  align-items: center;
-  width: 100%;
-
-
+	padding: 8px 15px;
+	display: flex;
+	align-items: center;
+	width: 100%;
 }
 
 .notification__close {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: inline-block;
-  align-self: right;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	display: inline-block;
+	align-self: right;
 }
 
 .notification__close:after {
-  content: "\D7";
-  position: absolute;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  font-size: 12px;
-  left: 50%;
-  top: 50%
+	content: "\D7";
+	position: absolute;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-size: 12px;
+	left: 50%;
+	top: 50%;
 }
 
 .notification-container--mobile-bottom .notification,
 .notification-container--mobile-bottom .notification__item,
 .notification-container--mobile-top .notification,
 .notification-container--mobile-top .notification__item {
-  max-width: 100%;
-  width: 100%
+	max-width: 100%;
+	width: 100%;
 }
 
 .notification-container--bottom-right .notification,
 .notification-container--top-right .notification {
-  margin-left: auto
+	margin-left: auto;
 }
 
 .notification-container--bottom-left .notification,
 .notification-container--top-left .notification {
-  margin-right: auto
+	margin-right: auto;
 }
 
 .notification-container--mobile-bottom .notification,
 .notification-container--mobile-top .notification {
-  width: 60vw;
-  margin-left: auto;
-  margin-right: auto
+	width: 60vw;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 @tailwind base;
