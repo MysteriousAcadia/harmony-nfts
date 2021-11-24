@@ -17,3 +17,28 @@ export const connectContracts = async (signer) => {
   );
   console.log("Connected to contracts");
 };
+
+export const bid = async (token, tokenId, value) => {
+  try {
+    const transaction = await marketContract.bid(token, tokenId, value);
+    const receipt = await transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const buy = async (token, tokenId, currency, value) => {
+  try {
+    const transaction = await marketContract.buy(
+      token,
+      tokenId,
+      currency,
+      value
+    );
+    const receipt = await transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
