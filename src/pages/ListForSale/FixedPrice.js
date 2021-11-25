@@ -1,6 +1,5 @@
 import ReactTooltip from "react-tooltip";
 
-import ONEInput from "components/Inputs/ONEInput/index";
 import ONEInputLight from "components/Inputs/ONEInput/light";
 import LightDropdown from "components/Dropdowns/LightDropdown/index";
 
@@ -15,7 +14,7 @@ const FixedPrice = () => {
 				<div className="flex flex-col flex-grow justify-start pr-32">
 					<div className="mb-10">
 						<div className="mb-4 font-semibold text-xl text-white">Price</div>
-						<ONEInput />
+						<ONEInputLight />
 					</div>
 
 					<div className="mb-10 text-white flex flex-col flex-grow">

@@ -1,6 +1,5 @@
 import ReactTooltip from "react-tooltip";
 
-import ONEInput from "components/Inputs/ONEInput/index";
 import ONEInputLight from "components/Inputs/ONEInput/light";
 import LightDropdown from "components/Dropdowns/LightDropdown/index";
 
@@ -16,7 +15,7 @@ const TimedAuction = () => {
 					<div className="mb-4 font-semibold text-xl text-white">
 						Starting Price
 					</div>
-					<ONEInput />
+					<ONEInputLight />
 				</div>
 
 				<div className="mb-10 text-white">
