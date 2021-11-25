@@ -21,6 +21,7 @@ const CollectionDetail = ({ }) => {
     id
     token
     tokenId
+    image
     market{
       id
       currencyStats{

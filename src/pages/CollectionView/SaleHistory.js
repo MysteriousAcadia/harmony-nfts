@@ -117,6 +117,7 @@ const data = [
 const SaleHistory = ({ historyOpen, setHistoryOpen }) => {
 	const [saleData, setSaleData] = useState();
 	const [selectedTime, setSelectedTime] = useState(0);
+	const [chartData, setChartData] = useState([]);
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await graphQlInstance.post("/graphql", {
@@ -144,6 +145,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 			});
 			console.log(result.data);
 			setSaleData(result.data?.data?.sales);
+			setChartData(result.data?.data?.sales?.map(e => ({ timestamp: formatDate(e.timestamp), value: parseFloat(utils.formatEther(e.price || 0)) })))
 		};
 		fetchData();
 	}, [selectedTime]);
@@ -156,6 +158,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 		"Last year",
 		"All time",
 	];
+	console.log(chartData);
 
 	return (
 		<Transition.Root show={historyOpen} as={Fragment}>
@@ -253,36 +256,39 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 							</div>
 
 							<div className="text-white my-8 py-4 border-2 border-gray-300 rounded-lg">
-								<LineChart
-									width={500}
-									height={300}
-									data={data}
-									margin={{
-										top: 5,
-										right: 30,
-										left: 20,
-										bottom: 5,
-									}}>
-									<CartesianAxis />
-									<XAxis
-										dataKey="name"
-										stroke="rgb(17, 92, 112)"
-										padding={{ left: 20 }}
-									/>
-									<YAxis
-										dataKey="pv"
-										axisLine="false"
-										tickLine="false"
-										stroke="rgb(17, 92, 112)"
-									/>
-									<Tooltip />
-									<Line
-										type="monotone"
-										dataKey="pv"
-										stroke="rgb(17, 92, 112)"
-										activeDot={{ r: 8 }}
-									/>
-								</LineChart>
+								<div className="mx-auto">
+									<LineChart
+										width={800}
+										height={300}
+										data={chartData}
+										margin={{
+											top: 5,
+											right: 30,
+											left: 20,
+											bottom: 5,
+										}}>
+										<CartesianAxis />
+										<XAxis
+											dataKey="timestamp"
+											stroke="rgb(17, 92, 112)"
+											padding={{ left: 20 }}
+										/>
+										<YAxis
+
+											dataKey="value"
+											axisLine="false"
+											tickLine="false"
+											stroke="rgb(17, 92, 112)"
+										/>
+										<Tooltip />
+										<Line
+											type="monotone"
+											dataKey="value"
+											stroke="rgb(17, 92, 112)"
+											activeDot={{ r: 8 }}
+										/>
+									</LineChart>
+								</div>
 							</div>
 
 							<div className="my-8 rounded-lg fixed-header py-4 overflow-auto">
