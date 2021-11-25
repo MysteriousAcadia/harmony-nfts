@@ -76,6 +76,20 @@ const SaleRow = ({ data = {} }) => {
 	);
 };
 
+const CustomTooltip = ({ active, payload, label }) => {
+	if (active && payload && payload.length) {
+		return (
+			<div className="bg-main-default p-4 rounded-lg text-white">
+				<p className="label">{`Sales: `}</p>
+				<p className="label">{`Avg Price: `}</p>
+				<p className="label">{`Volume: `}</p>
+			</div>
+		);
+	}
+
+	return null;
+};
+
 const SaleHistory = ({ historyOpen, setHistoryOpen }) => {
 	const [saleData, setSaleData] = useState();
 	const [selectedTime, setSelectedTime] = useState(0);
@@ -105,6 +119,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 
 `,
 			});
+
 			console.log(result.data);
 			setSaleData(result.data?.data?.sales);
 			setChartData(
@@ -222,7 +237,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 								</div>
 							</div>
 
-							<div className="text-white my-8 py-4 border-2 border-gray-300 rounded-lg">
+							<div className="text-white my-8 py-8 border-2 border-gray-300 rounded-lg">
 								<div className="mx-auto">
 									<LineChart
 										width={800}
@@ -234,7 +249,6 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 											left: 20,
 											bottom: 5,
 										}}>
-										<CartesianAxis />
 										<XAxis
 											dataKey="timestamp"
 											padding={{ left: 20 }}
@@ -251,7 +265,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 											padding={{ left: 20 }}
 											tick={{ fontSize: "1.1rem", fontWeight: "semibold" }}
 										/>
-										<Tooltip />
+										<Tooltip content={<CustomTooltip />} />
 										<Line
 											type="monotone"
 											dataKey="value"
