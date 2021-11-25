@@ -1,8 +1,20 @@
-import ReactTooltip from "react-tooltip";
+import Tippy from "@tippyjs/react";
 
 import PrimaryWhite from "components/Buttons/PrimaryWhite";
 
 import InfoIcon from "assets/info_icon.svg";
+
+const TooltipPopup = () => {
+	return (
+		<div className="bg-main-default">
+			<div className="text-white font-light text-md p-2">
+				If you don’t receive any bids equal <br />
+				to or greater than you reserve, the
+				<br /> auction will end without sale.
+			</div>
+		</div>
+	);
+};
 
 const Fee = () => {
 	return (
@@ -11,18 +23,12 @@ const Fee = () => {
 				<div className="flex flex-row">
 					<div className="mb-4 font-semibold text-xl text-white">Fees</div>
 					<div>
-						<img
-							src={InfoIcon}
-							alt="Information"
-							className="mt-2 mx-2"
-							data-tip="If you don’t receive any bids equal to or greater than you reserve, the auction will end without sale."
-						/>
-						<ReactTooltip
-							place="bottom"
-							type="dark"
-							effect="solid"
-							event="click"
-						/>
+						<Tippy
+							content={<TooltipPopup />}
+							placement="bottom-start"
+							className="bg-main-default">
+							<img src={InfoIcon} alt="Information" className="mt-2 mx-2" />
+						</Tippy>
 					</div>
 				</div>
 				<div className="flex flex-col flex-grow justify-between py-4 px-2 text-gray-200 font-light">

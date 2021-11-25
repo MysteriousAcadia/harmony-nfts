@@ -1,9 +1,21 @@
-import ReactTooltip from "react-tooltip";
+import Tippy from "@tippyjs/react";
 
 import ONEInputLight from "components/Inputs/ONEInput/light";
 import LightDropdown from "components/Dropdowns/LightDropdown/index";
 
 import InfoIcon from "assets/info_icon.svg";
+
+const TooltipPopup = () => {
+	return (
+		<div className="bg-main-default">
+			<div className="text-white font-light text-md p-2">
+				If you don’t receive any bids equal <br />
+				to or greater than you reserve, the
+				<br /> auction will end without sale.
+			</div>
+		</div>
+	);
+};
 
 const TimedAuction = () => {
 	const durationOptions = ["7 days", "14 days", "30 days", "90 days", "A year"];
@@ -38,18 +50,16 @@ const TimedAuction = () => {
 							<div className="flex flex-row">
 								<div>Include Reserve Price</div>
 								<div>
-									<img
-										src={InfoIcon}
-										alt="Information"
-										className="mt-2 mx-2"
-										data-tip="If you don’t receive any bids equal to or greater than you reserve, the auction will end without sale."
-									/>
-									<ReactTooltip
-										place="bottom"
-										type="dark"
-										effect="solid"
-										event="click"
-									/>
+									<Tippy
+										content={<TooltipPopup />}
+										placement="bottom-start"
+										className="bg-main-default">
+										<img
+											src={InfoIcon}
+											alt="Information"
+											className="mt-2 mx-2"
+										/>
+									</Tippy>
 								</div>
 							</div>
 						</div>
