@@ -56,7 +56,9 @@ const Banner = ({ nftDetail = {} }) => {
 			}
 			else if (currentSellOrder) {
 				return (<div className="flex">
-					<PrimaryButton className="my-4 mr-4">Buy Now</PrimaryButton>
+					<PrimaryButton
+						// onClick={()}
+						className="my-4 mr-4">Buy Now</PrimaryButton>
 				</div>);
 			}
 			else {

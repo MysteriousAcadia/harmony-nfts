@@ -18,7 +18,7 @@ const StatsCard = ({ value, title }) => {
 
 const Cover = ({ collectionDetail = {}, openHistory }) => {
 	console.log(collectionDetail);
-	const { name, totalNfts, currencyStats = [{}] } = collectionDetail;
+	const { name, totalNfts, currencyStats = [{}] } = collectionDetail || {};
 	const { floor = "0", volume = "0", fees = "0" } = currencyStats[0];
 	const stats = [
 		{

@@ -2,6 +2,7 @@ import logoLight from "assets/logo_light.png";
 import PrimaryButton from "components/Buttons/Primary";
 import SecondaryButton from "components/Buttons/Secondary";
 import { bid } from "web3Integration";
+import { useNavigate } from "react-router-dom";
 const Stats = () => {
   const stats = [
     { value: "10k+", title: "Artworks" },
@@ -15,9 +16,8 @@ const Stats = () => {
           return (
             <>
               <div
-                className={`${
-                  index === 0 ? "pr-8" : "px-8"
-                } py-2 flex flex-col my-8 items-center justify-between`}
+                className={`${index === 0 ? "pr-8" : "px-8"
+                  } py-2 flex flex-col my-8 items-center justify-between`}
               >
                 <div className="font-bold text-2xl">{stat.value}</div>
                 <div className=" mt-4 text-base">{stat.title}</div>
@@ -101,6 +101,7 @@ const BidCard = () => {
   );
 };
 const LandingSection = () => {
+  const navigator = useNavigate();
   return (
     <>
       <div className="flex container px-4 mx-auto text-white items-start justify-between pt-8 pb-16">
@@ -117,7 +118,9 @@ const LandingSection = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </div>
-          <PrimaryButton className="my-4"> Explore Marketplace</PrimaryButton>
+          <PrimaryButton
+            onClick={() => navigator("/collections")}
+            className="my-4"> Explore Marketplace</PrimaryButton>
           <Stats />
         </div>
         <div className="">
