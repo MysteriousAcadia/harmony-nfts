@@ -18,6 +18,7 @@ export const connectContracts = async (signer) => {
   console.log("Connected to contracts");
 };
 
+/** marketplace functions */
 export const bid = async (token, tokenId, value) => {
   try {
     const transaction = await marketContract.bid(token, tokenId, value);
@@ -84,6 +85,105 @@ export const getNftOwner = (token, tokenId) => {
   try {
     const owner = marketContract.getNftOwner(token, tokenId);
     console.log(owner);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const cancelSell = (token, tokenId) => {
+  try {
+    const transaction = marketContract.cancelSell(token, tokenId);
+    const receipt = transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const endAuction = (token, tokenId) => {
+  try {
+    const transaction = marketContract.endAuction(token, tokenId);
+    const receipt = transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const sell = (token, tokenId, currency, price) => {
+  try {
+    const transaction = marketContract.sell(token, tokenId, currency, price);
+    const receipt = transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const setMarketFee = (token, fee, reflectionFee) => {
+  try {
+    const transaction = marketContract.setMarketFee(token, fee, reflectionFee);
+    const receipt = transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const setMarketState = (token, active) => {
+  try {
+    const transaction = marketContract.setMarketState(token, active);
+    const receipt = transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const transferOwnership = async (newOwner) => {
+  try {
+    const transaction = await marketContract.transferOwnership(newOwner);
+    const receipt = await transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const withdraw = async (currency) => {
+  try {
+    const transaction = await marketContract.withdraw(currency);
+    const receipt = await transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const withdrawNft = async (token, tokenId) => {
+  try {
+    const transaction = await marketContract.withdrawNft(token, tokenId);
+    const receipt = await transaction.wait();
+    console.log(receipt);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/** registry functions */
+export const getFees = async (harmoonieIds) => {
+  try {
+    const fees = await feeContract.getFees(harmoonieIds);
+    console.log(fees);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const register = async (harmoonieId, currency) => {
+  try {
+    const register = await feeContract.register(harmoonieId, currency);
+    console.log(register);
   } catch (error) {
     console.log(error);
   }
