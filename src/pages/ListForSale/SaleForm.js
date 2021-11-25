@@ -8,6 +8,10 @@ import FixedPrice from "./FixedPrice";
 import DollarIcon from "assets/dollar_icon.svg";
 import ClockIcon from "assets/clock_icon.svg";
 
+function classNames(...classes) {
+	return classes.filter(Boolean).join(" ");
+}
+
 const SaleForm = () => {
 	const [type, setType] = useState(1);
 
@@ -18,13 +22,23 @@ const SaleForm = () => {
 				<div className="flex flex-row mb-24">
 					{/* Using div as button with onClick handler for flex grow */}
 					<div
-						className="flex flex-col flex-grow h-32 text-center border-2 border-gray-300 rounded-lg py-4 mx-4"
+						className={
+							"flex flex-col flex-grow h-32 text-center border-2 border-gray-300 rounded-lg py-4 mx-4" +
+							(type === 1
+								? "border-4 border-green-200 bg-green-100 bg-opacity-40 text-white font-semibold"
+								: "")
+						}
 						onClick={() => setType(type === 1 ? 2 : 1)}>
 						<img src={DollarIcon} />
 						<div>Fixed Price</div>
 					</div>
 					<div
-						className="flex flex-col flex-grow h-32 text-center border-2 border-gray-300 rounded-lg py-4 mx-4"
+						className={
+							"flex flex-col flex-grow h-32 text-center border-2 border-gray-300 rounded-lg py-4 mx-4" +
+							(type === 2
+								? "border-4 border-green-200 bg-green-100 bg-opacity-40 text-white font-semibold"
+								: "")
+						}
 						onClick={() => setType(type === 2 ? 1 : 2)}>
 						<img src={ClockIcon} style={{ height: "75.3594px" }} />
 						<div>Timed Auction</div>
