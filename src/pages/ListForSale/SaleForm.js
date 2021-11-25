@@ -32,6 +32,7 @@ const SaleForm = () => {
 						<img src={DollarIcon} />
 						<div>Fixed Price</div>
 					</div>
+
 					<div
 						className={
 							"flex flex-col flex-grow h-32 text-center border-2 border-gray-300 rounded-lg py-4 mx-4" +
