@@ -6,7 +6,7 @@ import {
 	Line,
 	XAxis,
 	YAxis,
-	CartesianAxis,
+	ResponsiveContainer,
 	Tooltip,
 } from "recharts";
 
@@ -237,50 +237,52 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 								</div>
 							</div>
 
-							<div className="text-white my-8 py-8 border-2 border-gray-300 rounded-lg">
-								<div className="mx-auto">
-									<LineChart
-										width={800}
-										height={300}
-										data={chartData}
-										margin={{
-											top: 5,
-											right: 30,
-											left: 20,
-											bottom: 5,
-										}}>
-										<XAxis
-											dataKey="timestamp"
-											padding={{ left: 20 }}
-											tickLine={false}
-											axisLine={false}
-											stroke="rgb(17, 92, 112)"
-											style={{
-												fontSize: "1.1rem",
-												fontWeight: "600",
-											}}
-										/>
-										<YAxis
-											dataKey="value"
-											tickLine={false}
-											axisLine={false}
-											stroke="rgb(17, 92, 112)"
-											padding={{ bottom: 20 }}
-											style={{
-												fontSize: "1.1rem",
-												fontWeight: "600",
-											}}
-										/>
-										{/* tick={{ fontSize: "1.1rem", fontWeight: "semibold" }} */}
-										<Tooltip content={<CustomTooltip />} />
-										<Line
-											type="monotone"
-											dataKey="value"
-											stroke="rgb(17, 92, 112)"
-											strokeWidth={2}
-										/>
-									</LineChart>
-								</div>
+							<div className="text-white my-8 py-8 border-2 border-gray-300 rounded-lg w-full h-full">
+								<ResponsiveContainer width="100%" height="100%">
+									<div className="mx-auto">
+										<LineChart
+											width={800}
+											height={300}
+											data={chartData}
+											margin={{
+												top: 5,
+												right: 30,
+												left: 20,
+												bottom: 5,
+											}}>
+											<XAxis
+												dataKey="timestamp"
+												padding={{ left: 20 }}
+												tickLine={false}
+												axisLine={{ stroke: "rgb(209, 213, 219)" }}
+												dy={10}
+												stroke="rgb(17, 92, 112)"
+												style={{
+													fontSize: "1.1rem",
+													fontWeight: "600",
+												}}
+											/>
+											<YAxis
+												dataKey="value"
+												tickLine={false}
+												axisLine={false}
+												stroke="rgb(17, 92, 112)"
+												padding={{ bottom: 20 }}
+												style={{
+													fontSize: "1.1rem",
+													fontWeight: "600",
+												}}
+											/>
+											<Tooltip content={<CustomTooltip />} />
+											<Line
+												type="monotone"
+												dataKey="value"
+												stroke="rgb(17, 92, 112)"
+												strokeWidth={2}
+											/>
+										</LineChart>
+									</div>
+								</ResponsiveContainer>
 							</div>
 
 							<div className="my-8 rounded-lg fixed-header py-4 overflow-auto">
