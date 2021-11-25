@@ -7,6 +7,7 @@ import {
 	XAxis,
 	YAxis,
 	ResponsiveContainer,
+	CartesianGrid,
 	Tooltip,
 } from "recharts";
 
@@ -273,6 +274,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 													fontWeight: "600",
 												}}
 											/>
+											<CartesianGrid vertical={false} />
 											<Tooltip content={<CustomTooltip />} />
 											<Line
 												type="monotone"
