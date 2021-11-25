@@ -1,7 +1,9 @@
 import Tippy from "@tippyjs/react";
+import { ToggleSlider } from "react-toggle-slider";
 
 import ONEInputLight from "components/Inputs/ONEInput/light";
 import LightDropdown from "components/Dropdowns/LightDropdown/index";
+import TextInput from "components/Inputs/TextInput";
 
 import InfoIcon from "assets/info_icon.svg";
 
@@ -47,15 +49,18 @@ const FixedPrice = () => {
 					</div>
 
 					<div className="mb-10">
-						<div className="flex flex-row">
+						<div className="flex flex-row justify-between">
 							<div className="mb-4 font-semibold text-xl text-white">
-								<div className="flex flex-row">
-									<div>Reserve for specific buyer</div>
-								</div>
+								Reserve for specific buyer
 							</div>
-							<div>Slider</div>
+							<div>
+								<ToggleSlider
+									handleBackgroundColorActive="white"
+									barBackgroundColorActive="#9BD399"
+								/>
+							</div>
 						</div>
-						<ONEInputLight />
+						<TextInput className="w-full" />
 					</div>
 				</div>
 			</div>
