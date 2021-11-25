@@ -1,5 +1,6 @@
 import Tippy from "@tippyjs/react";
 import { ToggleSlider } from "react-toggle-slider";
+import { useState } from "react";
 
 import ONEInputLight from "components/Inputs/ONEInput/light";
 import LightDropdown from "components/Dropdowns/LightDropdown/index";
@@ -23,6 +24,8 @@ const TooltipPopup = () => {
 
 const FixedPrice = () => {
 	const durationOptions = ["7 days", "14 days", "30 days", "90 days", "A year"];
+
+	const [toggle, setToggle] = useState(false);
 
 	return (
 		<>
@@ -57,10 +60,11 @@ const FixedPrice = () => {
 								<ToggleSlider
 									handleBackgroundColorActive="white"
 									barBackgroundColorActive="#9BD399"
+									onToggle={state => setToggle(state)}
 								/>
 							</div>
 						</div>
-						<TextInput className="w-full" />
+						{toggle && <TextInput className="w-full" />}
 					</div>
 				</div>
 			</div>
