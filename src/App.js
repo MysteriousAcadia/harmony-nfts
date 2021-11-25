@@ -22,6 +22,7 @@ import { Harmony } from "@harmony-js/core";
 import Profile from "pages/Profile/index";
 import AboutUs from "pages/AboutUs/index";
 import ListForSale from "pages/ListForSale/index";
+import Stats from "pages/Stats/index";
 
 function getLibrary(provider) {
   var library;
@@ -85,8 +86,8 @@ function App() {
                   <Route path="/nfts/:id" element={<CollectionDetail />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/about" element={<AboutUs />} />
-
-                  <Route path="/test" element={<ListForSale />} />
+                  <Route path="/stats" element={<Stats />} />
+                  <Route path="/collections/:marketId/:id/sale" element={<ListForSale />} />
                 </Routes>
                 <Footer />
               </div>
