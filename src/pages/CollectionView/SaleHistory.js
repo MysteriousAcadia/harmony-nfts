@@ -266,14 +266,18 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 									<CartesianAxis />
 									<XAxis
 										dataKey="name"
+										tickLine={false}
+										axisLine={false}
 										stroke="rgb(17, 92, 112)"
 										padding={{ left: 20 }}
+										tick={{ fontSize: "1.1rem", fontWeight: "semibold" }}
 									/>
 									<YAxis
 										dataKey="pv"
-										axisLine="false"
-										tickLine="false"
+										axisLine={false}
+										tickLine={false}
 										stroke="rgb(17, 92, 112)"
+										padding={{ bottom: 20 }}
 									/>
 									<Tooltip />
 									<Line
