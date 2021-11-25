@@ -7,7 +7,7 @@ import InfoIcon from "assets/info_icon.svg";
 
 const TooltipPopup = () => {
 	return (
-		<div className="bg-main-default">
+		<div className="bg-main-default rounded-lg">
 			<div className="text-white font-light text-md p-2">
 				If you don’t receive any bids equal <br />
 				to or greater than you reserve, the
@@ -43,7 +43,7 @@ const FixedPrice = () => {
 										<Tippy
 											content={<TooltipPopup />}
 											placement="bottom-start"
-											className="bg-main-default">
+											className="bg-main-default rounded-lg">
 											<img
 												src={InfoIcon}
 												alt="Information"
