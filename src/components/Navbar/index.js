@@ -67,7 +67,7 @@ const Navbar = () => {
   const walletConnectNotification = () => {
     store.addNotification({
       title: "Success",
-      message: "Wallet Connected Successfully@",
+      message: "Wallet Connected Successfully",
       type: "success",
       insert: "top",
       width: 1024,
@@ -170,7 +170,7 @@ const Navbar = () => {
                 Stats
               </Link>
               <Link
-                to="/faq"
+                to="/about"
                 className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
               >
                 FAQ

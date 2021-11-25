@@ -3,7 +3,7 @@ import MultiSelectDropdown from "components/Dropdowns/MultiSelectDropdown/index"
 
 const Filters = ({ collectionDetail = {} }) => {
 	console.log(collectionDetail);
-	const { attributes = [] } = collectionDetail;
+	const { attributes = [] } = collectionDetail || {};
 	return (
 		<>
 			<div className="container px-4 mx-auto">

@@ -1,20 +1,44 @@
 import { Disclosure } from "@headlessui/react";
+import graphQlInstance from "config/axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 
-const NFTCard = () => {
+const NFTCard = ({ image, tokenId }) => {
 	return (
 		<>
 			<div className="glass-2 w-full p-4 m-4 tex-sm">
-				<div className="w-full bg-gray-300 h-64"></div>
+				<div className="w-full bg-gray-300 h-64" style={{ backgroundImage: `url("${image}")`, backgroundSize: "cover" }}></div>
 				<div className="flex justify-between items-center mt-8 font-bold">
-					<span>Harmoonie #234</span>
-					<span>500 ONE</span>
+					<span>Harmoonie #{tokenId}</span>
 				</div>
 			</div>
 		</>
 	);
 };
 
-const ExploreMore = ({}) => {
+const ExploreMore = ({ }) => {
+	const { marketId } = useParams();
+	const navigate = useNavigate();
+	const [nfts, setNfts] = useState([]);
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await graphQlInstance.post("/graphql", {
+				query: `{
+  nfts(first:3,where:{market:"${marketId}"}){
+    image
+    tokenId
+  }
+}
+				`
+			})
+			setNfts(data?.data?.data?.nfts);
+
+
+		}
+		fetchData()
+	}, [marketId])
 	return (
 		<>
 			<div className="container px-4 mx-auto text-white">
@@ -36,11 +60,12 @@ const ExploreMore = ({}) => {
 								as="div"
 								className="mt-2 p-6 border-t border-gray-400 pr-12">
 								<p className="flex items-center justify-between">
-									<NFTCard />
-									<NFTCard />
-									<NFTCard />
+									{nfts.map((e) => <NFTCard{...e} />)}
 
-									<div className="flex-grow text-center text-lg w-2/3">
+
+									<div
+										onClick={() => navigate(`/collections/${marketId}`)}
+										className=" cursor-pointer flex-grow text-center text-lg w-2/3">
 										View All ->
 									</div>
 								</p>

@@ -1,5 +1,5 @@
 const axios = require("axios")
 const graphQlInstance = axios.create({
-    baseURL: "http://marketplace-api.freyala.com:8080/",
+    baseURL: "https://marketplace-api.freyala.com/",
 });
 export default graphQlInstance;
