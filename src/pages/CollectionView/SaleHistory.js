@@ -280,7 +280,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 												type="monotone"
 												dataKey="value"
 												stroke="rgb(17, 92, 112)"
-												strokeWidth={2}
+												strokeWidth={4}
 											/>
 										</LineChart>
 									</div>
