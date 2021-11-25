@@ -1,6 +1,8 @@
-import InfoIcon from "assets/info_icon.svg";
 import ReactTooltip from "react-tooltip";
+
 import PrimaryWhite from "components/Buttons/PrimaryWhite";
+
+import InfoIcon from "assets/info_icon.svg";
 
 const Fee = () => {
 	return (

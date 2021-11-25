@@ -1,5 +1,6 @@
+import { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { utils } from "ethers";
 import {
 	LineChart,
 	Line,
@@ -10,15 +11,15 @@ import {
 	Legend,
 	ResponsiveContainer,
 } from "recharts";
+
+import graphQlInstance from "config/axios";
+import { oneToUSD } from "utils/currency";
+import { formatDate, formatTime } from "utils/date";
 import DarkDropdownWithIcon from "components/Dropdowns/DarkDropdown/icon";
+
 import SaleIcon from "assets/sale_icon.svg";
 import LinkIconDark from "assets/copy_link_icon.svg";
 import CloseIcon from "assets/close_icon.svg";
-import graphQlInstance from "config/axios";
-import { useEffect } from "react";
-import { utils } from "ethers";
-import { oneToUSD } from "utils/currency";
-import { formatDate, formatTime } from "utils/date";
 import "./style.css";
 
 const SaleRow = ({ data = {} }) => {

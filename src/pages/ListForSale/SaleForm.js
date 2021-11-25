@@ -1,10 +1,12 @@
-import DollarIcon from "assets/dollar_icon.svg";
-import ClockIcon from "assets/clock_icon.svg";
+import { useState } from "react";
+
 import Fee from "./Fee";
 import Artwork from "./Artwork";
 import TimedAuction from "./TimedAuction";
 import FixedPrice from "./FixedPrice";
-import { useState } from "react";
+
+import DollarIcon from "assets/dollar_icon.svg";
+import ClockIcon from "assets/clock_icon.svg";
 
 const SaleForm = () => {
 	const [type, setType] = useState(1);

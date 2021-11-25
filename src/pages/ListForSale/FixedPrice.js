@@ -1,9 +1,10 @@
-import InfoIcon from "assets/info_icon.svg";
+import ReactTooltip from "react-tooltip";
+
 import ONEInput from "components/Inputs/ONEInput/index";
 import ONEInputLight from "components/Inputs/ONEInput/light";
 import LightDropdown from "components/Dropdowns/LightDropdown/index";
 
-import ReactTooltip from "react-tooltip";
+import InfoIcon from "assets/info_icon.svg";
 
 const FixedPrice = () => {
 	const durationOptions = ["7 days", "14 days", "30 days", "90 days", "A year"];

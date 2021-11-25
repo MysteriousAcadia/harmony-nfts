@@ -1,13 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
-import Dashboard from "pages/Dashboard/index";
-import AllCollections from "pages/AllCollections/index";
-import Navbar from "components/Navbar/index";
-import Footer from "components/Footer/index";
-import CollectionView from "pages/CollectionView/index";
-import CollectionDetail from "pages/CollectionDetail/index";
 import ReactNotification from "react-notifications-component";
-
 import { DAppProvider, ChainId } from "@usedapp/core";
 import {
 	ApolloProvider,
@@ -16,12 +8,20 @@ import {
 	InMemoryCache,
 } from "@apollo/client";
 import { Web3ReactProvider } from "@web3-react/core";
-import MakeOffer from "components/Modals/MakeOffer/index";
-import { Web3Provider } from "@ethersproject/providers";
 import { Harmony } from "@harmony-js/core";
+import { Web3Provider } from "@ethersproject/providers";
+
+import "./App.css";
+
+import Dashboard from "pages/Dashboard/index";
+import AllCollections from "pages/AllCollections/index";
+import CollectionView from "pages/CollectionView/index";
+import CollectionDetail from "pages/CollectionDetail/index";
 import Profile from "pages/Profile/index";
 import AboutUs from "pages/AboutUs/index";
 import ListForSale from "pages/ListForSale/index";
+import Footer from "components/Footer/index";
+import Navbar from "components/Navbar/index";
 
 function getLibrary(provider) {
 	var library;
