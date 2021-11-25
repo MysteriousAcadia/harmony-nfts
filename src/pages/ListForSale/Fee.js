@@ -8,9 +8,8 @@ const TooltipPopup = () => {
 	return (
 		<div className="bg-main-default rounded-lg">
 			<div className="text-white font-light text-md p-2">
-				If you don’t receive any bids equal <br />
-				to or greater than you reserve, the
-				<br /> auction will end without sale.
+				Listing is free. Once sold, the
+				<br /> following fees will be deducted.
 			</div>
 		</div>
 	);
