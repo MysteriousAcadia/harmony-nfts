@@ -252,7 +252,7 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 								</div>
 							</div>
 
-							<div className="text-white">
+							<div className="text-white my-8 py-4 border-2 border-gray-300 rounded-lg">
 								<LineChart
 									width={500}
 									height={300}
@@ -264,20 +264,29 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 										bottom: 5,
 									}}>
 									<CartesianAxis />
-									<XAxis dataKey="name" stroke="rgb(17, 92, 112)" />
-									<YAxis axisLine="false" />
+									<XAxis
+										dataKey="name"
+										stroke="rgb(17, 92, 112)"
+										padding={{ left: 20 }}
+									/>
+									<YAxis
+										dataKey="pv"
+										axisLine="false"
+										tickLine="false"
+										stroke="rgb(17, 92, 112)"
+									/>
 									<Tooltip />
 									<Line
 										type="monotone"
 										dataKey="pv"
-										stroke="#8884d8"
+										stroke="rgb(17, 92, 112)"
 										activeDot={{ r: 8 }}
 									/>
 								</LineChart>
 							</div>
 
-							<div className="my-8 rounded-md fixed-header py-4 overflow-auto">
-								<table className="table-auto w-full border-collapse border rounded-md border-gray-300">
+							<div className="my-8 rounded-lg fixed-header py-4 overflow-auto">
+								<table className="table-auto w-full border-collapse border rounded-lg border-gray-300">
 									<thead className="font-bold text-center h-16 px-4">
 										<tr>
 											<th className="border-b-2 border-gray-300"></th>
