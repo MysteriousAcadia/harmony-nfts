@@ -255,21 +255,29 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 											tickLine={false}
 											axisLine={false}
 											stroke="rgb(17, 92, 112)"
-											tick={{ fontSize: "1.1rem", fontWeight: "semibold" }}
+											style={{
+												fontSize: "1.1rem",
+												fontWeight: "600",
+											}}
 										/>
 										<YAxis
 											dataKey="value"
 											tickLine={false}
 											axisLine={false}
 											stroke="rgb(17, 92, 112)"
-											padding={{ left: 20 }}
-											tick={{ fontSize: "1.1rem", fontWeight: "semibold" }}
+											padding={{ bottom: 20 }}
+											style={{
+												fontSize: "1.1rem",
+												fontWeight: "600",
+											}}
 										/>
+										{/* tick={{ fontSize: "1.1rem", fontWeight: "semibold" }} */}
 										<Tooltip content={<CustomTooltip />} />
 										<Line
 											type="monotone"
 											dataKey="value"
 											stroke="rgb(17, 92, 112)"
+											strokeWidth={2}
 										/>
 									</LineChart>
 								</div>
