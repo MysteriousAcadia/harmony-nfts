@@ -18,6 +18,7 @@ export const connectContracts = async (signer) => {
   console.log("Connected to contracts");
 };
 
+/** marketplace functions */
 export const bid = async (token, tokenId, value) => {
   try {
     const transaction = await marketContract.bid(token, tokenId, value);
@@ -84,6 +85,25 @@ export const getNftOwner = (token, tokenId) => {
   try {
     const owner = marketContract.getNftOwner(token, tokenId);
     console.log(owner);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/** registry functions */
+export const getFees = async (harmoonieIds) => {
+  try {
+    const fees = await feeContract.getFees(harmoonieIds);
+    console.log(fees);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const register = async (harmoonieId, currency) => {
+  try {
+    const register = await feeContract.register(harmoonieId, currency);
+    console.log(register);
   } catch (error) {
     console.log(error);
   }
