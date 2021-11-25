@@ -1,6 +1,8 @@
-import InfoIcon from "assets/info_icon.svg";
 import ReactTooltip from "react-tooltip";
+
 import PrimaryWhite from "components/Buttons/PrimaryWhite";
+
+import InfoIcon from "assets/info_icon.svg";
 
 const Fee = () => {
 	return (
@@ -23,7 +25,7 @@ const Fee = () => {
 						/>
 					</div>
 				</div>
-				<div className="flex flex-col flex-grow justify-between py-4 px-2 text-gray-300 font-light">
+				<div className="flex flex-col flex-grow justify-between py-4 px-2 text-gray-200 font-light">
 					<div className="flex flex-row justify-between">
 						<div>Service Fee</div>
 						<div>4.00%</div>
@@ -38,7 +40,7 @@ const Fee = () => {
 					</div>
 				</div>
 				<div className="flex flex-row justify-center align-middle py-16">
-					<PrimaryWhite>Complete Listing</PrimaryWhite>
+					<PrimaryWhite className="px-8">Complete Listing</PrimaryWhite>
 				</div>
 			</div>
 		</div>

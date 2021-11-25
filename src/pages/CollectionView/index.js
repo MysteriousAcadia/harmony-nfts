@@ -1,7 +1,8 @@
+import { useState, useEffect } from "react";
+
 import graphQlInstance from "config/axios";
-import { useState } from "react";
-import { useEffect } from "react";
 import { useParams } from "react-router";
+
 import Cards from "./Cards";
 import Cover from "./Cover";
 import Filters from "./Filters";

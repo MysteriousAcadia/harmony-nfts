@@ -11,14 +11,14 @@ function classNames(...classes) {
 
 export default function DarkDropdownWithIcon({
 	options,
-	onChange = newOption => { },
+	onChange = newOption => {},
 	initialValue,
 }) {
 	const [currOptions, setCurrOptions] = useState(["Select..."]);
 	const [selectedOption, setSelectedOption] = useState();
 	useEffect(() => {
 		console.log(initialValue);
-		console.log(options)
+		console.log(options);
 		setCurrOptions(options);
 		if (initialValue) {
 			setSelectedOption(initialValue);
@@ -34,7 +34,7 @@ export default function DarkDropdownWithIcon({
 	return (
 		<Menu as="div" className="relative inline-block text-left">
 			<div>
-				<Menu.Button className="flex items-center justify-between w-40 px-3 py-3 text-main-default text-sm main-option">
+				<Menu.Button className="flex items-center justify-between w-40 px-3 py-3 text-main-default text-sm main-option border-main-default border-2">
 					<img src={OptionsIcon} className="pr-4" />
 					<div className="pr-4">{selectedOption}</div>
 					<img src={DownIcon} />

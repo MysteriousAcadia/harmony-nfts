@@ -45,7 +45,7 @@ export default function LightDropdown({
 				leave="transition ease-in duration-75"
 				leaveFrom="transform opacity-100 scale-100"
 				leaveTo="transform opacity-0 scale-95">
-				<Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white menu-background">
+				<Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white menu-background">
 					<div className="py-1">
 						{options.map(option => {
 							return (
