@@ -6,10 +6,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { utils } from "ethers";
 import { oneToUSD } from "utils/currency";
+import { buy, getNftOwner } from "web3Integration";
 
 
 const Banner = ({ nftDetail = {} }) => {
-	const { image, tokenId = "", currentOwner, currentSellOrder, currentAuction } = nftDetail || {};
+	const { image, token, tokenId = "", currentOwner, currentSellOrder, currentAuction } = nftDetail || {};
 	const { address: ownerAddress = "None" } = currentOwner || {};
 	const { endsAt, highestBid = 0, highestBidder = "None" } = currentAuction || {}
 	const { price = 0 } = currentSellOrder || {}
@@ -49,7 +50,7 @@ const Banner = ({ nftDetail = {} }) => {
 			}
 		}
 		else {
-			if (currentAuction) {
+			if (currentAuction && timeLeft > 0) {
 				return (<div className="flex">
 					<PrimaryButton className="my-4 mr-4">Place Bid</PrimaryButton>
 				</div>);
@@ -57,7 +58,7 @@ const Banner = ({ nftDetail = {} }) => {
 			else if (currentSellOrder) {
 				return (<div className="flex">
 					<PrimaryButton
-						// onClick={()}
+						onClick={() => buy(token, tokenId, price)}
 						className="my-4 mr-4">Buy Now</PrimaryButton>
 				</div>);
 			}
@@ -69,8 +70,8 @@ const Banner = ({ nftDetail = {} }) => {
 	}
 	const MainCard = () => {
 		return (
-			<div className=" h-60v w-40v p-2  rounded-lg">
-				<div className=" p-4 blur-glass h-60v mt-8 w-35v">
+			<div className=" w-40v p-2  rounded-lg">
+				<div className=" p-4 blur-glass mt-8 w-35v">
 					<img
 						src={image}
 						className="w-full bg-gray-200 rounded-md h-full bg-cover"
@@ -91,7 +92,7 @@ const Banner = ({ nftDetail = {} }) => {
 				<MainCard />
 				<div className="flex flex-col items-start ml-32">
 					<div className="inline-block font-bold text-5xl">Harmoonie #{tokenId}</div>
-					<div>
+					<div onClick={() => { getNftOwner(nftDetail.token, nftDetail.tokenId) }}>
 						Owned by{" "}
 						<u>
 							<b>@{ownerAddress}</b>
@@ -102,7 +103,7 @@ const Banner = ({ nftDetail = {} }) => {
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 						eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					</div>
-					{currentAuction && <>
+					{currentAuction && timeLeft > 0 && <>
 						<b className="mt-8">Sale Ends on {(new Date(endsAt * 1000)).toString()}</b>
 						<div className="flex flex-grow gap-8 mt-8 justify-between">
 							<div className="">

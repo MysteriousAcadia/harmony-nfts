@@ -108,7 +108,7 @@ const AboutUs = ({ }) => {
 					<div className="flex flex-col justify-center">
 						<img src={twitterIcon} alt="Twitter Icon" className="h-10" />
 						<div>
-							<a href="#" className="underline text-gray-300">
+							<a href="https://twitter.com/ArmooniaApp" target="_blank" className="underline text-gray-300">
 								Follow us on Twitter
 							</a>
 						</div>
@@ -116,7 +116,7 @@ const AboutUs = ({ }) => {
 					<div className="flex flex-col justify-center">
 						<img src={discordIcon} alt="Discord Icon" className="h-10" />
 						<div>
-							<a href="#" className="underline text-gray-300">
+							<a href="https://discord.com/invite/armoonia" target="_blank" className="underline text-gray-300">
 								Join our Discord here
 							</a>
 						</div>

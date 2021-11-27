@@ -9,7 +9,7 @@ import { store } from "react-notifications-component";
 import Metamask from "assets/metamask_icon.svg";
 import Harmony from "assets/harmony_icon.svg";
 
-export default function ConnectWallet({ open = false, setOpen = () => {} }) {
+export default function ConnectWallet({ open = false, setOpen = () => { } }) {
   const { activate, account, library } = useWeb3React();
   const { ethereum } = window;
   const onClickMetamask = async (connector) => {
@@ -31,6 +31,7 @@ export default function ConnectWallet({ open = false, setOpen = () => {} }) {
         ? library.provider
         : await library.getSigner(account);
     await connectContracts(data);
+    console.log(library);
   }, [library]);
 
   const setupNetwork = async (chainId, rpcUrl) => {

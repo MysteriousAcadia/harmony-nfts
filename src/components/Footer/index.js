@@ -1,19 +1,20 @@
 import logoFull from "assets/logo_full.svg";
+import { Link } from "react-router-dom";
 const navigation = {
 	marketplace: [
-		{ name: "Collections", href: "#" },
-		{ name: "Stats", href: "#" },
+		{ name: "Collections", href: "/collections" },
+		{ name: "Stats", href: "/stats" },
 	],
 	account: [
-		{ name: "Profile/Settings", href: "#" },
-		{ name: "Collected Items", href: "#" },
-		{ name: "Favorites", href: "#" },
-		{ name: "Followed Collections", href: "#" },
-		{ name: "Activity", href: "#" },
-		{ name: "Harmoonie Rewards", href: "#" },
+		{ name: "Profile/Settings", href: "/profile" },
+		{ name: "Collected Items", href: "/profile/1" },
+		{ name: "Favorites", href: "/profile/2" },
+		{ name: "Followed Collections", href: "/profile/3" },
+		{ name: "Activity", href: "/profile/4" },
+		{ name: "Harmoonie Rewards", href: "/profile/5" },
 	],
 	company: [
-		{ name: "About Us", href: "#" },
+		{ name: "About Us", href: "/about" },
 		{ name: "Privacy Policy", href: "#" },
 		{ name: "Cookie Policy", href: "#" },
 		{ name: "Terms & Conditions", href: "#" },
@@ -22,9 +23,10 @@ const navigation = {
 	social: [
 		{
 			name: "Discord",
-			href: "#",
+			href: "https://discord.gg/armoonia",
 			icon: props => (
 				<svg
+					className="cursor-pointer"
 					width="44"
 					height="46"
 					viewBox="0 0 44 46"
@@ -93,14 +95,16 @@ const navigation = {
 		},
 		{
 			name: "Twitter",
-			href: "#",
+			href: "https://twitter.com/ArmooniaApp",
+
 			icon: props => (
 				<svg
+					className="cursor-pointer"
 					width="34"
 					height="34"
 					viewBox="0 0 34 34"
 					fill="none"
-					xmlns="http://www.w3.org/2000/svg">
+					xmlns="http://www.w3.org/2000/svg" >
 					<g clip-path="url(#clip0_508_7138)">
 						<path
 							d="M32.13 1.87027C30.8835 0.623501 29.3818 0 27.6258 0H6.37569C4.61978 0 3.11801 0.623501 1.871 1.87027C0.624234 3.11727 0.000732422 4.61897 0.000732422 6.37496V27.6249C0.000732422 29.3807 0.624234 30.8826 1.871 32.1296C3.11801 33.3766 4.61978 34.0001 6.37569 34.0001H27.6256C29.3815 34.0001 30.8833 33.3766 32.1298 32.1296C33.3768 30.8826 34.0003 29.3808 34.0003 27.6249V6.37496C34.0002 4.61897 33.3767 3.11704 32.13 1.87027ZM26.0098 13.0821C26.0246 13.2149 26.0321 13.4138 26.0321 13.6799C26.0321 14.9195 25.8512 16.1628 25.4898 17.4094C25.1284 18.6567 24.5749 19.852 23.8294 20.9955C23.0846 22.139 22.1955 23.1502 21.1627 24.0281C20.1296 24.9058 18.8902 25.6071 17.4437 26.1305C15.9979 26.6548 14.4481 26.9169 12.7955 26.9169C10.228 26.9169 7.85211 26.2229 5.66799 24.8363C6.02215 24.8804 6.39128 24.9026 6.77474 24.9026C8.91459 24.9026 10.8404 24.2386 12.5522 22.9101C11.5489 22.8957 10.6523 22.5861 9.86287 21.9804C9.07322 21.3754 8.52368 20.6082 8.21371 19.6784C8.59726 19.7374 8.88497 19.7666 9.07678 19.7666C9.4014 19.7666 9.77781 19.7077 10.2056 19.5899C9.12842 19.383 8.221 18.8486 7.48314 17.9853C6.74513 17.1219 6.37624 16.1369 6.37624 15.0302V14.986C7.15813 15.3546 7.89599 15.5464 8.58966 15.5614C7.24675 14.661 6.57533 13.37 6.57533 11.6877C6.57533 10.8613 6.78916 10.0792 7.21713 9.34136C8.38281 10.7729 9.79976 11.9164 11.4671 12.7722C13.1345 13.628 14.9203 14.1079 16.8238 14.2111C16.7501 13.9307 16.7132 13.5764 16.7132 13.1486C16.7132 11.8645 17.167 10.769 18.0746 9.86136C18.9819 8.95378 20.0778 8.49984 21.3614 8.49984C22.7194 8.49984 23.8485 8.98697 24.7486 9.96098C25.7669 9.76917 26.756 9.39268 27.7149 8.83214C27.3461 9.96812 26.6595 10.8315 25.6565 11.4218C26.6154 11.2888 27.5079 11.038 28.3342 10.6691C27.7145 11.6135 26.9395 12.4178 26.0098 13.0821Z"
@@ -112,14 +116,15 @@ const navigation = {
 							<rect width="34" height="34" fill="white" />
 						</clipPath>
 					</defs>
-				</svg>
+				</svg >
 			),
 		},
 		{
 			name: "Website",
-			href: "#",
+			href: "https://armoonia.app/",
 			icon: props => (
 				<svg
+					className="cursor-pointer"
 					width="34"
 					height="33"
 					viewBox="0 0 34 33"
@@ -162,6 +167,7 @@ export default function Footer() {
 										<a
 											key={item.name}
 											href={item.href}
+											target="_blank"
 											className="text-gray-400 hover:text-gray-500">
 											<span className="sr-only">{item.name}</span>
 											<item.icon className="h-6 w-6" aria-hidden="true" />
@@ -174,11 +180,11 @@ export default function Footer() {
 								<ul role="list" className="mt-4 space-y-4 font-light">
 									{navigation.marketplace.map(item => (
 										<li key={item.name}>
-											<a
-												href={item.href}
+											<Link
+												to={item.href}
 												className="text-sm italic hover:text-gray-900">
 												{item.name}
-											</a>
+											</Link>
 										</li>
 									))}
 								</ul>
@@ -190,11 +196,11 @@ export default function Footer() {
 								<ul role="list" className="mt-4 space-y-4 font-light">
 									{navigation.account.map(item => (
 										<li key={item.name}>
-											<a
-												href={item.href}
+											<Link
+												to={item.href}
 												className="text-sm italic hover:text-gray-900">
 												{item.name}
-											</a>
+											</Link>
 										</li>
 									))}
 								</ul>
@@ -204,11 +210,11 @@ export default function Footer() {
 								<ul role="list" className="mt-4 space-y-4 font-light">
 									{navigation.company.map(item => (
 										<li key={item.name}>
-											<a
-												href={item.href}
+											<Link
+												to={item.href}
 												className="text-sm italic hover:text-gray-900">
 												{item.name}
-											</a>
+											</Link>
 										</li>
 									))}
 								</ul>

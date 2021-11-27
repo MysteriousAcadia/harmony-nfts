@@ -23,6 +23,7 @@ import ListForSale from "pages/ListForSale/index";
 import Stats from "pages/Stats/index";
 import Footer from "components/Footer/index";
 import Navbar from "components/Navbar/index";
+import ScrollToTop from "utils/ScrollToTop";
 
 function getLibrary(provider) {
   var library;
@@ -71,6 +72,7 @@ function App() {
 
           <Web3ReactProvider getLibrary={getLibrary}>
             <Router>
+              <ScrollToTop />
               <div className="base-background">
                 <Navbar />
                 <Routes>
@@ -86,6 +88,7 @@ function App() {
                   />
                   <Route path="/nfts/:id" element={<CollectionDetail />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/profile/:tab" element={<Profile />} />
                   <Route path="/about" element={<AboutUs />} />
                   <Route path="/stats" element={<Stats />} />
                   <Route path="/collections/:marketId/:id/sale" element={<ListForSale />} />

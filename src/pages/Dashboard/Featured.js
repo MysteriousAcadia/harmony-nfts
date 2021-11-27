@@ -5,7 +5,7 @@ import graphQlInstance from "config/axios";
 import { useState } from "react";
 import { useEffect } from "react";
 const Featured = () => {
-  const [nfts, setNfts] = useState();
+  const [nfts, setNfts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const result = await graphQlInstance.post("/graphql", {
@@ -46,7 +46,7 @@ const Featured = () => {
         <div className="font-normal text-xl">View All -></div>
       </div>
       <Slides
-      // settings={{ slidesToShow: Math.min(3, nfts?.length) }}
+        settings={{ slidesToShow: Math.min(3, nfts?.length) }}
       >
         {nfts?.map(e => <FeatureCard {...e} />)}
       </Slides>

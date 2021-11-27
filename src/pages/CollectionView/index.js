@@ -9,15 +9,15 @@ import Filters from "./Filters";
 import SaleHistory from "./SaleHistory";
 
 const CollectionView = () => {
-	const { marketId } = useParams();
-	const [collectionDetail, setCollectionDetail] = useState();
-	const [nfts, setNfts] = useState();
-	const [filters, setFilters] = useState([]);
+  const { marketId } = useParams();
+  const [collectionDetail, setCollectionDetail] = useState();
+  const [nfts, setNfts] = useState();
+  const [filters, setFilters] = useState([]);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const result = await graphQlInstance.post("/graphql", {
-				query: `{
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await graphQlInstance.post("/graphql", {
+        query: `{
   market(id:"${marketId}"){
     active
     name
@@ -42,15 +42,15 @@ const CollectionView = () => {
 }
 
 `,
-			});
-			console.log(result.data);
-			setCollectionDetail(result.data?.data?.market);
-		};
+      });
+      console.log(result.data);
+      setCollectionDetail(result.data?.data?.market);
+    };
 
-		const fetchNFTs = async () => {
-			const result = await graphQlInstance.post("/graphql", {
-				query: `{
-  nfts(where:{market:"0x3c8a8a7b7d0fea5078fb37c69e42b85d8fc6a063"}){
+    const fetchNFTs = async () => {
+      const result = await graphQlInstance.post("/graphql", {
+        query: `{
+  nfts(where:{market:"${marketId}"}){
   token
     id
     tokenId
@@ -76,32 +76,32 @@ const CollectionView = () => {
 }
 
 `,
-			});
-			console.log(result.data);
-			setNfts(result.data?.data?.nfts);
-		};
-		fetchNFTs();
-		fetchData();
-	}, [marketId]);
+      });
+      console.log(result.data);
+      setNfts(result.data?.data?.nfts);
+    };
+    fetchNFTs();
+    fetchData();
+  }, [marketId]);
 
-	const [historyOpen, setHistoryOpen] = useState(false);
+  const [historyOpen, setHistoryOpen] = useState(false);
 
-	const openHistory = () => setHistoryOpen(true);
+  const openHistory = () => setHistoryOpen(true);
 
-	return (
-		<>
-			<div className="container px-4 mx-auto">
-				{historyOpen && (
-					<SaleHistory
-						historyOpen={historyOpen}
-						setHistoryOpen={setHistoryOpen}
-					/>
-				)}
-				<Cover collectionDetail={collectionDetail} openHistory={openHistory} />
-				<Filters collectionDetail={collectionDetail} />
-				<Cards nfts={nfts} />
-			</div>
-		</>
-	);
+  return (
+    <>
+      <div className="container px-4 mx-auto">
+        {historyOpen && (
+          <SaleHistory
+            historyOpen={historyOpen}
+            setHistoryOpen={setHistoryOpen}
+          />
+        )}
+        <Cover collectionDetail={collectionDetail} openHistory={openHistory} />
+        <Filters collectionDetail={collectionDetail} />
+        <Cards nfts={nfts} />
+      </div>
+    </>
+  );
 };
 export default CollectionView;
