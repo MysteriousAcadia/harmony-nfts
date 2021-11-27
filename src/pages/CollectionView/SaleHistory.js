@@ -6,7 +6,8 @@ import {
 	Line,
 	XAxis,
 	YAxis,
-	CartesianAxis,
+	ResponsiveContainer,
+	CartesianGrid,
 	Tooltip,
 } from "recharts";
 
@@ -76,43 +77,19 @@ const SaleRow = ({ data = {} }) => {
 	);
 };
 
-const data = [
-	{
-		name: "Page A",
-		pv: 2400,
-		amt: 2400,
-	},
-	{
-		name: "Page B",
-		pv: 1398,
-		amt: 2210,
-	},
-	{
-		name: "Page C",
-		pv: 9800,
-		amt: 2290,
-	},
-	{
-		name: "Page D",
-		pv: 3908,
-		amt: 2000,
-	},
-	{
-		name: "Page E",
-		pv: 4800,
-		amt: 2181,
-	},
-	{
-		name: "Page F",
-		pv: 3800,
-		amt: 2500,
-	},
-	{
-		name: "Page G",
-		pv: 4300,
-		amt: 2100,
-	},
-];
+const CustomTooltip = ({ active, payload, label }) => {
+	if (active && payload && payload.length) {
+		return (
+			<div className="bg-main-default p-4 rounded-lg text-white">
+				<p className="label">{`Sales: `}</p>
+				<p className="label">{`Avg Price: `}</p>
+				<p className="label">{`Volume: `}</p>
+			</div>
+		);
+	}
+
+	return null;
+};
 
 const SaleHistory = ({ historyOpen, setHistoryOpen }) => {
 	const [saleData, setSaleData] = useState();
@@ -143,9 +120,15 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 
 `,
 			});
+
 			console.log(result.data);
 			setSaleData(result.data?.data?.sales);
-			setChartData(result.data?.data?.sales?.map(e => ({ timestamp: formatDate(e.timestamp), value: parseFloat(utils.formatEther(e.price || 0)) })))
+			setChartData(
+				result.data?.data?.sales?.map(e => ({
+					timestamp: formatDate(e.timestamp),
+					value: parseFloat(utils.formatEther(e.price || 0)),
+				}))
+			);
 		};
 		fetchData();
 	}, [selectedTime]);
@@ -255,40 +238,53 @@ sales(where:{timestamp_gt:${selectedTime}}, orderBy:timestamp, orderDirection:de
 								</div>
 							</div>
 
-							<div className="text-white my-8 py-4 border-2 border-gray-300 rounded-lg">
-								<div className="mx-auto">
-									<LineChart
-										width={800}
-										height={300}
-										data={chartData}
-										margin={{
-											top: 5,
-											right: 30,
-											left: 20,
-											bottom: 5,
-										}}>
-										<CartesianAxis />
-										<XAxis
-											dataKey="timestamp"
-											stroke="rgb(17, 92, 112)"
-											padding={{ left: 20 }}
-										/>
-										<YAxis
-
-											dataKey="value"
-											axisLine="false"
-											tickLine="false"
-											stroke="rgb(17, 92, 112)"
-										/>
-										<Tooltip />
-										<Line
-											type="monotone"
-											dataKey="value"
-											stroke="rgb(17, 92, 112)"
-											activeDot={{ r: 8 }}
-										/>
-									</LineChart>
-								</div>
+							<div className="text-white my-8 py-8 border-2 border-gray-300 rounded-lg w-full h-full">
+								<ResponsiveContainer width="100%" height="100%">
+									<div className="mx-auto">
+										<LineChart
+											width={800}
+											height={300}
+											data={chartData}
+											margin={{
+												top: 5,
+												right: 30,
+												left: 20,
+												bottom: 5,
+											}}>
+											<XAxis
+												dataKey="timestamp"
+												padding={{ left: 20 }}
+												tickLine={false}
+												axisLine={{ stroke: "rgb(209, 213, 219)" }}
+												dy={10}
+												stroke="rgb(17, 92, 112)"
+												style={{
+													fontSize: "1.1rem",
+													fontWeight: "600",
+												}}
+											/>
+											<YAxis
+												dataKey="value"
+												tickLine={false}
+												axisLine={false}
+												stroke="rgb(17, 92, 112)"
+												padding={{ bottom: 20 }}
+												style={{
+													fontSize: "1.1rem",
+													fontWeight: "600",
+												}}
+											/>
+											<CartesianGrid vertical={false} />
+											<Tooltip content={<CustomTooltip />} />
+											<Line
+												type="monotone"
+												dataKey="value"
+												stroke="rgb(17, 92, 112)"
+												strokeWidth={4}
+											/>
+										</LineChart>
+									</div>
+								</ResponsiveContainer>
 							</div>
 
 							<div className="my-8 rounded-lg fixed-header py-4 overflow-auto">

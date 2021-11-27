@@ -16,7 +16,7 @@ export const connectContracts = async (signer) => {
     feeAbi,
     signer
   );
-  console.log("Connected to contracts");
+  console.log("Connected to contracts", marketContract);
 };
 const notification = (type = "Message", message = "") => {
   store.addNotification({
@@ -110,8 +110,14 @@ export const createMarket = async (token, name, fee, reflectionFee) => {
 
 export const getNftOwner = (token, tokenId) => {
   try {
-    const owner = marketContract.getNftOwner(token, tokenId);
-    console.log(owner);
+    marketContract
+      .getNftOwner(token, parseInt(tokenId))
+      .then((owner) => {
+        console.log({ owner });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   } catch (error) {
     console.log(error);
   }
