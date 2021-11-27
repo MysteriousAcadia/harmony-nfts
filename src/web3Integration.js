@@ -6,16 +6,16 @@ let marketContract, feeContract;
 
 export const connectContracts = async (signer) => {
   marketContract = new Contract(
-    "0x68E7E61033cb5E7dC07aC184e4C040d9Ce872000",
+    "0x571f22147E1E6117DB2b0320aED9F2320B126Af9",
     marketAbi,
     signer
   );
   feeContract = new Contract(
-    "0xc0Ba328Ee3Ae23A3482fE8C5A0A00C6C21b8B739",
+    "0x0c4ff1F9EF38BAA24E99f908353f24933E117417",
     feeAbi,
     signer
   );
-  console.log("Connected to contracts");
+  console.log("Connected to contracts", marketContract);
 };
 
 /** marketplace functions */
@@ -83,8 +83,14 @@ export const createMarket = async (token, name, fee, reflectionFee) => {
 
 export const getNftOwner = (token, tokenId) => {
   try {
-    const owner = marketContract.getNftOwner(token, tokenId);
-    console.log(owner);
+    marketContract
+      .getNftOwner(token, parseInt(tokenId))
+      .then((owner) => {
+        console.log({ owner });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   } catch (error) {
     console.log(error);
   }
