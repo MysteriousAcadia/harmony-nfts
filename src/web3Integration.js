@@ -38,7 +38,9 @@ const notification = (type = "Message", message = "") => {
 /** marketplace functions */
 export const bid = async (token, tokenId, value) => {
   try {
-    const transaction = await marketContract.bid(token, tokenId, value);
+    const transaction = await marketContract.bid(token, tokenId, value, {
+      value,
+    });
     const receipt = await transaction.wait();
     console.log(receipt);
   } catch (error) {
@@ -46,23 +48,28 @@ export const bid = async (token, tokenId, value) => {
   }
 };
 
-export const buy = async (token, tokenId, value, currency = "0x0000000000000000000000000000000000000000") => {
+export const buy = async (
+  token,
+  tokenId,
+  value,
+  currency = "0x0000000000000000000000000000000000000000"
+) => {
   if (!marketContract) {
     notification("Error", "Connect to wallet first!");
-    return (false);
+    return false;
   }
   try {
-    console.log()
+    console.log();
     const transaction = await marketContract.buy(
       token,
       tokenId,
       currency,
-      value
+      value,
+      { value }
     );
     notification("Progress", "Transaction Initiated");
     const receipt = await transaction.wait();
     notification("Success", "Transaction Success");
-
 
     console.log(receipt);
   } catch (error) {
