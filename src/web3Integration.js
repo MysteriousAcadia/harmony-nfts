@@ -7,12 +7,12 @@ let marketContract, feeContract;
 
 export const connectContracts = async (signer) => {
   marketContract = new Contract(
-    "0x571f22147E1E6117DB2b0320aED9F2320B126Af9",
+    "0x6e0A0e71C729BB9B5693D050dDF8bB747b29914b",
     marketAbi,
     signer
   );
   feeContract = new Contract(
-    "0x0c4ff1F9EF38BAA24E99f908353f24933E117417",
+    "0x06e293A8dC54D23518Ed5888fad6D4B364a4619E",
     feeAbi,
     signer
   );
