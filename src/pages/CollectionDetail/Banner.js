@@ -40,6 +40,7 @@ const Banner = ({ nftDetail = {} }) => {
 			}
 		}, 1000);
 	});
+	console.log(nftDetail?.currentSellOrder?.price);
 
 	const ButtonLayout = () => {
 		if (owner) {
@@ -81,12 +82,18 @@ const Banner = ({ nftDetail = {} }) => {
 					<div className="flex">
 						<PrimaryButton
 							onClick={() => {
+								console.log(nftDetail.token)
+								console.log(nftDetail.tokenId)
+								console.log(nftDetail.currentSellOrder.price)
+								console.log(nftDetail.token)
 								buy(
 									nftDetail.token,
-									nftDetail.tokenId,
-									nftDetail.currencyStats[0].currency.id,
-									nftDetail.currentSellOrder.price
+									parseInt(nftDetail.tokenId),
+									parseInt(nftDetail.currentSellOrder.price),
+									"0x0000000000000000000000000000000000000000"
 								);
+								getNftOwner(nftDetail.token,
+									nftDetail.tokenId)
 							}}
 							className="my-4 mr-4"
 						>

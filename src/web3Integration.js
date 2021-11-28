@@ -52,6 +52,7 @@ export const buy = async (token, tokenId, value, currency = "0x00000000000000000
     return (false);
   }
   try {
+    console.log()
     const transaction = await marketContract.buy(
       token,
       tokenId,
