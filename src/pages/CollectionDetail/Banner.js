@@ -11,6 +11,7 @@ import CheckoutModal from "components/Modals/MakeOffer/CheckoutModal";
 import { useWeb3React } from "@web3-react/core";
 import { useNavigate } from "react-router-dom";
 import BidModal from "components/Modals/MakeOffer/BidModal";
+import { store } from "react-notifications-component"
 
 
 const Banner = ({ nftDetail = {} }) => {
@@ -41,6 +42,7 @@ const Banner = ({ nftDetail = {} }) => {
 	const { address: ownerAddress = "None" } = currentOwner || {};
 	const {
 		endsAt,
+		ended = false,
 		highestBid = 0,
 		highestBidder = "None",
 		seller: auctionSeller = {}
@@ -78,8 +80,26 @@ const Banner = ({ nftDetail = {} }) => {
 					<div className="flex">
 						<PrimaryButton
 							onClick={async () => {
-								await endAuction(token, tokenId)
-								navigate("/collections")
+								if (ended) {
+									await endAuction(token, tokenId)
+									navigate("/collections")
+								}
+								else {
+									store.addNotification({
+										title: "Alert",
+										message: "The auction hasn't ended yet!",
+										type: "success",
+										insert: "top",
+										width: 1024,
+										container: "top-center",
+										animationIn: ["animate__animated", "animate__fadeIn"],
+										animationOut: ["animate__animated", "animate__fadeOut"],
+										dismiss: {
+											duration: 600,
+											showIcon: true,
+										},
+									});
+								}
 
 							}}
 							className="my-4 mr-4">Accept Bid</PrimaryButton>
