@@ -13,6 +13,14 @@ const Slides = ({ children, settings, ...props }) => {
         slidesToScroll: 1,
         nextArrow: <NextArrow />,
         prevArrow: <PreviousArrow />,
+        responsive: [{
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+
+            }
+        },],
         ...settings
     }
     return (

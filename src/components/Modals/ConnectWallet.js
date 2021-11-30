@@ -12,6 +12,7 @@ import Harmony from "assets/harmony_icon.svg";
 export default function ConnectWallet({ open = false, setOpen = () => { } }) {
   const { activate, account, library } = useWeb3React();
   const { ethereum } = window;
+
   const onClickMetamask = async (connector) => {
     activate(connector, async (err) => {
       console.log(err);
@@ -21,7 +22,7 @@ export default function ConnectWallet({ open = false, setOpen = () => { } }) {
       );
       if (hasSetup) activate(connector);
     });
-    // await ethereum.request({ method: 'eth_requestAccounts' })
+    await ethereum.request({ method: 'eth_requestAccounts' })
   };
 
   useEffect(async () => {
@@ -41,6 +42,8 @@ export default function ConnectWallet({ open = false, setOpen = () => { } }) {
         method: "wallet_switchEthereumChain",
         params: [{ chainId: `0x${chainId.toString(16)}` }],
       });
+      onClickMetamask(injected)
+
     } catch (switchError) {
       // This error code indicates that the chain has not been added to MetaMask.
       try {
@@ -63,6 +66,7 @@ export default function ConnectWallet({ open = false, setOpen = () => { } }) {
         // handle "add" error
         console.log(addError);
       }
+
       // handle other "switch" errors
     }
   };

@@ -11,6 +11,6 @@ export const FeatureCard = ({ id = "", image = "", token = "" }) => {
                 onClick={() => navigate(`/collections/${token}/${id}`)}
                 className="shadow-lg w-48">View Details</SecondaryButton>
         </div>
-        <div className="absolute rounded-lg w-44 truncate text-center top-8 blur-glass -left-8 py-2 px-4 font-bold">@{id}</div>
+        <div className="absolute rounded-lg w-44 truncate text-center top-8 blur-glass md:-left-8 py-2 px-4 font-bold">@{id}</div>
     </div>)
 }

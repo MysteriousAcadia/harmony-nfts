@@ -44,9 +44,7 @@ const Fee = () => {
 						<div>3.00%</div>
 					</div>
 				</div>
-				<div className="flex flex-row justify-center align-middle py-16">
-					<PrimaryWhite className="px-8">Complete Listing</PrimaryWhite>
-				</div>
+
 			</div>
 		</div>
 	);

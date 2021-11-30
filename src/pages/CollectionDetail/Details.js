@@ -12,7 +12,7 @@ const AttrCard = ({ data = {} }) => {
 			<div className="glass-2 p-4 text-center">
 				<div className="text-sm uppercase font-bold mb-2">{key}</div>
 				<div className=" font-extrabold mb-2">{value}</div>
-				<div className=" font-normal mb-2">12% have this trait</div>
+				{/* <div className=" font-normal mb-2">12% have this trait</div> */}
 			</div>
 		</>
 	);
@@ -24,7 +24,7 @@ const Details = ({ nftDetail = {} }) => {
 	return (
 		<>
 			<div className="container px-4 mx-auto">
-				<div className="flex justify-around text-white">
+				<div className="md:flex justify-around text-white">
 					<div className="flex-1 mr-8">
 						<Disclosure
 							defaultOpen={true}
@@ -79,8 +79,8 @@ const Details = ({ nftDetail = {} }) => {
 										<div className=" mt-4 mb-4 flex ">
 											<img src={WebIcon} className="m-2" />
 											<img src={StatsIcon} className="m-2" />
-											<img src={DiscordIcon} className="m-2" />
-											<img src={TwitterIcon} className="m-2" />
+											<a href="https://discord.gg/armoonia" target="_blank"><img src={DiscordIcon} className="m-2" /></a>
+											<a href="https://twitter.com/ArmooniaApp" target="_blank"><img src={TwitterIcon} className="m-2" /></a>
 										</div>
 									</Disclosure.Panel>
 								</>
@@ -105,7 +105,6 @@ const Details = ({ nftDetail = {} }) => {
 										className="mt-2 p-6 border-t border-gray-400 ">
 										<div className="grid grid-cols-3 gap-4">
 											{attributes.map(e => {
-												console.log(e);
 												return <AttrCard data={e} />;
 											})}
 										</div>

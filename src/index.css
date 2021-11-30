@@ -176,17 +176,13 @@ code {
 	background-color: #007bff;
 }
 
-.notification__item--success {
-}
+.notification__item--success {}
 
-.notification__item--success .notification__timer {
-}
+.notification__item--success .notification__timer {}
 
-.notification__item--success .notification__timer-filler {
-}
+.notification__item--success .notification__timer-filler {}
 
-.notification__item--success .notification__close {
-}
+.notification__item--success .notification__close {}
 
 .notification__item--danger {
 	background-color: #dc3545;
@@ -392,3 +388,11 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media (max-width:800px) {
+	table {
+		display: block;
+		overflow-x: auto;
+		white-space: nowrap;
+	}
+}

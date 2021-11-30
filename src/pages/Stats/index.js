@@ -1,7 +1,3 @@
-import teamAvatar from "assets/team_avatar.svg";
-import twitterIcon from "assets/twitter_icon.svg";
-import discordIcon from "assets/discord_icon.svg";
-import roadmap from "assets/roadmap.svg";
 import { useEffect } from "react";
 import graphQlInstance from "config/axios";
 import { useState } from "react";
@@ -11,8 +7,8 @@ import { oneToUSD } from "utils/currency";
 const StatsCard = ({ value, title }) => {
 	return (
 		<div className="glass-2 px-8 py-8 flex flex-col items-center text-white">
-			<div className="text-4xl font-bold truncate">{value}</div>
-			<div className="text-xl mt-2">{title}</div>
+			<div className="text-4xl font-bold overflow-hidden truncate">{value}</div>
+			<div className="text-xl mt-2  truncate">{title}</div>
 		</div>
 	);
 };
@@ -84,7 +80,7 @@ const StatsRow = ({ data = {}, index }) => {
 	);
 };
 
-const Stats = ({}) => {
+const Stats = ({ }) => {
 	const stats = [
 		{
 			value: "Global Market Cap",
@@ -137,7 +133,7 @@ const Stats = ({}) => {
 		<>
 			<div className="container px-4 mx-auto mt-4 text-white text-center">
 				<div className="text-3xl mb-8 font-semibold">Statistics</div>
-				<div className="grid grid-cols-2 md:grid-cols-3 gap-6 my-4">
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-4">
 					{stats.map(element => (
 						<StatsCard {...element} />
 					))}

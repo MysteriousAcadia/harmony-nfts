@@ -10,6 +10,8 @@ import { toBech32 } from "@harmony-js/crypto";
 import { formatEther } from "@ethersproject/units";
 import ProfileDropdown from "components/Dropdowns/ProfileDropdown/index";
 import { store } from 'react-notifications-component';
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+
 
 
 const Navbar = () => {
@@ -104,10 +106,11 @@ const Navbar = () => {
         className={`sticky top-0 z-50 ${navbar ? "navbar-background" : "bg-transparent"
           }`}
       >
-        <nav
+        <Disclosure
+          as="nav"
           className={`flex items-center justify-between py-8 flex-wrap   container px-4 mx-auto`}
         >
-          <div className="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
+          <div className="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 pb-2 lg:pb-0">
             <Link
               to="/"
               className="flex items-center flex-shrink-0 text-gray-800 mr-16"
@@ -115,21 +118,48 @@ const Navbar = () => {
               <img src={fullLogo} />
             </Link>
             <div className="block lg:hidden ">
-              <button
+
+              <Disclosure.Button
                 id="nav"
-                className="flex items-center px-3 py-2 border-2 rounded text-blue-700 border-blue-700 hover:text-blue-700 hover:border-blue-700"
+                className="flex items-center px-3 py-2  rounded text-white "
               >
                 <svg
-                  className="fill-current h-3 w-3"
+                  className="fill-current h-6 w-6"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <title>Menu</title>
                   <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
                 </svg>
-              </button>
+              </Disclosure.Button>
+
             </div>
           </div>
+          <Disclosure.Panel className="sm:hidden">
+            <div className="menu w-full lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
+              <div className="text-md  text-white  ">
+                <Link
+                  to="/collections"
+                  className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded  mr-2"
+                >
+                  Collections
+                </Link>
+                <Link
+                  to="/stats"
+                  className=" block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
+                >
+                  Stats
+                </Link>
+                <Link
+                  to="/about"
+                  className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
+                >
+                  FAQ
+                </Link>
+              </div>
+              <ConnectToWalletButton />
+            </div>
+          </Disclosure.Panel>
           <div className="relative flex-grow mr-12 text-gray-600 lg:block hidden">
             <input
               className="border-2 w-full border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none"
@@ -155,7 +185,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          <div className="menu w-full lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
+          <div className="hidden menu w-full lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
             <div className="text-md  text-white  ">
               <Link
                 to="/collections"
@@ -178,7 +208,7 @@ const Navbar = () => {
             </div>
             <ConnectToWalletButton />
           </div>
-        </nav>
+        </Disclosure>
       </div>
     </>
   );

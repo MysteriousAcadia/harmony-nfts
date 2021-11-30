@@ -6,6 +6,7 @@ import ONEInputLight from "components/Inputs/ONEInput/light";
 import LightDropdown from "components/Dropdowns/LightDropdown/index";
 
 import InfoIcon from "assets/info_icon.svg";
+import { timeOptions } from "utils/date";
 
 const TooltipPopup = () => {
 	return (
@@ -19,8 +20,8 @@ const TooltipPopup = () => {
 	);
 };
 
-const TimedAuction = () => {
-	const durationOptions = ["7 days", "14 days", "30 days", "90 days", "A year"];
+const TimedAuction = ({ data = {}, onChange }) => {
+
 
 	const [toggle, setToggle] = useState(false);
 
@@ -31,7 +32,7 @@ const TimedAuction = () => {
 					<div className="mb-4 font-semibold text-xl text-white">
 						Starting Price
 					</div>
-					<ONEInputLight />
+					<ONEInputLight value={data.price} onChange={(e) => onChange("price", e.target.value)} />
 				</div>
 
 				<div className="mb-10 text-white">
@@ -45,7 +46,16 @@ const TimedAuction = () => {
 
 				<div className="mb-10 text-white flex flex-col flex-grow">
 					<div className="mb-4 font-semibold text-xl">Duration</div>
-					<LightDropdown options={durationOptions} className="w-32" />
+					<LightDropdown
+						options={timeOptions.map(e => e.label)}
+						onChange={(option) => {
+							timeOptions.map((e) => {
+								if (e.label === option) {
+									onChange("duration", e);
+								}
+
+							})
+						}} className="w-32" />
 				</div>
 
 				<div className="mb-10">
@@ -67,15 +77,15 @@ const TimedAuction = () => {
 								</div>
 							</div>
 						</div>
-						<div>
+						{/* <div>
 							<ToggleSlider
 								handleBackgroundColorActive="white"
 								barBackgroundColorActive="#9BD399"
 								onToggle={state => setToggle(state)}
 							/>
-						</div>
+						</div> */}
 					</div>
-					{toggle && <ONEInputLight />}
+					{/* {toggle && <ONEInputLight />} */}
 				</div>
 			</div>
 		</>

@@ -6,27 +6,54 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { utils } from "ethers";
 import { oneToUSD } from "utils/currency";
-import { bid, buy, getNftOwner } from "web3Integration";
+import { bid, buy, cancelSell, endAuction, getNftOwner } from "web3Integration";
+import CheckoutModal from "components/Modals/MakeOffer/CheckoutModal";
+import { useWeb3React } from "@web3-react/core";
+import { useNavigate } from "react-router-dom";
+import BidModal from "components/Modals/MakeOffer/BidModal";
+
 
 const Banner = ({ nftDetail = {} }) => {
+	const navigate = useNavigate();
+	const { activate, account, library } = useWeb3React();
 	const {
 		image,
+		token,
 		tokenId = "",
 		currentOwner,
 		currentSellOrder,
 		currentAuction,
 	} = nftDetail || {};
+	useEffect(async () => {
+		if (!library) return;
+		const data =
+			library?.messenger?.chainType === "hmy"
+				? library.provider
+				: await library.getSigner(account);
+		const owner = await getNftOwner(data, token, tokenId);
+		if (account == owner) {
+			setOwner(true);
+		}
+		console.log(library);
+	}, [library, token, tokenId]);
+
+
 	const { address: ownerAddress = "None" } = currentOwner || {};
 	const {
 		endsAt,
 		highestBid = 0,
 		highestBidder = "None",
+		seller: auctionSeller = {}
 	} = currentAuction || {};
-	const { price = 0 } = currentSellOrder || {};
+	const { price = 0, seller = {} } = currentSellOrder || {};
+	const { address: sellerAddress = "" } = seller
+	const { address: auctionAddress = "" } = auctionSeller;
 	const highestBidValue = utils.formatEther(highestBid);
 	const priceValue = utils.formatEther(price);
 	const [timeLeft, setTimeLeft] = useState(new Date(0));
 	const [owner, setOwner] = useState(false);
+	const [checkoutOpen, setCheckoutOpen] = useState(false);
+	const [bidOpen, setBidOpen] = useState(false);
 	const calculateTimeLeft = (endTime) => {
 		let currDate = Date.now();
 		const actualDate = new Date(parseInt(endTime) * 1000);
@@ -40,24 +67,42 @@ const Banner = ({ nftDetail = {} }) => {
 			}
 		}, 1000);
 	});
-	console.log(nftDetail?.currentSellOrder?.price);
+
 
 	const ButtonLayout = () => {
-		if (owner) {
+		// console.log(sellerAddress);
+		// console.log(account);
+		if (owner || sellerAddress?.toUpperCase() == account?.toUpperCase() || auctionAddress?.toUpperCase() === account?.toUpperCase()) {
 			if (currentAuction) {
 				return (
 					<div className="flex">
-						<PrimaryButton className="my-4 mr-4">Accept Bid</PrimaryButton>
+						<PrimaryButton
+							onClick={async () => {
+								await endAuction(token, tokenId)
+								navigate("/collections")
+
+							}}
+							className="my-4 mr-4">Accept Bid</PrimaryButton>
 					</div>
 				);
 			} else if (currentSellOrder) {
 				return (
 					<div className="flex">
-						<PrimaryButton className="my-4 mr-4">Cancel Sale</PrimaryButton>
+						<PrimaryButton
+							onClick={async () => {
+								await cancelSell(token, tokenId)
+								navigate("/collections")
+
+							}}
+							className="my-4 mr-4">Cancel Sale</PrimaryButton>
 					</div>
 				);
 			} else {
-				return <div>Sell</div>;
+				return (<div className="flex">
+					<PrimaryButton
+						onClick={() => { navigate(`sale`) }}
+						className="my-4 mr-4">Sell</PrimaryButton>
+				</div>);
 			}
 		} else {
 			if (currentAuction) {
@@ -66,11 +111,7 @@ const Banner = ({ nftDetail = {} }) => {
 						<PrimaryButton
 							className="my-4 mr-4"
 							onClick={() => {
-								bid(
-									nftDetail.token,
-									nftDetail.tokenId,
-									nftDetail.currentSellOrder.price
-								);
+								setBidOpen(true);
 							}}
 						>
 							Place Bid
@@ -82,18 +123,9 @@ const Banner = ({ nftDetail = {} }) => {
 					<div className="flex">
 						<PrimaryButton
 							onClick={() => {
-								console.log(nftDetail.token)
-								console.log(nftDetail.tokenId)
-								console.log(nftDetail.currentSellOrder.price)
-								console.log(nftDetail.token)
-								buy(
-									nftDetail.token,
-									parseInt(nftDetail.tokenId),
-									parseInt(nftDetail.currentSellOrder.price),
-									"0x0000000000000000000000000000000000000000"
-								);
-								getNftOwner(nftDetail.token,
-									nftDetail.tokenId)
+								setCheckoutOpen(true);
+
+
 							}}
 							className="my-4 mr-4"
 						>
@@ -108,8 +140,8 @@ const Banner = ({ nftDetail = {} }) => {
 	};
 	const MainCard = () => {
 		return (
-			<div className=" h-60v w-40v p-2  rounded-lg">
-				<div className=" p-4 blur-glass h-60v mt-8 w-35v">
+			<div className=" md:h-60v w-90v md:w-40v p-2  rounded-lg">
+				<div className=" p-4 blur-glass md:h-60v mt-8 w-80v md:w-35v">
 					<img
 						src={image}
 						className="w-full bg-gray-200 rounded-md h-full bg-cover"
@@ -126,22 +158,48 @@ const Banner = ({ nftDetail = {} }) => {
 	};
 	return (
 		<>
-			<div className="flex container px-4 mx-auto text-white items-start justify-between pt-8 pb-16">
+			<div className="md:flex container px-4 mx-auto text-white items-start justify-between pt-8 pb-16">
+				<CheckoutModal
+					open={checkoutOpen}
+					setOpen={setCheckoutOpen}
+					onClick={async () => {
+						await buy(
+							nftDetail.token,
+							parseInt(nftDetail.tokenId),
+							parseInt(nftDetail.currentSellOrder.price),
+							"0x0000000000000000000000000000000000000000"
+						)
+						navigate("/collections")
+
+					}}
+					price={nftDetail?.currentSellOrder?.price}
+					{...nftDetail} ownerAddress={ownerAddress} />
+				<BidModal
+					open={bidOpen}
+					setOpen={setBidOpen}
+					onClick={async (bidVal) => {
+						await bid(
+							nftDetail.token,
+							nftDetail.tokenId,
+							utils.parseEther(bidVal || 0)
+						)
+						navigate("/collections")
+
+					}}
+					price={nftDetail?.currentAuction?.highestBid}
+				/>
 				<MainCard />
-				<div className="flex flex-col items-start ml-32">
+				<div className="flex flex-col items-start md:ml-32">
 					<div className="inline-block font-bold text-5xl">
 						Harmoonie #{tokenId}
 					</div>
 					<div
-						onClick={() => {
-							console.log(nftDetail);
-							getNftOwner(nftDetail.token, nftDetail.tokenId);
-						}}
+
 					>
-						Owned by{" "}
+						{/* Owned by{" "}
 						<u>
 							<b>@{ownerAddress}</b>
-						</u>
+						</u> */}
 					</div>
 					<b className="mt-8">Description</b>
 					<div>
@@ -156,10 +214,10 @@ const Banner = ({ nftDetail = {} }) => {
 							<div className="flex flex-grow gap-8 mt-8 justify-between">
 								<div className="">
 									<div className="font-bold text-3xl mb-2">
-										{timeLeft.getHours()}
+										{parseInt(timeLeft / 3600000)}
 									</div>
 									<div className=" text-sm">
-										Hour{timeLeft.getHours() == 1 ? "" : "s"}
+										Hour{parseInt(timeLeft / 3600000) == 1 ? "" : "s"}
 									</div>
 								</div>
 								<div>

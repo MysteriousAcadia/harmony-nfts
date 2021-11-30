@@ -53,8 +53,10 @@ const Cover = ({ collectionDetail = {}, openHistory }) => {
 					<button onClick={openHistory}>
 						<img src={StatsIcon} className="m-2" />
 					</button>
-					<img src={DiscordIcon} className="m-2" />
-					<img src={TwitterIcon} className="m-2" />
+					<a href="https://discord.gg/armoonia" target="_blank"><img src={DiscordIcon} className="m-2" /></a>
+					<a href="https://twitter.com/ArmooniaApp" target="_blank">
+						<img src={TwitterIcon} className="m-2" />
+					</a>
 				</div>
 				<SecondaryButton>Follow +</SecondaryButton>
 				<div className="text-center text-white mx-6 lg:mx-32 my-4">

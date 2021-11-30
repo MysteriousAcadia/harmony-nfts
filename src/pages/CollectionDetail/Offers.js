@@ -110,7 +110,7 @@ const Offers = ({ nftDetail, auctionData, orderHistory }) => {
 					<DiscloseTab
 						tabs={["Offers/Bids", "Order History"]}>
 						{!auctionData ? "Nothing to show." :
-							<table className="table-auto w-full">
+							<table className="display-block md:table-auto w-full overflow-x-scroll">
 								<thead className="font-bold text-center">
 									<tr>
 										<th>Price(ONE)</th>
@@ -129,7 +129,7 @@ const Offers = ({ nftDetail, auctionData, orderHistory }) => {
 							</table>
 						}
 						{!orderHistory ? "Nothing to show." :
-							<table className="table-auto w-full">
+							<table className="display-block md:table-auto w-full overflow-x-scroll">
 								<thead className="font-bold text-center">
 									<tr>
 										<th>Event</th>

@@ -34,18 +34,18 @@ const Stats = () => {
 };
 const MainCard = () => {
   return (
-    <div className="relative h-60v w-40v p-2  rounded-lg">
+    <div className="relative h-60v w-80v md:w-40v p-2  rounded-lg">
       <div
         className=" absolute blur-glass w-20v h-40v blur-glass left-1/2"
         style={{ transform: "translate(-50%,0)" }}
       />
 
       <div
-        className="blur-glass absolute w-30v mt-4 h-40v blur-glass left-1/2"
+        className="blur-glass absolute w-60v md:w-30v mt-4 h-40v blur-glass left-1/2"
         style={{ transform: "translate(-50%,0)" }}
       />
       <div
-        className="absolute p-4 blur-glass h-60v mt-8 w-35v  left-1/2"
+        className="absolute p-4 blur-glass h-60v mt-8 w-70v md:w-35v  left-1/2"
         style={{ transform: "translate(-50%,0)" }}
       >
         <img className="w-full bg-gray-200 rounded-md h-full" />
@@ -104,7 +104,7 @@ const LandingSection = () => {
   const navigator = useNavigate();
   return (
     <>
-      <div className="flex container px-4 mx-auto text-white items-start justify-between pt-8 pb-16">
+      <div className="md:flex container px-4 mx-auto text-white items-start justify-between pt-8 pb-16">
         <div className="flex flex-col items-start mr-32">
           <img src={logoLight} alt="Logo" />
           <div

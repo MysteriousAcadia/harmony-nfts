@@ -22,10 +22,8 @@ const TooltipPopup = () => {
 	);
 };
 
-const FixedPrice = () => {
-	const durationOptions = ["7 days", "14 days", "30 days", "90 days", "A year"];
+const FixedPrice = ({ data, onChange }) => {
 
-	const [toggle, setToggle] = useState(false);
 
 	return (
 		<>
@@ -43,15 +41,18 @@ const FixedPrice = () => {
 								</Tippy>
 							</div>
 						</div>
-						<ONEInputLight />
+						<ONEInputLight
+							value={data?.price}
+							onChange={(e) => onChange("price", e.target.value)}
+						/>
 					</div>
 
-					<div className="mb-10 text-white flex flex-col flex-grow">
+					{/* <div className="mb-10 text-white flex flex-col flex-grow">
 						<div className="mb-4 font-semibold text-xl">Duration</div>
 						<LightDropdown options={durationOptions} className="w-32" />
-					</div>
+					</div> */}
 
-					<div className="mb-10">
+					{/* <div className="mb-10">
 						<div className="flex flex-row justify-between">
 							<div className="mb-4 font-semibold text-xl text-white">
 								Reserve for specific buyer
@@ -64,8 +65,8 @@ const FixedPrice = () => {
 								/>
 							</div>
 						</div>
-						{toggle && <TextInput className="w-full" />}
-					</div>
+						 {toggle && <TextInput className="w-full" />} 
+				</div> */}
 				</div>
 			</div>
 		</>
