@@ -57,6 +57,8 @@ export const bid = async (token, tokenId, value) => {
     }
     const receipt = await transaction.wait();
     console.log(receipt);
+    notification("General", "Transaction Successful!");
+
   } catch (error) {
     console.log(error);
   }
