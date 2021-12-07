@@ -40,7 +40,7 @@ const Featured = () => {
   }, [])
 
   return (<div className="w-full my-16 py-16 glass-background">
-    <div className="container mx-auto px-12">
+    <div className="container mx-auto px-8 md:px-12">
       <div className="md:flex justify-between text-white items-center mb-16">
         <Heading> Featured Artworks</Heading>
         <div className="font-normal text-xl">View All -></div>

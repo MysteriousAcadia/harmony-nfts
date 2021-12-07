@@ -11,3 +11,22 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+.main-card-container {
+  height: 500px;
+}
+
+.main-card-container-image {
+  height: 450px;
+}
+
+@media(max-width:768px) {
+  .main-card-container {
+    height: 350px;
+  }
+
+  .main-card-container-image {
+    height: 250px;
+  }
+}
