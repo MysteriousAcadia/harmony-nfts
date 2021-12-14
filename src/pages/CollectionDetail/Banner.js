@@ -126,18 +126,23 @@ const Banner = ({ nftDetail = {} }) => {
 			}
 		} else {
 			if (currentAuction) {
-				return (
-					<div className="flex">
-						<PrimaryButton
-							className="my-4 mr-4"
-							onClick={() => {
-								setBidOpen(true);
-							}}
-						>
-							Place Bid
-						</PrimaryButton>
-					</div>
-				);
+				if (timeLeft > 0) {
+					return (
+						<div className="flex">
+							<PrimaryButton
+								className="my-4 mr-4"
+								onClick={() => {
+									setBidOpen(true);
+								}}
+							>
+								Place Bid
+							</PrimaryButton>
+						</div>
+					);
+				}
+				else {
+					return <div className="mt-8 font-bold">Auction Ended.</div>;
+				}
 			} else if (currentSellOrder) {
 				return (
 					<div className="flex">
@@ -226,7 +231,7 @@ const Banner = ({ nftDetail = {} }) => {
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 						eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					</div>
-					{currentAuction && (
+					{currentAuction && timeLeft > 0 && (
 						<>
 							<b className="mt-8">
 								Sale Ends on {new Date(endsAt * 1000).toString()}

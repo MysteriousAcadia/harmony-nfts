@@ -60,10 +60,7 @@ const Cover = ({ collectionDetail = {}, openHistory }) => {
 				</div>
 				<SecondaryButton>Follow +</SecondaryButton>
 				<div className="text-center text-white mx-6 lg:mx-32 my-4">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum
-					dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-					incididunt ut labore et dolore magna aliqua.
+					We are Harmoonies! We are a family of 10,000 unique, fun and cute faces.
 				</div>
 				<div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-4">
 					{stats.map(element => (

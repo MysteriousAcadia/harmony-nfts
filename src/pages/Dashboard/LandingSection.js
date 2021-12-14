@@ -116,8 +116,7 @@ const LandingSection = () => {
             <span> the amazing world of NFT's</span>
           </div>
           <div className="text-lg my-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            First of our kind generative NFT project on Harmony
           </div>
           <PrimaryButton
             onClick={() => navigator("/collections")}

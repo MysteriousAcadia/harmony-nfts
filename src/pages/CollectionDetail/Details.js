@@ -44,7 +44,7 @@ const Details = ({ nftDetail = {} }) => {
 										as="div"
 										className="mt-2 p-6 border-t border-gray-400 pr-12">
 										<p className="truncate mb-2">
-											<b>Token ID: </b> {id} <br />
+											<b>Token ID: </b> {tokenId} <br />
 										</p>
 										<p className="truncate mb-2">
 											<b>Contract Address: </b> {marketId} <br />

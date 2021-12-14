@@ -172,6 +172,8 @@ export const getNftOwner = async (signer, token, tokenId) => {
     const nftContract = new Contract(token, tokenAbi, signer)
 
     const owner = await nftContract.ownerOf(tokenId);
+    const uri = await nftContract.tokenURI(tokenId);
+    console.log(uri);
 
     return owner
   } catch (error) {

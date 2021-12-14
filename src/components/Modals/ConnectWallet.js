@@ -127,7 +127,7 @@ export default function ConnectWallet({ open = false, setOpen = () => { } }) {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom glass-3  px-36  pt-16 pb-16 text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle max-w-4xl">
+            <div className="inline-block align-bottom glass-3  px-4 md:px-36  pt-16 pb-16 text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle max-w-4xl">
               <div className="text-4xl font-bold mb-8">
                 {" "}
                 Connect your wallet

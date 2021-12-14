@@ -10,19 +10,19 @@ function classNames(...classes) {
 
 export default function LightDropdown({
 	options,
-	onChange = newOption => {},
+	onChange = newOption => { },
 	initialValue,
 }) {
 	const [currOptions, setCurrOptions] = useState(["Select..."]);
 	const [selectedOption, setSelectedOption] = useState(options[0]);
-	useEffect(() => {
-		setCurrOptions(options);
-		if (initialValue) {
-			setSelectedOption(initialValue);
-		} else if (options && options?.length && options.length > 0) {
-			setSelectedOption(options[0]);
-		}
-	}, [options, initialValue]);
+	// useEffect(() => {
+	// 	setCurrOptions(options);
+	// 	if (initialValue) {
+	// 		setSelectedOption(initialValue);
+	// 	} else if (options && options?.length && options.length > 0) {
+	// 		setSelectedOption(options[0]);
+	// 	}
+	// }, [options, initialValue]);
 	const changeOption = newOption => {
 		setSelectedOption(newOption);
 		onChange(newOption);

@@ -5,24 +5,24 @@ import Heading from 'components/Texts/Heading'
 
 const faqs = [
     {
-        question: "What is Logoipsum",
+        question: "When is the pre-sale?",
         answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "The pre-sale was on September 17th, 2021.",
     },
     {
-        question: "What is Logoipsum",
+        question: "When does minting go live?",
         answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "The public sale is live since September 18th, 2021.",
     },
     {
-        question: "What is Logoipsum",
+        question: "How many Harmoonies will be available for minting?",
         answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "In total there will be 10,000 Harmoonies brought to life. One hundred of those created will be reserved by the founders of the Harmoonies included custom variants made for founders and Harmony core team members. A percentage of these hundred will be used in future giveaways and competitions further along in our journey.",
     },
     {
-        question: "What is Logoipsum",
+        question: "How much will minting a Harmoonie cost?",
         answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "During the pre-sale period, minting will cost 450 ONE per Moonie. Following the pre-sale, the price will increase to 500 ONE per Moonie.",
     },
 ]
 
