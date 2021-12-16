@@ -14,7 +14,7 @@ const navigation = {
 		{ name: "Harmoonie Rewards", href: "/profile/5" },
 	],
 	company: [
-		{ name: "About Us", href: "/about" },
+		// { name: "About Us", href: "/about" },
 		{ name: "Privacy Policy", href: "#" },
 		{ name: "Cookie Policy", href: "#" },
 		{ name: "Terms & Conditions", href: "#" },

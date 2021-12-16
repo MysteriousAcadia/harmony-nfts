@@ -1,12 +1,14 @@
 import PrimaryButton from "components/Buttons/Primary";
 import PrimaryBlue from "components/Buttons/PrimaryBlue";
 import SecondaryButton from "components/Buttons/Secondary";
+import Banner from "assets/banner.png";
+import Profile from "assets/profile_crop.png";
 
 const FeaturedCollection = () => {
     return (<div className="relative blur-glass overflow-visible my-8 h-96 mx-8 p-2">
-        <div className="bg-gray-200 w-full h-32 rounded-t-lg" />
+        <img src={Banner} className="object-cover bg-gray-200 w-full h-32 rounded-t-lg" />
         <div className="flex flex-col items-center relative bg-white w-full h-60 rounded-b-lg">
-            <img className="absolute rounded-full w-32 h-32 bg-gray-400 -mt-16 left-1/2 shadow-lg" style={{ transform: "translate(-50%,0)" }} />
+            <img src={Profile} className="absolute rounded-full w-32 h-32 bg-gray-400 -mt-16 left-1/2 shadow-lg" style={{ transform: "translate(-50%,0)" }} />
             <div className="text-lg w-full truncate text-center px-2 text-main-default font-bold pt-24"> Harmoonies</div>
             <PrimaryBlue className="mx-auto px-4 mt-4">Explore Collection</PrimaryBlue>
 

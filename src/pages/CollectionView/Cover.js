@@ -5,6 +5,8 @@ import DiscordIcon from "assets/discord_icon.svg";
 import WebIcon from "assets/web_icon.svg";
 import StatsIcon from "assets/stats_icon.svg";
 import TwitterIcon from "assets/twitter_icon.svg";
+import Banner from "assets/banner.png";
+import Profile from "assets/profile_crop.png";
 import { utils } from "ethers";
 
 const StatsCard = ({ value, title }) => {
@@ -41,11 +43,11 @@ const Cover = ({ collectionDetail = {}, openHistory }) => {
 	return (
 		<>
 			<div className="px-4 mx-auto mt-8 flex items-center flex-col w-full">
-				<div className="w-full bg-gray-100 h-48" />
+				<img className="w-full bg-gray-100 h-64 object-cover" src={Banner} />
 				<div
-					className="absolute blur-glass rounded-full w-40 h-40 top-64 left-1/2 shadow-lg"
+					className="absolute blur-glass rounded-full w-40 h-40 top-80 left-1/2 shadow-lg"
 					style={{ transform: "translate(-50%,0)" }}>
-					<img className=" rounded-full m-2 w-36 h-36 bg-gray-400  " />
+					<img className=" rounded-full m-2 w-36 h-36 bg-gray-400" src={Profile} />
 				</div>
 				<Heading className="mt-24">{name}</Heading>
 				<div className=" mt-4 mb-4 flex justify-between">
