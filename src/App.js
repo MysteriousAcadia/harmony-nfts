@@ -76,7 +76,6 @@ function App() {
               <div className="base-background">
                 <Navbar />
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
                   <Route path="/collections" element={<AllCollections />} />
                   <Route
                     path="/collections/:marketId"
@@ -92,6 +91,9 @@ function App() {
                   <Route path="/about" element={<AboutUs />} />
                   <Route path="/stats" element={<Stats />} />
                   <Route path="/collections/:marketId/:id/sale" element={<ListForSale />} />
+                  <Route path="/:section" element={<Dashboard />} />
+                  <Route path="/" element={<Dashboard />} />
+
                 </Routes>
                 <Footer />
               </div>

@@ -3,6 +3,8 @@ import feeAbi from "./abi/feeRegistry.json";
 import tokenAbi from "abi/token.json";
 import { Contract } from "@ethersproject/contracts";
 import { store } from "react-notifications-component";
+import axios from "axios/index";
+import Web3 from "web3";
 
 
 let marketContract, feeContract;
@@ -182,6 +184,50 @@ export const getNftOwner = async (signer, token, tokenId) => {
 
   }
 };
+export const getNFTUri = async (signer, token, tokenId) => {
+  try {
+
+    // notification("Progress", "Transaction Initiated");
+    const web3 = new Web3(
+      new Web3.providers.HttpProvider('https://api.s0.b.hmny.io'),
+    )
+    const nftContract = new web3.eth.Contract(tokenAbi, token)
+    // const nftContract = new Contract(token, tokenAbi, new Web3.providers.HttpProvider("https://api.s0.b.hmny.io"))
+    console.log(nftContract);
+    const uri = await (await nftContract.methods.tokenURI(tokenId)).call();
+    console.log(uri);
+    return (await axios.get(uri));
+
+
+    return uri
+  } catch (error) {
+    console.log(error);
+    // notification("Error", "Transaction Failed: " + error.toString());
+
+  }
+}
+
+export const getTotalTokens = async (signer, address, token) => {
+  try {
+    if (!marketContract) {
+      notification("Error", "Connect to a wallet");
+      return false;
+    }
+    // notification("Progress", "Transaction Initiated");
+
+    const nftContract = new Contract(token, tokenAbi, signer)
+    const supply = await nftContract.balanceOf(address);
+
+    console.log(supply);
+
+    return supply
+  } catch (error) {
+    console.log(error);
+    // notification("Error", "Transaction Failed: " + error.toString());
+
+  }
+}
+// export const get
 
 export const cancelSell = (token, tokenId) => {
   try {

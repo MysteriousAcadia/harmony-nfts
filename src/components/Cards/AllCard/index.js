@@ -20,7 +20,7 @@ const AllCard = ({ data = {} }) => {
                     <img src={like ? HeartFilled : HeartEmpty} />
                 </div>
             </div>
-            <Link to={`${id}`} >
+            <Link to={`${tokenId}`} >
                 <div className=" w-full truncate  mx-4  font-bold"> Harmoonie #234</div>
                 <div className=" truncate  px-4 text-sm mb-4">@{sellerA?.address || sellerS?.address || "Unknown"}</div>
                 {(price && sellerS) &&

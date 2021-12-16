@@ -1,8 +1,38 @@
 import AllCard from "components/Cards/AllCard/index";
 import BoxTab from "components/Tabs/BoxTab/index";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useWeb3React } from "@web3-react/core";
+import { getTotalTokens } from "web3Integration";
 
-const CollectedItems = ({ }) => {
+const CollectedItems = ({ markets }) => {
+    const { activate, account, library } = useWeb3React();
+    const [allTokens, setAllTokens] = useState([]);
+    //[{market:{},tokens:[]}]
+
+    useEffect(() => {
+        const fetchMyTokens = async () => {
+            const data =
+                library?.messenger?.chainType === "hmy"
+                    ? library.provider
+                    : await library.getSigner(account);
+            markets?.map(async (market) => {
+                const { id } = market
+                const res = (await getTotalTokens(data, account, id)).toNumber();
+                const allTokens = {
+                    market: market,
+                    totalToken: res,
+                }
+                for (let i = 1; i < res; i++) {
+
+                }
+
+                console.log(res);
+            })
+        }
+        if (account) {
+            fetchMyTokens();
+        }
+    }, [markets, account])
     const [items, setItems] = useState([1, 1, 1, 1, 1, 1, 1, 1,]);
     return (<>
         <div className="container my-16 mx-auto px-4">

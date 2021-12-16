@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom"
 
 const ListForSale = ({ }) => {
 	const navigate = useNavigate();
-	const { id } = useParams();
+	const { marketId, id } = useParams();
 	const [nftDetail, setNftDetail] = useState({});
 	const { activate, account, library } = useWeb3React();
 	const [signer, setSigner] = useState();
@@ -36,7 +36,7 @@ const ListForSale = ({ }) => {
 		const fetchData = async () => {
 			const result = await graphQlInstance.post("/graphql", {
 				query: `{
-  nft(id:"${id}"){
+  nft(id:"${marketId}-${id}") {
     id
     token
     tokenId

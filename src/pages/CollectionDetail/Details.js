@@ -6,19 +6,20 @@ import StatsIcon from "assets/stats_icon.svg";
 import TwitterIcon from "assets/twitter_icon.svg";
 
 const AttrCard = ({ data = {} }) => {
-	const { key, value } = data;
+	const { key, value, trait_type } = data;
 	return (
 		<>
 			<div className="glass-2 p-4 text-center">
-				<div className="text-sm uppercase font-bold mb-2">{key}</div>
+				<div className="text-sm uppercase font-bold mb-2">{key || trait_type}</div>
 				<div className=" font-extrabold mb-2">{value}</div>
 				{/* <div className=" font-normal mb-2">12% have this trait</div> */}
 			</div>
 		</>
 	);
 };
-const Details = ({ nftDetail = {} }) => {
-	const { attributes = [], tokenId, market = {}, id } = nftDetail || {};
+const Details = ({ nftDetail = {}, metaData }) => {
+	const { attributes = [] } = metaData;
+	const { tokenId, market = {}, id } = nftDetail || {};
 	const { id: marketId } = market;
 
 	return (

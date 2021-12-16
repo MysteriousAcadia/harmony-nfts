@@ -45,9 +45,13 @@ const AboutUs = ({ }) => {
 			<div className="container px-4 mx-auto mt-4 text-white text-center">
 				<div className="text-3xl mb-8 font-semibold">About Armoonia</div>
 				<div>
-					Hello World! We are the Harmoonies! We are a first of our kind generative NFT project on Harmony.
-
-					We are a family of 10,000 unique, fun and cute faces (including some you may recognize!).
+					Armoonia is a decentralized marketplace for generative NFT collections on Harmony. We
+					aim to provide both creators and collectors with the go-to platform for establishing innovative
+					NFT projects.
+					<br />
+					<br />
+					<br />
+					Explore, sell and buy NFT's from differents collections on our marketplace!
 				</div>
 				<div className="font-semibold text-3xl my-12">Our Team</div>
 				<div className="grid grid-cols-4 gap-2 justify-items-center">

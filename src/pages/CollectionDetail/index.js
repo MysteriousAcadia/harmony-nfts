@@ -6,18 +6,33 @@ import Banner from "./Banner";
 import Details from "./Details";
 import ExploreMore from "./ExploreMore";
 import Offers from "./Offers";
+import axios from "axios/index";
+import { getNFTUri } from "web3Integration";
+import { useWeb3React } from "@web3-react/core";
+
 
 const CollectionDetail = ({ }) => {
-  const { id } = useParams();
+  const { marketId, id } = useParams();
   const [nftDetail, setNftDetail] = useState({});
   const [bids, setBids] = useState([]);
   const [orderHistory, setOrderHistory] = useState([]);
   const [auctionData, setAuctionData] = useState([]);
+  const { activate, account, library } = useWeb3React();
+  const [metaData, setMetaData] = useState({});
+
+  useEffect(async () => {
+    const data =
+      await library?.getSigner();
+    console.log(library);
+    const res = (await getNFTUri(library, marketId, id))
+    setMetaData(res?.data);
+    console.log("werew")
+  }, [library, marketId, id]);
   useEffect(() => {
     const fetchData = async () => {
       const result = await graphQlInstance.post("/graphql", {
         query: `{
-  nft(id:"${id}"){
+  nft(id:"${marketId}-${id}"){
     id
     token
     tokenId
@@ -77,10 +92,11 @@ const CollectionDetail = ({ }) => {
     };
     fetchData();
 
+
     const fetchAutcionData = async () => {
       const result = await graphQlInstance.post("/graphql", {
         query: `{
-  nft(id:"${id}") {
+  nft(id:"${marketId}-${id}") {
     currentAuction{
       id
       bids{
@@ -105,7 +121,7 @@ const CollectionDetail = ({ }) => {
     const fetchOrderHistoryData = async () => {
       const result = await graphQlInstance.post("/graphql", {
         query: `{
-  nft(id:"${id}") {
+  nft(id:"${marketId}-${id}") {
     sales{
       id
       buyer{
@@ -130,11 +146,11 @@ const CollectionDetail = ({ }) => {
     fetchAutcionData();
     fetchOrderHistoryData();
     fetchData();
-  }, [id]);
+  }, [marketId, id]);
   return (
     <>
-      <Banner nftDetail={nftDetail} />
-      <Details nftDetail={nftDetail} />
+      <Banner metaData={metaData} nftDetail={nftDetail} />
+      <Details metaData={metaData} nftDetail={nftDetail} />
       <Offers
         nftDetail={nftDetail}
         auctionData={auctionData}

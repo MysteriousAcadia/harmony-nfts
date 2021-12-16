@@ -4,26 +4,46 @@ import { Disclosure } from '@headlessui/react'
 import Heading from 'components/Texts/Heading'
 
 const faqs = [
+    //     {
+    //         question: "About Armoonia",
+    //         answer:
+    //             `Armoonia is a decentralized marketplace for generative NFT collections on Harmony. We
+    // aim to provide both creators and collectors with the go- to platform for establishing innovative
+    // NFT projects.
+    //         Explore, sell and buy NFT's from differents collections on our marketplace!`,
+    //     },
     {
-        question: "When is the pre-sale?",
+        question: "What is Armoonia?",
         answer:
-            "The pre-sale was on September 17th, 2021.",
+            `Armoonia is a generative NFT marketplace... But what separates us from others? Well, we will
+be focusing primarily on providing a marketplace platform for <b>generative NFT collections</b>.
+Focusing on a singular niche in this huge market allows us to really cater the Armoonia
+marketplace towards generative NFTs.Each and every single collection will be vetted before
+being verified.This reduces the risk of being scammed by interacting with fraudulent and/ or
+unverified scams.Stand - out projects will also have a chance of being officially featured on the
+front page!`,
     },
     {
-        question: "When does minting go live?",
+        question: "What are the fees on Armoonia?",
         answer:
-            "The public sale is live since September 18th, 2021.",
+            `A 4% marketplace fee is taken on all secondary sales , 1% fee for reflections goes to
+<b>Harmoonies</b> holders.Creators can choose between a 0–5% fee from their project’s secondary
+sales. <b>This means that the maximum fee on a purchase will be 10% (the minimum being
+5%).</b>`,
     },
     {
-        question: "How many Harmoonies will be available for minting?",
+        question: "Im having an technical issue with Armoonia, what should i do?",
         answer:
-            "In total there will be 10,000 Harmoonies brought to life. One hundred of those created will be reserved by the founders of the Harmoonies included custom variants made for founders and Harmony core team members. A percentage of these hundred will be used in future giveaways and competitions further along in our journey.",
+            `If you are facing and issue or have any problems please contact our team on our discord server.
+<b>Join our Discord: <a target="__blank" href="https://discord.gg/RHTmcCyX">https://discord.gg/RHTmcCyX</a></b>`,
     },
-    {
-        question: "How much will minting a Harmoonie cost?",
-        answer:
-            "During the pre-sale period, minting will cost 450 ONE per Moonie. Following the pre-sale, the price will increase to 500 ONE per Moonie.",
-    },
+    //     {
+    //         question: "About Harmoonies",
+    //         answer:
+    //             `Hello World! We are the Harmoonies! We are a first of our kind generative NFT project on
+    // Harmony.
+    // We are a family of 10,000 unique, fun and cute faces (including some you may recognize!).`,
+    //     },
 ]
 
 function classNames(...classes) {
@@ -48,7 +68,7 @@ export default function FAQ() {
                                 </Disclosure.Button>
                             </div>
                             <Disclosure.Panel as="div" className="mt-2 p-6 border-t border-gray-400 pr-12">
-                                <p className="text-base ">{faq.answer}</p>
+                                <p className="text-base " dangerouslySetInnerHTML={{ "__html": faq.answer }}></p>
                             </Disclosure.Panel>
                         </>
                     )}

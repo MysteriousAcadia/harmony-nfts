@@ -14,11 +14,15 @@ import BidModal from "components/Modals/MakeOffer/BidModal";
 import { store } from "react-notifications-component"
 
 
-const Banner = ({ nftDetail = {} }) => {
+const Banner = ({ nftDetail = {}, metaData = {} }) => {
 	const navigate = useNavigate();
 	const { activate, account, library } = useWeb3React();
 	const {
+		name,
 		image,
+		description,
+	} = metaData;
+	const {
 		token,
 		tokenId = "",
 		currentOwner,
@@ -216,7 +220,7 @@ const Banner = ({ nftDetail = {} }) => {
 				<MainCard />
 				<div className="flex flex-col items-start md:ml-32">
 					<div className="inline-block font-bold text-5xl">
-						Harmoonie #{tokenId}
+						{name}
 					</div>
 					<div
 
@@ -228,8 +232,7 @@ const Banner = ({ nftDetail = {} }) => {
 					</div>
 					<b className="mt-8">Description</b>
 					<div>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-						eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						{description}
 					</div>
 					{currentAuction && timeLeft > 0 && (
 						<>

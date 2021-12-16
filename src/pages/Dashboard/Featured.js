@@ -12,6 +12,7 @@ const Featured = () => {
         query: `{
   nfts(first:5) {
     id
+    tokenId
     token
     image
     currencyStats {
