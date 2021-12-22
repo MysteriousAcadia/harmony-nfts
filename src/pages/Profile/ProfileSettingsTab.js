@@ -13,6 +13,7 @@ const DataCard = ({ title, desc }) => {
 }
 
 const ProfileSettingsTab = ({ }) => {
+
     const [values, setValues] = useState({
         name: "Haarmoonie Fan",
         description: "Digital Art, Oil Painting, Mixed Media. Figurative Abstract. Symbolism. Inspired by Klimt, Kahlo, de Saint Phalle and Burlet.",

@@ -53,7 +53,7 @@ const ExploreMore = ({ }) => {
 									<span className="font-bold flex-grow w-full">
 										More from the Collection
 									</span>
-									<span className="ml-6 h-7 flex items-center">+</span>
+									<span className="ml-6 h-7 flex items-center">{open ? "-" : "+"}</span>
 								</Disclosure.Button>
 							</div>
 							<Disclosure.Panel

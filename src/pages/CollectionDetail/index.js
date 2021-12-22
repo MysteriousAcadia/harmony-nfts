@@ -7,7 +7,7 @@ import Details from "./Details";
 import ExploreMore from "./ExploreMore";
 import Offers from "./Offers";
 import axios from "axios/index";
-import { getNFTUri } from "web3Integration";
+import { getNFTUri, isWalletConnected } from "web3Integration";
 import { useWeb3React } from "@web3-react/core";
 
 

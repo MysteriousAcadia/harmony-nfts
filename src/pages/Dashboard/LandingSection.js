@@ -35,18 +35,18 @@ const Stats = () => {
 };
 const MainCard = () => {
   return (
-    <div className="relative main-card-container w-full md:w-40v p-2  rounded-lg">
+    <div className="relative main-card-container w-full md:w-40v max-w-xl p-2  rounded-lg">
       <div
-        className=" absolute blur-glass w-2/3 h-40v blur-glass left-1/2"
+        className=" absolute blur-glass w-2/3 h-full blur-glass left-1/2"
         style={{ transform: "translate(-50%,0)" }}
       />
 
       <div
-        className="blur-glass absolute w-3/4 md:w-30v mt-4 h-40v blur-glass left-1/2"
+        className="blur-glass absolute w-3/4  mt-4 h-full blur-glass left-1/2"
         style={{ transform: "translate(-50%,0)" }}
       />
       <div
-        className="absolute  blur-glass p-4 mt-8 w-full  md:w-35v  left-1/2"
+        className="absolute  blur-glass p-4 mt-8 w-full  left-1/2"
         style={{ transform: "translate(-50%,0)" }}
       >
         <img className="w-full bg-transparent rounded-md object-cover main-card-container-image" src={PreviewImage} alt="PreviewI" />
@@ -61,7 +61,7 @@ const MainCard = () => {
 };
 const BidCard = () => {
   return (
-    <div className="absolute w-full md:w-30v blur-glass -bottom-12 -left-4 p-4 md:p-8 rounded-md">
+    <div className="absolute w-full md:w-30v max-w-md blur-glass -bottom-12 -left-4 p-4 md:p-8 rounded-md">
       <div className="flex text-black-default">
         <div className="flex-grow-0 mr-2 md:mr-4">
           <div className="font-normal text-sm mb-2">Current bid</div>

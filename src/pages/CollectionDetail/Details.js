@@ -25,7 +25,7 @@ const Details = ({ nftDetail = {}, metaData }) => {
 	return (
 		<>
 			<div className="container px-4 mx-auto">
-				<div className="md:flex justify-around text-white">
+				<div className="md:flex justify-around text-white ">
 					<div className="flex-1 mr-8">
 						<Disclosure
 							defaultOpen={true}
@@ -38,7 +38,7 @@ const Details = ({ nftDetail = {}, metaData }) => {
 											<span className="font-bold flex-grow w-full">
 												Details
 											</span>
-											<span className="ml-6 h-7 flex items-center">+</span>
+											<span className="ml-6 h-7 flex items-center">{open ? "-" : "+"}</span>
 										</Disclosure.Button>
 									</div>
 									<Disclosure.Panel
@@ -57,13 +57,13 @@ const Details = ({ nftDetail = {}, metaData }) => {
 						<Disclosure
 							defaultOpen={true}
 							as="div"
-							className=" mt-6 bg-transparent border border-gray-400 rounded-md">
+							className=" my-6 bg-transparent border border-gray-400 rounded-md">
 							{({ open }) => (
 								<>
 									<div>
 										<Disclosure.Button className="p-6 text-left w-full flex justify-between items-center ">
 											<span className="font-bold">About Harmoonies</span>
-											<span className="ml-6 h-7 flex items-center">+</span>
+											<span className="ml-6 h-7 flex items-center">{open ? "-" : "+"}</span>
 										</Disclosure.Button>
 									</div>
 									<Disclosure.Panel
@@ -98,12 +98,12 @@ const Details = ({ nftDetail = {}, metaData }) => {
 									<div>
 										<Disclosure.Button className="p-6 text-left w-full flex justify-between items-center ">
 											<span className="font-bold">Details</span>
-											<span className="ml-6 h-7 flex items-center">+</span>
+											<span className="ml-6 h-7 flex items-center">{open ? "-" : "+"}</span>
 										</Disclosure.Button>
 									</div>
 									<Disclosure.Panel
 										as="div"
-										className="mt-2 p-6 border-t border-gray-400 ">
+										className="mt-2 p-6 border-t overflow-y-auto max-h-96   border-gray-400 ">
 										<div className="grid grid-cols-3 gap-4">
 											{attributes.map(e => {
 												return <AttrCard data={e} />;

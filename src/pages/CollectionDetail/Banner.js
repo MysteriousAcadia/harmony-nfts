@@ -169,18 +169,18 @@ const Banner = ({ nftDetail = {}, metaData = {} }) => {
 	};
 	const MainCard = () => {
 		return (
-			<div className=" md:h-60v w-90v md:w-40v p-2  rounded-lg">
-				<div className=" p-4 blur-glass md:h-60v mt-8 w-80v md:w-35v">
+			<div className="  rounded-lg">
+				<div className="w-full md:max-w-md lg:max-w-lg p-4 blur-glass  mt-8">
 					<img
 						src={image}
-						className="w-full bg-gray-200 rounded-md h-full bg-cover"
+						className=" bg-gray-200 rounded-md  object-cover"
 					/>
-					<div className="absolute bg-white right-8 top-8 rounded-md">
+					{/* <div className="absolute bg-white right-8 top-8 rounded-md">
 						<div className="flex text-main-default p-4">
 							<img src={HeartIcon} className=" h-6 w-6 mr-2" />
 							16
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		);
@@ -218,7 +218,7 @@ const Banner = ({ nftDetail = {}, metaData = {} }) => {
 					price={nftDetail?.currentAuction?.highestBid}
 				/>
 				<MainCard />
-				<div className="flex flex-col items-start md:ml-32">
+				<div className="flex flex-col items-start mt-8 md:ml-32">
 					<div className="inline-block font-bold text-5xl">
 						{name}
 					</div>

@@ -2,7 +2,8 @@ import AllCard from "components/Cards/AllCard/index";
 import BoxTab from "components/Tabs/BoxTab/index";
 import { useState, useEffect } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { getTotalTokens } from "web3Integration";
+import { getTotalTokens, tokenOfOwnerByIndex } from "web3Integration";
+import OwnedNFTCard from "components/Cards/OwnedNFTCard/index";
 
 const CollectedItems = ({ markets }) => {
     const { activate, account, library } = useWeb3React();
@@ -15,19 +16,23 @@ const CollectedItems = ({ markets }) => {
                 library?.messenger?.chainType === "hmy"
                     ? library.provider
                     : await library.getSigner(account);
-            markets?.map(async (market) => {
+            const allTokensNew = await Promise.all(markets?.map(async (market) => {
                 const { id } = market
                 const res = (await getTotalTokens(data, account, id)).toNumber();
                 const allTokens = {
                     market: market,
                     totalToken: res,
+                    tokenId: [],
                 }
-                for (let i = 1; i < res; i++) {
-
+                for (let i = 0; i < res; i++) {
+                    const tokenId = (await tokenOfOwnerByIndex(data, account, i)).toNumber();
+                    allTokens.tokenId.push(tokenId);
                 }
 
                 console.log(res);
-            })
+            }))
+            console.log(allTokensNew);
+            setAllTokens(allTokensNew);
         }
         if (account) {
             fetchMyTokens();
@@ -42,15 +47,12 @@ const CollectedItems = ({ markets }) => {
                 >
                     <div>
                         <div className="grid grid-cols-4 gap-4">
-                            <AllCard />
-                            <AllCard />
-                            <AllCard />
-                            <AllCard />
-                            <AllCard />
-                            <AllCard />
-                            <AllCard />
-                            <AllCard />
-                            <AllCard />
+                            {allTokens.map(token => {
+                                const { market, tokenId } = token;
+                                return (<>{tokenId.map((id) => <OwnedNFTCard token={market} tokenId={id} />)
+
+                                }</>)
+                            })}
                         </div>
                     </div>
                     <div>

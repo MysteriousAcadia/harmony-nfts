@@ -38,6 +38,15 @@ const notification = (type = "Message", message = "") => {
     },
   });
 };
+export const isWalletConnected = async () => {
+  if (!marketContract) {
+
+    notification("Error", "Connect to wallet first!");
+    return false;
+  }
+  console.log(marketContract);
+  return true;
+}
 
 
 /** marketplace functions */
@@ -227,7 +236,17 @@ export const getTotalTokens = async (signer, address, token) => {
 
   }
 }
-// export const get
+export const tokenOfOwnerByIndex = async (signer, address, id) => {
+  try {
+    const nftContract = new Contract(token, tokenAbi, signer);
+    const token = await nftContract.tokenOfOwnerByIndex(address, id);
+    return token;
+
+  }
+  catch (e) {
+    console.log(e);
+  }
+}
 
 export const cancelSell = (token, tokenId) => {
   try {

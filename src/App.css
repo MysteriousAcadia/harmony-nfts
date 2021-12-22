@@ -32,7 +32,26 @@
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(360deg);
+	}
+}
+
+.main-card-container {
+	height: 500px;
+}
+
+.main-card-container-image {
+	height: 450px;
+}
+
+@media(max-width:768px) {
+	.main-card-container {
+		height: 350px;
+	}
+
+	.main-card-container-image {
+		height: 250px;
 	}
 }

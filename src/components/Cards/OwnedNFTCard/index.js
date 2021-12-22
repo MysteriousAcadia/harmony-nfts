@@ -2,13 +2,25 @@ import { Link } from "react-router-dom";
 import HeartEmpty from "assets/heart_empty.svg"
 import HeartFilled from "assets/heart_filled.svg"
 import "./style.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { utils } from "ethers";
 import { daysLeft } from "utils/date";
+import { getNFTUri } from "web3Integration";
 
-const AllCard = ({ data = {} }) => {
+const OwnedNFTCard = ({ token, tokenId }) => {
+    const [data, setData] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const resp = await getNFTUri(null, token, tokenId);
+            setData(resp.data);
+        }
+        if (token && tokenId) {
+            fetchData();
+        }
+    }, [token, tokenId])
     const [like, setLike] = useState(false);
-    const { currentAuction = {}, currentSellOrder = {}, image, tokenId, id } = data;
+    const { currentAuction = {}, currentSellOrder = {}, image, id } = data;
     const { highestBid, endsAt, sellerA } = (currentAuction || {});
     const { seller: sellerS, price } = (currentSellOrder || {})
     return (<>
@@ -20,7 +32,7 @@ const AllCard = ({ data = {} }) => {
                     <img src={like ? HeartFilled : HeartEmpty} />
                 </div>
             </div>
-            <Link to={`${tokenId}`} >
+            <Link to={`/collections/${token}/${tokenId}`} >
                 <div className=" w-full truncate  mx-4  font-bold"> Harmoonie #{id}</div>
                 <div className=" truncate  px-4 text-sm mb-4">@{sellerA?.address || sellerS?.address || "Unknown"}</div>
                 {(price && sellerS) &&
@@ -47,4 +59,4 @@ const AllCard = ({ data = {} }) => {
         </div>
     </>);
 }
-export default AllCard
+export default OwnedNFTCard

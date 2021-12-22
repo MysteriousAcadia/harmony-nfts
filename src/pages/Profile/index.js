@@ -2,6 +2,7 @@ import LineTab from "components/Tabs/LineTab/index";
 import graphQlInstance from "config/axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { isWalletConnected } from "web3Integration";
 import CollectedItems from "./CollectedItems";
 import Favorites from "./Favorites";
 import FollowedCollections from "./FollowedCollections";
@@ -10,8 +11,11 @@ import "./style.css"
 
 const Profile = ({ }) => {
     const { tab = 0 } = useParams();
+
     const [markets, setMarkets] = useState([]);
     useEffect(() => {
+        isWalletConnected();
+
         const fetchMarkets = async () => {
             const result = await graphQlInstance.post("/graphql", {
                 query: `{

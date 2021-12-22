@@ -51,7 +51,7 @@ const AboutUs = ({ }) => {
 					<br />
 					<br />
 					<br />
-					Explore, sell and buy NFT's from differents collections on our marketplace!
+					Explore, sell and buy NFT's from different collections on our marketplace!
 				</div>
 				<div className="font-semibold text-3xl my-12">Our Team</div>
 				<div className="grid grid-cols-4 gap-2 justify-items-center">
