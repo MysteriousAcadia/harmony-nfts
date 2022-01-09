@@ -1,9 +1,10 @@
 import PrimaryWhite from "components/Buttons/PrimaryWhite";
 import TextInput from "components/Inputs/TextInput";
 import Heading from "components/Texts/Heading";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CopyIcon from "assets/copy_icon.svg";
 import Checkbox from "components/Inputs/Checkbox";
+import Web3Context from "contexts/Context";
 
 const DataCard = ({ title, desc }) => {
     return (<div className=" mx-4 text-center">
@@ -14,9 +15,18 @@ const DataCard = ({ title, desc }) => {
 
 const ProfileSettingsTab = ({ }) => {
 
+    const { getUserData, account, updateUser } = useContext(Web3Context);
+    useEffect(() => {
+        const fetchData = async () => {
+            const user = await getUserData();
+            setValues(user);
+        }
+        fetchData();
+    }, [account])
+
     const [values, setValues] = useState({
         name: "Haarmoonie Fan",
-        description: "Digital Art, Oil Painting, Mixed Media. Figurative Abstract. Symbolism. Inspired by Klimt, Kahlo, de Saint Phalle and Burlet.",
+        about: "Digital Art, Oil Painting, Mixed Media. Figurative Abstract. Symbolism. Inspired by Klimt, Kahlo, de Saint Phalle and Burlet.",
         website: "www.mywebsite.com",
         twitter: "mytwitter",
         wallet_address: "1x57fhjfd57fhjfd57fhjfd57fhjfd57fhjfd57fhjfd",
@@ -39,8 +49,8 @@ const ProfileSettingsTab = ({ }) => {
             </div>
             {!isEdit ?
                 <>
-                    <Heading className="pt-4">{values.name}</Heading>
-                    <div className="py-4 font-normal">{values.description}</div>
+                    <Heading className="pt-4">{values?.name || "(No Name)"}</Heading>
+                    <div className="py-4 font-normal">{values?.about || "(No Descriptiion)"}</div>
                     <PrimaryWhite
                         className="mt-4"
                         onClick={() => setIsEdit(true)}
@@ -48,43 +58,49 @@ const ProfileSettingsTab = ({ }) => {
                 </> : <div className="px-24 w-full">
                     <TextInput
                         className="font-bold w-full text-3xl mt-4"
-                        value={values.name}
+                        value={values?.name}
+                        placeholder="Your Name goes here..."
                         onChange={(e) => editValue("name", e.target.value)}
                     />
                     <TextInput
                         className="font-normal w-full my-4"
-                        value={values.description}
-                        onChange={(e) => editValue("description", e.target.value)}
+                        value={values?.about}
+                        placeholder="Your Description goes here..."
+                        onChange={(e) => editValue("about", e.target.value)}
                     />
                 </div>}
             <div className="divider" />
             <div className="glass-2 max-w-4xl py-16 px-20">
                 <div className="flex items-center mb-8">
                     <b>Wallet Address:</b>
-                    <div className="font-normal pl-2 pr-1">{values.wallet_address}</div>
+                    <div className="font-normal pl-2 pr-1">{account || ""}</div>
                     <img src={CopyIcon} />
                 </div>
                 <div className="flex items-center mb-8">
                     <b>Member Since:</b>
-                    <div className="font-normal pl-2 pr-1">{values.date}</div>
+                    <div className="font-normal pl-2 pr-1">{(new Date(values?.createdAt || "")).toLocaleDateString("en-US")}</div>
                 </div>
                 <div className="flex items-center mb-8">
                     <b>Website:</b>
                     {isEdit ?
-                        <TextInput className="font-normal ml-2 mr-1" value={values.website} onChange={(e) => editValue("website", e.target.value)} /> :
-                        <div className="font-normal pl-2 pr-1">{values.website}</div>
+                        <TextInput
+                            placeholder="Your Website goes here..."
+                            className="font-normal ml-2 mr-1" value={values?.website} onChange={(e) => editValue("website", e.target.value)} /> :
+                        <div className="font-normal pl-2 pr-1">{values?.website || "(No Website)"}</div>
                     }
                 </div>
                 <div className="flex items-center">
                     <b>Twitter:</b>
                     {isEdit ?
-                        <TextInput className="font-normal ml-2 mr-1 py-2" value={values.twitter} onChange={(e) => editValue("twitter", e.target.value)} /> :
-                        <div className="font-normal pl-2 pr-1">{values.twitter}</div>
+                        <TextInput
+                            placeholder="Your Twitter goes here..."
+                            className="font-normal ml-2 mr-1 py-2" value={values?.twitter} onChange={(e) => editValue("twitter", e.target.value)} /> :
+                        <div className="font-normal pl-2 pr-1">{values?.twitter || "(No Twitter)"}</div>
                     }
                 </div>
             </div>
             <div className="max-w-4xl flex flex-col pb-16 ">
-                {(isEdit || values.show_earnings) &&
+                {(isEdit || values?.show_earnings) &&
                     <>
                         <Heading className="mt-16 w-full text-center">Earnings</Heading>
                         <div className="divider" />
@@ -102,14 +118,14 @@ const ProfileSettingsTab = ({ }) => {
                         {isEdit &&
                             <div className="mt-12">
                                 <Checkbox
-                                    value={values.show_earnings}
+                                    value={values?.show_earnings}
                                     onChange={(value) => editValue("show_earnings", value)}
                                 ><div className="font-normal w-full">Show on my profile</div></Checkbox>
                             </div>
                         }
                     </>
                 }
-                {(isEdit || values.show_spendings) &&
+                {(isEdit || values?.show_spendings) &&
                     <>
                         <Heading className="mt-16 w-full text-center">Spendings</Heading>
                         <div className="divider" />
@@ -127,7 +143,7 @@ const ProfileSettingsTab = ({ }) => {
                         {isEdit &&
                             <div className="mt-12">
                                 <Checkbox
-                                    value={values.show_spendings}
+                                    value={values?.show_spendings}
                                     onChange={(value) => editValue("show_spendings", value)}
                                 ><div className="font-normal w-full">Show on my profile</div></Checkbox>
                             </div>
@@ -138,7 +154,10 @@ const ProfileSettingsTab = ({ }) => {
             </div>
             {isEdit &&
                 <PrimaryWhite
-                    onClick={() => setIsEdit(false)}
+                    onClick={() => {
+                        setIsEdit(false)
+                        updateUser(values);
+                    }}
                     className="mt-4">
                     Save Changes
                 </PrimaryWhite>}

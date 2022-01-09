@@ -10,6 +10,7 @@ import {
 import { Web3ReactProvider } from "@web3-react/core";
 import { Harmony } from "@harmony-js/core";
 import { Web3Provider } from "@ethersproject/providers";
+import Web3Context, { Web3Provider as Web2Provider } from 'contexts/Context';
 
 import "./App.css";
 
@@ -64,42 +65,44 @@ const client = new ApolloClient({
 function App() {
   return (
     <>
+
       <ReactNotification />
 
+
+      {/* <MakeOffer /> */}
+
       <Web3ReactProvider getLibrary={getLibrary}>
-        <ApolloProvider client={client}>
-          {/* <MakeOffer /> */}
+        <Web2Provider>
 
-          <Web3ReactProvider getLibrary={getLibrary}>
-            <Router>
-              <ScrollToTop />
-              <div className="base-background">
-                <Navbar />
-                <Routes>
-                  <Route path="/collections" element={<AllCollections />} />
-                  <Route
-                    path="/collections/:marketId"
-                    element={<CollectionView />}
-                  />
-                  <Route
-                    path="/collections/:marketId/:id"
-                    element={<CollectionDetail />}
-                  />
-                  <Route path="/nfts/:id" element={<CollectionDetail />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/profile/:tab" element={<Profile />} />
-                  <Route path="/about" element={<AboutUs />} />
-                  <Route path="/stats" element={<Stats />} />
-                  <Route path="/collections/:marketId/:id/sale" element={<ListForSale />} />
-                  <Route path="/:section" element={<Dashboard />} />
-                  <Route path="/" element={<Dashboard />} />
+          <Router>
+            <ScrollToTop />
+            <div className="base-background">
+              <Navbar />
+              <Routes>
+                <Route path="/collections" element={<AllCollections />} />
+                <Route
+                  path="/collections/:marketId"
+                  element={<CollectionView />}
+                />
+                <Route
+                  path="/collections/:marketId/:id"
+                  element={<CollectionDetail />}
+                />
+                <Route path="/nfts/:id" element={<CollectionDetail />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/:tab" element={<Profile />} />
+                <Route path="/about" element={<AboutUs />} />
+                <Route path="/stats" element={<Stats />} />
+                <Route path="/collections/:marketId/:id/sale" element={<ListForSale />} />
+                <Route path="/:section" element={<Dashboard />} />
+                <Route path="/" element={<Dashboard />} />
 
-                </Routes>
-                <Footer />
-              </div>
-            </Router>
-          </Web3ReactProvider>
-        </ApolloProvider>
+              </Routes>
+              <Footer />
+            </div>
+          </Router>
+        </Web2Provider>
+
       </Web3ReactProvider>
     </>
   );

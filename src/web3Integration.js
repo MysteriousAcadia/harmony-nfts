@@ -3,7 +3,7 @@ import feeAbi from "./abi/feeRegistry.json";
 import tokenAbi from "abi/token.json";
 import { Contract } from "@ethersproject/contracts";
 import { store } from "react-notifications-component";
-import axios from "axios/index";
+import axios from "axios";
 import Web3 from "web3";
 
 
@@ -38,6 +38,9 @@ const notification = (type = "Message", message = "") => {
     },
   });
 };
+
+
+
 export const isWalletConnected = async () => {
   if (!marketContract) {
 
@@ -225,6 +228,7 @@ export const getTotalTokens = async (signer, address, token) => {
     // notification("Progress", "Transaction Initiated");
 
     const nftContract = new Contract(token, tokenAbi, signer)
+    console.log(nftContract);
     const supply = await nftContract.balanceOf(address);
 
     console.log(supply);

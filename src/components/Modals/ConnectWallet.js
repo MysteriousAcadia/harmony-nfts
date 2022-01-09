@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import "./style.css";
 import { injected, onewallet } from "./connectors";
@@ -8,10 +8,12 @@ import { connectContracts } from "web3Integration";
 import { store } from "react-notifications-component";
 import Metamask from "assets/metamask_icon.svg";
 import Harmony from "assets/harmony_icon.svg";
+import Web2Context from "contexts/Context";
 
 export default function ConnectWallet({ open = false, setOpen = () => { } }) {
   const { activate, account, library } = useWeb3React();
   const { ethereum } = window;
+  const { getNonce, setSigner, signer } = useContext(Web2Context)
 
   const onClickMetamask = async (connector) => {
     activate(connector, async (err) => {
@@ -24,6 +26,11 @@ export default function ConnectWallet({ open = false, setOpen = () => { } }) {
     });
     await ethereum.request({ method: 'eth_requestAccounts' })
   };
+  useEffect(() => {
+    if (signer) {
+      getNonce();
+    }
+  }, [signer])
 
   useEffect(async () => {
     if (!library) return;
@@ -31,6 +38,7 @@ export default function ConnectWallet({ open = false, setOpen = () => { } }) {
       library?.messenger?.chainType === "hmy"
         ? library.provider
         : await library.getSigner(account);
+    setSigner(data);
     await connectContracts(data);
     console.log(library);
   }, [library]);

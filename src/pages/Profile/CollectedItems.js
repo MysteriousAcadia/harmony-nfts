@@ -16,21 +16,29 @@ const CollectedItems = ({ markets }) => {
                 library?.messenger?.chainType === "hmy"
                     ? library.provider
                     : await library.getSigner(account);
+            const backupT = [];
             const allTokensNew = await Promise.all(markets?.map(async (market) => {
+                market.id = "0xb60bc5ec5b57f4d8408754f251ce85fd00c760be";
+                console.log(market);
                 const { id } = market
-                const res = (await getTotalTokens(data, account, id)).toNumber();
+                const res = parseInt((await getTotalTokens(data, account, id)).toString());
                 const allTokens = {
                     market: market,
+
                     totalToken: res,
                     tokenId: [],
                 }
                 for (let i = 0; i < res; i++) {
-                    const tokenId = (await tokenOfOwnerByIndex(data, account, i)).toNumber();
+                    const tokenId = parseInt((await tokenOfOwnerByIndex(data, account, i)).toString());
                     allTokens.tokenId.push(tokenId);
                 }
+                backupT.push(allTokens);
+                return (allTokens)
+
 
                 console.log(res);
             }))
+            console.log(backupT);
             console.log(allTokensNew);
             setAllTokens(allTokensNew);
         }

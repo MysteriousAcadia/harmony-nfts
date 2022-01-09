@@ -1,6 +1,7 @@
 import LineTab from "components/Tabs/LineTab/index";
 import graphQlInstance from "config/axios";
-import { useEffect, useState } from "react";
+import Web3Context from "contexts/Context";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { isWalletConnected } from "web3Integration";
 import CollectedItems from "./CollectedItems";
@@ -14,7 +15,7 @@ const Profile = ({ }) => {
 
     const [markets, setMarkets] = useState([]);
     useEffect(() => {
-        isWalletConnected();
+
 
         const fetchMarkets = async () => {
             const result = await graphQlInstance.post("/graphql", {
