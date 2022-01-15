@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios"
 import { store } from "react-notifications-component";
 import { useWeb3React } from "@web3-react/core";
@@ -18,9 +18,23 @@ export const Web3Provider = (props) => {
     const [token, setToken] = useState();
     const getConfig = () => ({
         headers: {
-            "Authorisation": `Bearer ${token}`
+            "Authorization": "Bearer x-access-token",
+            "x-access-code": `${token}`
         }
     })
+    useEffect(() => {
+        const updateSigner = async () => {
+            setToken();
+            const data =
+                library?.messenger?.chainType === "hmy"
+                    ? library.provider
+                    : await library.getSigner(account);
+            setSigner(data);
+        }
+        if (account) {
+            updateSigner();
+        }
+    }, [account])
 
     const getSigningDomain = () => {
 
@@ -45,27 +59,6 @@ export const Web3Provider = (props) => {
     }
 
 
-    const checkWalletConnected = async (isSignerRequired = false) => {
-        if (isSignerRequired && !signer) {
-            store.addNotification({
-                title: "You need to Connect your wallet first and switch to Harmony Network!",
-                message: "error",
-                type: "success",
-                insert: "top",
-                width: 1024,
-                container: "top-center",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                    duration: 600,
-                    showIcon: true,
-                },
-            });
-            return false;
-        }
-        return true;
-
-    }
     functionsToExport.getUserData = async (wallet = account) => {
         try {
             console.log(account);
@@ -88,26 +81,89 @@ export const Web3Provider = (props) => {
             // const answer = await signer?._signTypedData(getSigningDomain(), getTypes(), { message: "Please sign this message to authenticate into marketplace", nonce: result?.data?.nonce });
             const signerResult = await profileAxios.post("/user/login", {}, { headers: { signature: signature, "nonce-id": nonce_id } });
             setToken(signerResult?.data?.token)
-            console.log(signerResult);
-            return (signerResult);
-            return result?.data?.nonce;
+            return true;
 
         }
         catch (e) {
             console.log(e);
+            return false;
         }
     }
     functionsToExport.updateUser = async (updatedData) => {
         try {
-            console.log(token);
-            const result = await profileAxios.put("/user/update", updatedData, getConfig());
-            console.log(result);
-        }
-        catch (e) {
+            if (await checkWalletConnected()) {
+                console.log(token);
+                const result = await profileAxios.put("/user/update", updatedData, getConfig());
+                console.log(result);
+                store.addNotification({
+                    title: "Profile Updated",
+                    message: "Success",
+                    type: "success",
+                    insert: "top",
+                    width: 1024,
+                    container: "top-center",
+                    animationIn: ["animate__animated", "animate__fadeIn"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
+                    dismiss: {
+                        duration: 600,
+                        showIcon: true,
+                    },
+                });
+                return true;
+            }
+            return false;
 
         }
+        catch (e) {
+            return false;
+        }
     }
-    return (<Web3Context.Provider value={{ signer, setSigner, account, ...functionsToExport }}>
+    const checkWalletConnected = async (isSignerRequired = false) => {
+        if (isSignerRequired && !signer) {
+            store.addNotification({
+                title: "You need to Connect your wallet first and switch to Harmony Network!",
+                message: "error",
+                type: "success",
+                insert: "top",
+                width: 1024,
+                container: "top-center",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                    duration: 600,
+                    showIcon: true,
+                },
+            });
+            return false;
+        }
+        if (!token) {
+            store.addNotification({
+                title: "Please sign the message to authenticate",
+                message: "Info",
+                type: "success",
+                insert: "top",
+                width: 1024,
+                container: "top-center",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                    duration: 600,
+                    showIcon: true,
+                },
+            });
+
+            if (await functionsToExport.getNonce()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+
+
+    }
+    return (<Web3Context.Provider value={{ signer, setSigner, account, token, ...functionsToExport }}>
         {props.children}
     </Web3Context.Provider>)
 }

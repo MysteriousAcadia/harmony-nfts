@@ -15,7 +15,8 @@ const DataCard = ({ title, desc }) => {
 
 const ProfileSettingsTab = ({ }) => {
 
-    const { getUserData, account, updateUser } = useContext(Web3Context);
+    const { getUserData, account, updateUser, token, getNonce } = useContext(Web3Context);
+    const [updateState, setUpdateState] = useState("Save Changes");
     useEffect(() => {
         const fetchData = async () => {
             const user = await getUserData();
@@ -53,7 +54,14 @@ const ProfileSettingsTab = ({ }) => {
                     <div className="py-4 font-normal">{values?.about || "(No Descriptiion)"}</div>
                     <PrimaryWhite
                         className="mt-4"
-                        onClick={() => setIsEdit(true)}
+                        onClick={async () => {
+                            if (token) {
+                                setIsEdit(true)
+                            }
+                            else if (await getNonce()) {
+                                setIsEdit(true)
+                            }
+                        }}
                     >Edit Details</PrimaryWhite>
                 </> : <div className="px-24 w-full">
                     <TextInput
@@ -154,12 +162,16 @@ const ProfileSettingsTab = ({ }) => {
             </div>
             {isEdit &&
                 <PrimaryWhite
-                    onClick={() => {
+                    onClick={async () => {
+                        setUpdateState("Updating Changes")
+                        await updateUser(values);
+                        setUpdateState("Changes Updated!")
                         setIsEdit(false)
-                        updateUser(values);
+                        setUpdateState("Update Changes")
+
                     }}
                     className="mt-4">
-                    Save Changes
+                    {updateState}
                 </PrimaryWhite>}
 
         </div>

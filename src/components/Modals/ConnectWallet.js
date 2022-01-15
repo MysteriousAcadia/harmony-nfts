@@ -26,11 +26,7 @@ export default function ConnectWallet({ open = false, setOpen = () => { } }) {
     });
     await ethereum.request({ method: 'eth_requestAccounts' })
   };
-  useEffect(() => {
-    if (signer) {
-      getNonce();
-    }
-  }, [signer])
+
 
   useEffect(async () => {
     if (!library) return;
