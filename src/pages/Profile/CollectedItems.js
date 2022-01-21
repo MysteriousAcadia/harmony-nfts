@@ -21,7 +21,7 @@ const CollectedItems = ({ markets }) => {
                 market.id = "0xb60bc5ec5b57f4d8408754f251ce85fd00c760be";
                 console.log(market);
                 const { id } = market
-                const res = parseInt((await getTotalTokens(data, account, id)).toString());
+                const res = parseInt((await getTotalTokens(data, account, id))?.toString());
                 const allTokens = {
                     market: market,
 
