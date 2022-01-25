@@ -36,6 +36,7 @@ export default function ConnectWallet({ open = false, setOpen = () => { } }) {
         : await library.getSigner(account);
     setSigner(data);
     await connectContracts(data);
+
     console.log(library);
   }, [library]);
 

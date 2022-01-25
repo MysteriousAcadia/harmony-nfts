@@ -2,15 +2,30 @@ import { Link } from "react-router-dom";
 import HeartEmpty from "assets/heart_empty.svg"
 import HeartFilled from "assets/heart_filled.svg"
 import "./style.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { utils } from "ethers";
 import { daysLeft } from "utils/date";
+import { useContext } from "react";
+import Web3Context from "contexts/Context";
 
 const AllCard = ({ data = {} }) => {
+    const {doILikeNFT,setLike : setUserLike,token} = useContext(Web3Context);
     const [like, setLike] = useState(false);
     const { currentAuction = {}, currentSellOrder = {}, image, tokenId, id } = data;
     const { highestBid, endsAt, sellerA } = (currentAuction || {});
-    const { seller: sellerS, price } = (currentSellOrder || {})
+    const { seller: sellerS, price } = (currentSellOrder || {});
+    useEffect(()=>{
+        const updateLikes = async ()=>{
+            const res = await doILikeNFT(token,tokenId);
+            console.log(res);
+        }
+        if(token){
+            updateLikes()
+        }
+    },[token])
+    const changeLike = async ()=>{
+        const res = await setUserLike()
+    }
     return (<>
         <div className="glass-2 text-white">
             <div className="relative h-64 m-4 rounded-md bg-gray-400" style={{ backgroundImage: `url("${image}")`, backgroundSize: "cover" }}>

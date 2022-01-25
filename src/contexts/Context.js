@@ -30,11 +30,19 @@ export const Web3Provider = (props) => {
                     ? library.provider
                     : await library.getSigner(account);
             setSigner(data);
+            functionsToExport.getNonce(data)
+
         }
         if (account) {
             updateSigner();
         }
     }, [account])
+
+    useEffect(()=>{
+        if(account){
+
+        }
+    },[account])
 
     const getSigningDomain = () => {
 
@@ -72,7 +80,7 @@ export const Web3Provider = (props) => {
 
     }
 
-    functionsToExport.getNonce = async () => {
+    functionsToExport.getNonce = async (signer) => {
 
         try {
             const result = await profileAxios.get("/user/getnonce")
@@ -118,6 +126,119 @@ export const Web3Provider = (props) => {
             return false;
         }
     }
+    functionsToExport.doILikeNFT = async(contract, tokenId)=>{
+        if(!await checkWalletConnected(true)){
+            return false;
+        }
+        try{
+            const response = await profileAxios.post(`/likesnft/boolean/${account}`,{contract:contract, token:tokenId});
+            if(response?.data?.success){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch(e){
+            console.log(e)
+            return false;
+        }
+    }
+    functionsToExport. likeNFT = async (contract,tokenId)=>{
+        if(!await checkWalletConnected(true)){
+            return false;
+        }
+        try{
+            const response = await profileAxios.post("/likenft",{contract:contract, token:tokenId});
+            if(response?.data?.success){
+                return true;
+            }
+            else{
+               
+                return false;
+            }
+        }
+        catch(e){
+            console.log(e)
+            return false;
+        }
+    }
+    functionsToExport.doIfollowCollection = async(contract)=>{
+        if(!await checkWalletConnected(true)){
+            return false;
+        }
+        try{
+            const response = await profileAxios.post(`/followscollection/boolean/${account}`,{contract:contract});
+            if(response?.data?.success){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch(e){
+            console.log(e)
+            return false;
+        }
+    }
+    functionsToExport. followCollection = async (contract,tokenId)=>{
+        if(!await checkWalletConnected(true)){
+            return false;
+        }
+        try{
+            const response = await profileAxios.post("/followcollection",{contract:contract, token:tokenId});
+            if(response?.data?.success){
+                return true;
+            }
+            else{
+               
+                return false;
+            }
+        }
+        catch(e){
+            console.log(e)
+            return false;
+        }
+    }
+   
+    functionsToExport. getLikesNumber = async (body=[{contract:"",token:""}])=>{
+        if(!await checkWalletConnected(true)){
+            return false;
+        }
+        try{
+            const response = await profileAxios.post("/user/nft/likes",body);
+            if(response?.data?.success){
+                return true;
+            }
+            else{
+               
+                return false;
+            }
+        }
+        catch(e){
+            console.log(e)
+            return false;
+        }
+    }
+    functionsToExport. getCollectionsNumber = async (body=[{contract:""}])=>{
+        if(!await checkWalletConnected(true)){
+            return false;
+        }
+        try{
+            const response = await profileAxios.post("/user/collection/follows",body);
+            if(response?.data?.success){
+                return true;
+            }
+            else{
+               
+                return false;
+            }
+        }
+        catch(e){
+            console.log(e)
+            return false;
+        }
+    }
     const checkWalletConnected = async (isSignerRequired = false) => {
         if (isSignerRequired && !signer) {
             store.addNotification({
@@ -152,7 +273,7 @@ export const Web3Provider = (props) => {
                 },
             });
 
-            if (await functionsToExport.getNonce()) {
+            if (await functionsToExport.getNonce(signer)) {
                 return true;
             }
             else {
